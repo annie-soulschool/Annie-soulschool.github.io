@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Soul School</title>
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+	<main class="page-center">
+		<section class="hero-card">
+			<h1>SOUL SCHOOL</h1>
+			<h2>A new educational playground for the future human.</h2>
+
+			<div class="button-group">
+				<button id="enterSoulSchool" type="button" class="btn btn-primary">Enter Soul School</button>
+				<a class="btn btn-secondary" href="/pages/what-is-soul-school.html">What is Soul School?</a>
+				<a class="btn btn-secondary" href="/pages/member-login.html">Member Login</a>
+			</div>
+		</section>
+	</main>
+
+	<div id="passwordModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+		<div class="modal-content">
+			<button type="button" id="closeModal" class="btn-close" aria-label="Close">×</button>
+            <h3 id="modalTitle">Enter Password</h3>
+            <p class="modal-copy">What is the magical combination?</p>
+            <form id="passwordForm">
+                <label for="soulPassword" class="sr-only">Password</label>
+                <input id="soulPassword" name="soulPassword" type="password" autocomplete="current-password" required placeholder="Password">
+                <p id="passwordError" class="error-message" role="alert"></p>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Enter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+	<script src="movement/main.js"></script>
+</body>
+</html>
