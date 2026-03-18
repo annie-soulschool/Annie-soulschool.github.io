@@ -1,5 +1,16 @@
 :root {
   color-scheme: dark;
+  --void: #0a0a08;
+  --deep: #111110;
+  --ember-dark: #1e1d1a;
+  --burnt: #2e2219;
+  --ash: #5a5650;
+  --ancient: #7a5520;
+  --gold: #c9972a;
+  --luminous: #e8c76a;
+  --peak: #f5dfa0;
+  --soft: #f3f1eb;
+  --ink: #1c1a16;
 }
 
 * {
@@ -10,13 +21,13 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-  color: #f5f2ed;
+  color: var(--soft);
   background: linear-gradient(
     180deg,
-    #0a0a08 0%,
-    #111110 33%,
-    #1e1d1a 66%,
-    #2e2219 99%
+    var(--void) 0%,
+    var(--deep) 33%,
+    var(--ember-dark) 66%,
+    var(--burnt) 100%
   );
 }
 
@@ -39,6 +50,7 @@ h1 {
   font-size: clamp(2.5rem, 7vw, 4.25rem);
   font-weight: 800;
   letter-spacing: 0.06em;
+  color: var(--soft);
 }
 
 h2 {
@@ -46,13 +58,14 @@ h2 {
   margin-bottom: 2rem;
   font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   font-weight: 700;
+  color: var(--luminous);
 }
 
 p {
   line-height: 1.6;
   margin-top: 0.8rem;
   margin-bottom: 1rem;
-  color: #e6e0d8;
+  color: var(--soft);
 }
 
 .button-group {
@@ -63,10 +76,10 @@ p {
 }
 
 .btn {
-  border: 1px solid rgba(245, 242, 237, 0.45);
+  border: 1px solid rgba(245, 223, 160, 0.55);
   border-radius: 999px;
-  color: #f5f2ed;
-  background: rgba(10, 10, 8, 0.28);
+  color: var(--soft);
+  background: rgba(30, 29, 26, 0.68);
   text-decoration: none;
   cursor: pointer;
   padding: 0.85rem 1.4rem;
@@ -80,12 +93,20 @@ p {
 
 .btn:hover,
 .btn:focus-visible {
-  background: rgba(245, 242, 237, 0.18);
+  background: rgba(90, 86, 80, 0.45);
+  border-color: var(--luminous);
   transform: translateY(-1px);
 }
 
 .btn-primary {
-  background: rgba(245, 242, 237, 0.15);
+  background: var(--gold);
+  border-color: var(--peak);
+  color: var(--ink);
+}
+
+.btn-secondary {
+  background: rgba(17, 17, 16, 0.8);
+  border-color: rgba(232, 199, 106, 0.55);
 }
 
 .content-card {
@@ -105,22 +126,22 @@ label {
 }
 
 input {
-  border: 1px solid rgba(245, 242, 237, 0.4);
+  border: 1px solid rgba(245, 223, 160, 0.45);
   border-radius: 10px;
-  background: rgba(10, 10, 8, 0.3);
-  color: #f5f2ed;
+  background: rgba(17, 17, 16, 0.85);
+  color: var(--soft);
   padding: 0.75rem 0.8rem;
   font-size: 1rem;
 }
 
 input::placeholder {
-  color: #cdc6bc;
+  color: #c9c2b7;
 }
 
 .error-message {
   min-height: 1.15rem;
   margin: 0.1rem 0 0.4rem;
-  color: #ffb7b7;
+  color: #c4607a;
   font-size: 0.92rem;
 }
 
@@ -131,7 +152,7 @@ input::placeholder {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(10, 10, 8, 0.78);
 }
 
 .modal.open {
@@ -143,9 +164,10 @@ input::placeholder {
   width: min(420px, 92vw);
   padding: 1.4rem;
   border-radius: 14px;
-  border: 1px solid rgba(245, 242, 237, 0.35);
-  background: #1e1d1a;
+  border: 1px solid rgba(232, 199, 106, 0.35);
+  background: var(--deep);
   text-align: left;
+  box-shadow: 0 10px 30px rgba(10, 10, 8, 0.35);
 }
 
 .btn-close {
@@ -157,7 +179,7 @@ input::placeholder {
   border: 0;
   border-radius: 999px;
   background: transparent;
-  color: #f5f2ed;
+  color: var(--luminous);
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
@@ -165,7 +187,7 @@ input::placeholder {
 
 .btn-close:hover,
 .btn-close:focus-visible {
-  background: rgba(245, 242, 237, 0.12);
+  background: rgba(232, 199, 106, 0.16);
 }
 
 .modal-content h3 {
@@ -176,7 +198,7 @@ input::placeholder {
 .modal-copy {
   margin-top: 0;
   margin-bottom: 1rem;
-  color: #ded8cf;
+  color: var(--peak);
 }
 
 .modal-actions {
