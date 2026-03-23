@@ -1,3 +1,7 @@
+/* ── Soul School · main.css ── */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
+
 :root {
   color-scheme: dark;
   --void: #0a0a08;
@@ -13,23 +17,25 @@
   --ink: #1c1a16;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   color: var(--soft);
   background: linear-gradient(
-    180deg,
+    160deg,
     var(--void) 0%,
-    var(--deep) 33%,
-    var(--ember-dark) 66%,
+    var(--deep) 40%,
+    var(--ember-dark) 75%,
     var(--burnt) 100%
   );
 }
+
+/* ── Layout ── */
 
 .page-center {
   min-height: 100vh;
@@ -45,28 +51,86 @@ body {
   padding: 2.5rem 1.5rem;
 }
 
+.content-card {
+  max-width: 640px;
+}
+
+/* ── Typography ── */
+
 h1 {
-  margin: 0;
-  font-size: clamp(2.5rem, 7vw, 4.25rem);
-  font-weight: 800;
+  margin: 0 0 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.2rem, 7vw, 4rem);
+  font-weight: 700;
   letter-spacing: 0.06em;
+  line-height: 1.15;
   color: var(--soft);
 }
 
 h2 {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-  font-weight: 700;
+  margin-top: 0.6rem;
+  margin-bottom: 1.6rem;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
   color: var(--luminous);
 }
 
+h3 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--peak);
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+}
+
 p {
-  line-height: 1.6;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.75;
   margin-top: 0.8rem;
   margin-bottom: 1rem;
   color: var(--soft);
 }
+
+label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--luminous);
+  font-weight: 600;
+}
+
+/* ── Eyebrow / section label ── */
+
+.eyebrow {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.1rem;
+  opacity: 0.85;
+}
+
+/* ── Gold divider rule ── */
+
+.gold-rule {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1.4rem auto;
+  border: none;
+}
+
+/* ── Buttons ── */
 
 .button-group {
   display: flex;
@@ -76,19 +140,23 @@ p {
 }
 
 .btn {
-  border: 1px solid rgba(245, 223, 160, 0.55);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(245, 223, 160, 0.45);
   border-radius: 999px;
   color: var(--soft);
   background: rgba(30, 29, 26, 0.68);
   text-decoration: none;
   cursor: pointer;
-  padding: 0.85rem 1.4rem;
+  padding: 0.85rem 1.6rem;
   min-width: 240px;
-  font-size: 1rem;
-  font-weight: 700;
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
 
 .btn:hover,
@@ -104,70 +172,16 @@ p {
   color: var(--ink);
 }
 
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--luminous);
+  border-color: var(--peak);
+  color: var(--ink);
+}
+
 .btn-secondary {
   background: rgba(17, 17, 16, 0.8);
-  border-color: rgba(232, 199, 106, 0.55);
-}
-
-.content-card {
-  max-width: 640px;
-}
-
-.stacked-form {
-  text-align: left;
-  width: min(420px, 92vw);
-  margin: 1.2rem auto 1.6rem;
-  display: grid;
-  gap: 0.65rem;
-}
-
-label {
-  font-weight: 700;
-}
-
-input {
-  border: 1px solid rgba(245, 223, 160, 0.45);
-  border-radius: 10px;
-  background: rgba(17, 17, 16, 0.85);
-  color: var(--soft);
-  padding: 0.75rem 0.8rem;
-  font-size: 1rem;
-}
-
-input::placeholder {
-  color: #c9c2b7;
-}
-
-.error-message {
-  min-height: 1.15rem;
-  margin: 0.1rem 0 0.4rem;
-  color: #c4607a;
-  font-size: 0.92rem;
-}
-
-.modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  background: rgba(10, 10, 8, 0.78);
-}
-
-.modal.open {
-  display: flex;
-}
-
-.modal-content {
-  position: relative;
-  width: min(420px, 92vw);
-  padding: 1.4rem;
-  border-radius: 14px;
-  border: 1px solid rgba(232, 199, 106, 0.35);
-  background: var(--deep);
-  text-align: left;
-  box-shadow: 0 10px 30px rgba(10, 10, 8, 0.35);
+  border-color: rgba(232, 199, 106, 0.45);
 }
 
 .btn-close {
@@ -183,11 +197,80 @@ input::placeholder {
   font-size: 1.5rem;
   line-height: 1;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
 .btn-close:hover,
 .btn-close:focus-visible {
   background: rgba(232, 199, 106, 0.16);
+}
+
+/* ── Forms ── */
+
+.stacked-form {
+  text-align: left;
+  width: min(420px, 92vw);
+  margin: 1.2rem auto 1.6rem;
+  display: grid;
+  gap: 0.65rem;
+}
+
+input {
+  border: 1px solid rgba(245, 223, 160, 0.35);
+  border-radius: 10px;
+  background: rgba(17, 17, 16, 0.85);
+  color: var(--soft);
+  padding: 0.75rem 0.8rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+input::placeholder {
+  color: var(--ash);
+  font-style: italic;
+}
+
+.error-message {
+  min-height: 1.15rem;
+  margin: 0.1rem 0 0.4rem;
+  color: #c4607a;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Modal ── */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(10, 10, 8, 0.82);
+  backdrop-filter: blur(4px);
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  width: min(420px, 92vw);
+  padding: 1.6rem;
+  border-radius: 16px;
+  border: 1px solid rgba(232, 199, 106, 0.28);
+  background: var(--deep);
+  text-align: left;
+  box-shadow: 0 16px 40px rgba(10, 10, 8, 0.5);
 }
 
 .modal-content h3 {
@@ -199,13 +282,16 @@ input::placeholder {
   margin-top: 0;
   margin-bottom: 1rem;
   color: var(--peak);
+  font-style: italic;
 }
 
 .modal-actions {
   display: flex;
   gap: 0.7rem;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
 }
+
+/* ── Utility ── */
 
 .sr-only {
   position: absolute;
@@ -217,6 +303,17 @@ input::placeholder {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+/* ── RADICAL rainbow text ── */
+.radical {
+  background: linear-gradient(90deg, #e84949, #e8823a, #d4c43a, #4abd6f, #4a7fe8, #8a4ae8, #d44ab0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* ── Mobile ── */
 
 @media (max-width: 560px) {
   .modal-actions {
