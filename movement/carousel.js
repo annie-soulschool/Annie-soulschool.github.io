@@ -37,22 +37,9 @@
   function next() { goTo(current + 1); }
   function prev() { goTo(current - 1); }
 
-  // Keyboard
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next();
-    if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  prev();
-  });
-
-  // Arrow buttons
+  // Arrow buttons (wired with resetAuto below)
   const btnNext = document.querySelector('.nav-arrow.next');
   const btnPrev = document.querySelector('.nav-arrow.prev');
-  if (btnNext) btnNext.addEventListener('click', next);
-  if (btnPrev) btnPrev.addEventListener('click', prev);
-
-  // Dot clicks
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => goTo(i));
-  });
 
   // Touch / swipe
   let touchStartY = null;
@@ -89,8 +76,55 @@
     });
   });
 
+  // ── Auto-advance every 8 seconds ──
+  const AUTO_DELAY = 8000;
+  const PAUSE_AFTER_INTERACTION = 14000; // pause longer after manual nav
+  let autoTimer = null;
+
+  function startAuto(delay = AUTO_DELAY) {
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(() => {
+      next();
+      startAuto(); // keep looping
+    }, delay);
+  }
+
+  function resetAuto() {
+    // User interacted — pause a bit longer before resuming
+    startAuto(PAUSE_AFTER_INTERACTION);
+  }
+
+  // Pause auto-advance while the tab is hidden, resume when visible
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearTimeout(autoTimer);
+    } else {
+      startAuto();
+    }
+  });
+
+  // Wrap user-triggered navigation so it resets the timer
+  const _origGoTo = goTo;
+  function goToManual(idx) {
+    _origGoTo(idx);
+    resetAuto();
+  }
+
+  if (btnNext) btnNext.addEventListener('click', () => { next(); resetAuto(); });
+  if (btnPrev) btnPrev.addEventListener('click', () => { prev(); resetAuto(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetAuto(); }));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { next(); resetAuto(); }
+    if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  { prev(); resetAuto(); }
+  });
+
+  document.addEventListener('touchend', () => resetAuto(), { passive: true });
+
   // Init first slide
   slides[0].classList.add('active');
   if (dots[0]) dots[0].classList.add('active');
   if (counter) counter.textContent = `1 / ${slides.length}`;
+
+  startAuto();
 })();
