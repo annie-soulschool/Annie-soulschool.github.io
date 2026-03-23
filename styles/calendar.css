@@ -1,0 +1,392 @@
+/* ── Soul School · calendar.css ── */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
+
+/* Body / page reset for scrollable page */
+html, body {
+  overflow: auto;
+}
+
+body {
+  background: linear-gradient(160deg, var(--void) 0%, var(--deep) 40%, var(--ember-dark) 75%, var(--burnt) 100%);
+  background-attachment: fixed;
+}
+
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(160deg, var(--void) 0%, var(--deep) 40%, var(--ember-dark) 75%, var(--burnt) 100%);
+  z-index: 0;
+}
+
+.bg-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ── Page layout ── */
+
+.calendar-page {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 5rem;
+}
+
+/* ── Header ── */
+
+.cal-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.cal-intro {
+  max-width: 480px;
+  margin: 0 auto;
+  font-style: italic;
+  opacity: 0.75;
+}
+
+/* ── Month navigation ── */
+
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.month-label {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--luminous);
+  min-width: 200px;
+  text-align: center;
+  margin: 0;
+}
+
+.month-btn {
+  background: none;
+  border: 1px solid rgba(232, 199, 106, 0.3);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  color: var(--luminous);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.month-btn:hover {
+  background: rgba(201, 151, 42, 0.15);
+  border-color: var(--luminous);
+}
+
+/* ── Calendar grid ── */
+
+.cal-grid-wrapper {
+  background: rgba(17, 17, 16, 0.45);
+  border: 1px solid rgba(201, 151, 42, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: rgba(201, 151, 42, 0.08);
+  border-bottom: 1px solid rgba(201, 151, 42, 0.12);
+}
+
+.cal-weekdays span {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ash);
+  text-align: center;
+  padding: 0.7rem 0;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+/* ── Day cell ── */
+
+.cal-day {
+  min-height: 88px;
+  border-right: 1px solid rgba(201, 151, 42, 0.07);
+  border-bottom: 1px solid rgba(201, 151, 42, 0.07);
+  padding: 0.5rem 0.4rem 0.4rem;
+  position: relative;
+  transition: background 0.18s;
+}
+
+.cal-day:nth-child(7n) { border-right: none; }
+
+.cal-day.other-month {
+  opacity: 0.3;
+}
+
+.cal-day.today {
+  background: rgba(201, 151, 42, 0.1);
+}
+
+.cal-day.today .day-num {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.cal-day.has-event {
+  cursor: default;
+}
+
+.day-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--ash);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/* ── Event pill on day ── */
+
+.event-pill {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--ink);
+  background: linear-gradient(90deg, var(--ancient), var(--gold));
+  border-radius: 4px;
+  padding: 0.15rem 0.35rem;
+  margin-bottom: 0.2rem;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: filter 0.15s;
+  line-height: 1.4;
+}
+
+.event-pill:hover {
+  filter: brightness(1.2);
+}
+
+/* more indicator */
+.more-indicator {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+/* ── Loading / error / empty states ── */
+
+.cal-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--ash);
+  font-size: 1.1rem;
+}
+
+.cal-state.error {
+  color: #c4607a;
+}
+
+/* ── Skeleton loading animation ── */
+
+.skeleton-day {
+  min-height: 88px;
+  border-right: 1px solid rgba(201, 151, 42, 0.07);
+  border-bottom: 1px solid rgba(201, 151, 42, 0.07);
+  padding: 0.5rem 0.4rem;
+}
+
+.skeleton-num {
+  width: 18px;
+  height: 10px;
+  border-radius: 3px;
+  background: rgba(90, 86, 80, 0.3);
+  margin-bottom: 0.4rem;
+  animation: shimmer 1.6s infinite;
+}
+
+.skeleton-bar {
+  width: 80%;
+  height: 18px;
+  border-radius: 4px;
+  background: rgba(90, 86, 80, 0.2);
+  animation: shimmer 1.6s infinite 0.3s;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+/* ── Upcoming events list ── */
+
+.events-section {
+  margin-bottom: 2rem;
+}
+
+.events-section > .eyebrow {
+  display: block;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.event-card {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  background: rgba(17, 17, 16, 0.5);
+  border: 1px solid rgba(201, 151, 42, 0.18);
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+  cursor: pointer;
+  transition: border-color 0.22s, background 0.22s;
+}
+
+.event-card:hover {
+  border-color: rgba(232, 199, 106, 0.5);
+  background: rgba(46, 34, 25, 0.65);
+}
+
+.event-date-badge {
+  flex-shrink: 0;
+  width: 52px;
+  text-align: center;
+  background: rgba(201, 151, 42, 0.1);
+  border: 1px solid rgba(201, 151, 42, 0.25);
+  border-radius: 10px;
+  padding: 0.4rem 0.2rem;
+}
+
+.badge-month {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.badge-day {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--soft);
+  line-height: 1.1;
+}
+
+.event-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.88rem;
+  letter-spacing: 0.05em;
+  color: var(--luminous);
+  margin-bottom: 0.25rem;
+}
+
+.event-meta {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ash);
+  line-height: 1.5;
+}
+
+.event-desc-preview {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.92rem;
+  color: var(--soft);
+  opacity: 0.7;
+  margin-top: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* empty state */
+.no-events {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--ash);
+  padding: 2rem 0;
+}
+
+/* ── Setup notice banner ── */
+
+.setup-banner {
+  background: rgba(201, 151, 42, 0.08);
+  border: 1px solid rgba(201, 151, 42, 0.3);
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.setup-banner p {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+  line-height: 1.7;
+}
+
+.setup-banner code {
+  font-family: 'Inter', monospace;
+  font-size: 0.78rem;
+  background: rgba(201, 151, 42, 0.12);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  color: var(--peak);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 600px) {
+  .cal-day { min-height: 60px; padding: 0.3rem; }
+  .event-pill { font-size: 0.62rem; }
+  .cal-weekdays span { font-size: 0.5rem; letter-spacing: 0.08em; }
+  .event-card { gap: 0.8rem; padding: 0.9rem 1rem; }
+  .event-date-badge { width: 44px; }
+  .badge-day { font-size: 1.1rem; }
+}
