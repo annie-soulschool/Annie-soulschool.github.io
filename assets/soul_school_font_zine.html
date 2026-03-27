@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul School — Sensual Serif Explorations</title>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Gilda+Display&family=Oswald:wght@200;300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --void: #0A0A08;
+  --deep: #0F0F0D;
+  --ember: #1E1D1A;
+  --ash-light: #8A8480;
+  --ancient: #7A5520;
+  --gold: #C9972A;
+  --luminous: #E8C76A;
+  --soft: #F3F1EB;
+  --green: #3D8C6A;
+  --purple: #9333EA;
+  --cyan: #00E5FF;
+  --orange: #FF6B1A;
+}
+
+html { font-size: 16px; }
+body { background: #060604; overflow-x: hidden; }
+
+/* ── TABS ── */
+.tabs {
+  position: sticky; top: 0; z-index: 200;
+  display: flex; background: #060604;
+  border-bottom: 1px solid var(--ember);
+  padding: 0 32px;
+}
+.tab {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ash-light); padding: 14px 22px; cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+}
+.tab:hover { color: var(--soft); }
+.tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* ── VERSION PANELS ── */
+.version { display: none; }
+.version.active { display: block; }
+
+/* ── SHARED LAYOUT ── */
+.zine { max-width: 900px; margin: 0 auto; }
+.spread {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; padding: 72px 64px;
+  position: relative; overflow: hidden;
+  background: var(--void); border-bottom: 1px solid var(--ember);
+}
+.cover { justify-content: space-between; padding: 56px 64px 48px; min-height: 100vh; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: start; }
+.col-l { padding-right: 52px; border-right: 1px solid rgba(201,151,42,0.14); }
+.col-r { padding-left: 52px; }
+.card-dark { background: var(--deep); border: 1px solid rgba(201,151,42,0.1); padding: 22px 20px; }
+.card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--ember); border: 1px solid rgba(201,151,42,0.1); overflow: hidden; }
+.card-cell { background: var(--deep); padding: 26px 24px; position: relative; overflow: hidden; }
+.cell-ghost {
+  position: absolute; right: 12px; bottom: -8px;
+  font-family: 'DM Mono', monospace; font-size: 72px;
+  color: rgba(90,86,80,0.05); pointer-events: none; user-select: none; line-height: 1;
+}
+.pillar-table { border-top: 1px solid rgba(201,151,42,0.1); }
+.pillar-row {
+  display: grid; grid-template-columns: 2px 1fr; gap: 22px;
+  padding: 20px 0; border-bottom: 1px solid rgba(201,151,42,0.08); align-items: start;
+}
+.pillar-row:last-child { border-bottom: none; }
+.pillar-stripe { border-radius: 1px; align-self: stretch; min-height: 14px; }
+.list { display: flex; flex-direction: column; }
+.list-row {
+  display: grid; grid-template-columns: 8px 1fr; gap: 14px;
+  padding: 11px 0; border-bottom: 1px solid rgba(90,86,80,0.1); align-items: start;
+}
+.list-row:last-child { border-bottom: none; }
+.list-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); margin-top: 6px; flex-shrink: 0; }
+.mono { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--ash-light); letter-spacing: 0.1em; line-height: 2.2; }
+.mono-tag { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--luminous); letter-spacing: 0.14em; background: var(--ember); padding: 10px 16px; display: inline-block; }
+.cover-top { display: flex; justify-content: space-between; }
+.cover-bottom { display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid rgba(201,151,42,0.12); padding-top: 20px; }
+.close-bg {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  font-family: 'Josefin Sans', sans-serif; font-weight: 600; text-transform: uppercase;
+  font-size: clamp(80px,15vw,160px); color: var(--soft); opacity: 0.022;
+  user-select: none; pointer-events: none; white-space: nowrap; line-height: 1;
+  letter-spacing: 0.08em;
+}
+.practices { border: 1px solid rgba(201,151,42,0.1); overflow: hidden; }
+.practice-row { padding: 14px 18px; background: var(--deep); border-bottom: 1px solid rgba(201,151,42,0.08); }
+.practice-row:last-child { border-bottom: none; }
+
+/* Bauhaus bold+thin rule — same across all */
+.gold-rule { max-width: 900px; margin: 0 auto; padding: 4px 0; background: var(--void); }
+.gold-rule .lt { height: 2px; background: linear-gradient(90deg, transparent, var(--ancient) 20%, var(--gold) 45%, var(--luminous) 50%, var(--gold) 55%, var(--ancient) 80%, transparent); margin-bottom: 2px; }
+.gold-rule .ln { height: 1px; background: linear-gradient(90deg, transparent, rgba(201,151,42,0.28) 30%, rgba(201,151,42,0.28) 70%, transparent); }
+
+/* Bauhaus corners with gold dots — same across all */
+.corner { position: absolute; width: 20px; height: 20px; }
+.corner-tl { top: 24px; left: 24px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.corner-tr { top: 24px; right: 24px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+.corner-bl { bottom: 24px; left: 24px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.corner-br { bottom: 24px; right: 24px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+.corner::after { content: ''; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+.corner-tl::after { top: -3px; left: -3px; }
+.corner-tr::after { top: -3px; right: -3px; }
+.corner-bl::after { bottom: -3px; left: -3px; }
+.corner-br::after { bottom: -3px; right: -3px; }
+
+/* ── JOSEFIN SANS structural type — same across all ── */
+.j-display {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: clamp(64px, 11.5vw, 108px); font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--soft); line-height: 0.88; display: block;
+}
+.j-display-md {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: clamp(36px, 6vw, 64px); font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--soft); line-height: 0.9; display: block;
+}
+.j-section {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px; font-weight: 300; letter-spacing: 0.42em;
+  text-transform: uppercase; color: var(--ash-light);
+  display: flex; align-items: center; gap: 16px; margin-bottom: 48px;
+}
+.j-section::before { content: ''; flex: none; width: 3px; height: 3px; background: var(--gold); border-radius: 50%; }
+.j-section::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(201,151,42,0.3), transparent); }
+.j-subhead { font-family: 'Josefin Sans', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.j-practice { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--soft); margin-bottom: 4px; }
+.j-cta { font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--void); background: var(--gold); padding: 14px 28px; display: inline-block; }
+.j-weare { font-family: 'Josefin Sans', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold); }
+.j-tagline { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(243,241,235,0.6); margin-top: 28px; }
+
+
+/* ════════════════════════════════════════════
+   S1 — FRAUNCES
+   Optical variable serif. Goes liquid at display
+   sizes. The italic feels like it's breathing.
+   Most sensual of all variable fonts.
+════════════════════════════════════════════ */
+.s1 .s-gold    { font-family:'Fraunces',serif; font-size:clamp(68px,12.5vw,116px); font-style:italic; font-weight:300; color:var(--gold); line-height:0.88; letter-spacing:-0.015em; display:block; }
+.s1 .s-gold-md { font-family:'Fraunces',serif; font-size:clamp(38px,6.5vw,68px); font-style:italic; font-weight:300; color:var(--gold); line-height:0.9; display:block; }
+.s1 .s-body    { font-family:'Fraunces',serif; font-size:15px; font-weight:300; line-height:1.88; color:rgba(243,241,235,0.78); }
+.s1 .s-pull    { font-family:'Fraunces',serif; font-style:italic; font-size:clamp(18px,2.8vw,28px); font-weight:300; color:var(--gold); line-height:1.38; }
+.s1 .s-pillar  { font-family:'Fraunces',serif; font-size:22px; font-style:italic; font-weight:300; color:var(--soft); line-height:1.1; margin-bottom:5px; }
+.s1 .s-pbody   { font-family:'Fraunces',serif; font-size:13px; font-weight:300; line-height:1.78; color:rgba(243,241,235,0.62); }
+.s1 .s-mark    { font-family:'Fraunces',serif; font-style:italic; font-size:24px; font-weight:300; color:var(--gold); }
+.s1 .s-ghost5  { font-family:'Fraunces',serif; font-style:italic; font-size:110px; font-weight:300; color:var(--luminous); opacity:0.07; line-height:1; }
+.s1 .s-closesub { font-family:'Fraunces',serif; font-style:italic; font-size:15px; font-weight:300; color:var(--ash-light); margin-top:20px; letter-spacing:0.02em; }
+
+/* ════════════════════════════════════════════
+   S2 — LIBRE BASKERVILLE
+   Full-bodied curves, generous ink weight.
+   The italic is warm and physically present —
+   feels like it was letterpress-printed.
+════════════════════════════════════════════ */
+.s2 .s-gold    { font-family:'Libre Baskerville',serif; font-size:clamp(58px,10.5vw,98px); font-style:italic; font-weight:400; color:var(--gold); line-height:0.92; letter-spacing:-0.01em; display:block; }
+.s2 .s-gold-md { font-family:'Libre Baskerville',serif; font-size:clamp(32px,5.5vw,58px); font-style:italic; font-weight:400; color:var(--gold); line-height:0.94; display:block; }
+.s2 .s-body    { font-family:'Libre Baskerville',serif; font-size:14px; font-weight:400; line-height:1.88; color:rgba(243,241,235,0.78); }
+.s2 .s-pull    { font-family:'Libre Baskerville',serif; font-style:italic; font-size:clamp(16px,2.4vw,24px); font-weight:400; color:var(--gold); line-height:1.45; }
+.s2 .s-pillar  { font-family:'Libre Baskerville',serif; font-size:20px; font-style:italic; font-weight:400; color:var(--soft); line-height:1.2; margin-bottom:5px; }
+.s2 .s-pbody   { font-family:'Libre Baskerville',serif; font-size:13px; font-weight:400; line-height:1.78; color:rgba(243,241,235,0.62); }
+.s2 .s-mark    { font-family:'Libre Baskerville',serif; font-style:italic; font-size:22px; font-weight:400; color:var(--gold); }
+.s2 .s-ghost5  { font-family:'Libre Baskerville',serif; font-style:italic; font-size:110px; font-weight:400; color:var(--luminous); opacity:0.07; line-height:1; }
+.s2 .s-closesub { font-family:'Libre Baskerville',serif; font-style:italic; font-size:14px; font-weight:400; color:var(--ash-light); margin-top:20px; }
+
+/* ════════════════════════════════════════════
+   S3 — LORA
+   Designed for flowing on-screen reading.
+   Calligraphic roots in every curve —
+   the italic feels handwritten but refined.
+════════════════════════════════════════════ */
+.s3 .s-gold    { font-family:'Lora',serif; font-size:clamp(62px,11vw,102px); font-style:italic; font-weight:400; color:var(--gold); line-height:0.92; letter-spacing:-0.01em; display:block; }
+.s3 .s-gold-md { font-family:'Lora',serif; font-size:clamp(36px,6vw,64px); font-style:italic; font-weight:400; color:var(--gold); line-height:0.94; display:block; }
+.s3 .s-body    { font-family:'Lora',serif; font-size:15px; font-weight:400; line-height:1.88; color:rgba(243,241,235,0.78); }
+.s3 .s-pull    { font-family:'Lora',serif; font-style:italic; font-size:clamp(17px,2.6vw,26px); font-weight:400; color:var(--gold); line-height:1.42; }
+.s3 .s-pillar  { font-family:'Lora',serif; font-size:21px; font-style:italic; font-weight:400; color:var(--soft); line-height:1.15; margin-bottom:5px; }
+.s3 .s-pbody   { font-family:'Lora',serif; font-size:13px; font-weight:400; line-height:1.78; color:rgba(243,241,235,0.62); }
+.s3 .s-mark    { font-family:'Lora',serif; font-style:italic; font-size:23px; font-weight:400; color:var(--gold); }
+.s3 .s-ghost5  { font-family:'Lora',serif; font-style:italic; font-size:110px; font-weight:400; color:var(--luminous); opacity:0.07; line-height:1; }
+.s3 .s-closesub { font-family:'Lora',serif; font-style:italic; font-size:15px; font-weight:400; color:var(--ash-light); margin-top:20px; }
+
+/* ════════════════════════════════════════════
+   S4 — GILDA DISPLAY
+   Art Nouveau-adjacent. Voluminous, uncommon.
+   The curves are almost architectural —
+   sensual in a way that feels structural.
+════════════════════════════════════════════ */
+.s4 .s-gold    { font-family:'Gilda Display',serif; font-size:clamp(66px,12vw,110px); font-style:normal; font-weight:400; color:var(--gold); line-height:0.9; letter-spacing:-0.01em; display:block; }
+.s4 .s-gold-md { font-family:'Gilda Display',serif; font-size:clamp(40px,7vw,72px); font-style:normal; font-weight:400; color:var(--gold); line-height:0.92; display:block; }
+.s4 .s-body    { font-family:'Gilda Display',serif; font-size:16px; font-weight:400; line-height:1.85; color:rgba(243,241,235,0.78); }
+.s4 .s-pull    { font-family:'Gilda Display',serif; font-size:clamp(18px,2.8vw,28px); font-weight:400; color:var(--gold); line-height:1.38; }
+.s4 .s-pillar  { font-family:'Gilda Display',serif; font-size:23px; font-weight:400; color:var(--soft); line-height:1.1; margin-bottom:5px; }
+.s4 .s-pbody   { font-family:'Gilda Display',serif; font-size:14px; font-weight:400; line-height:1.75; color:rgba(243,241,235,0.62); }
+.s4 .s-mark    { font-family:'Gilda Display',serif; font-size:26px; font-weight:400; color:var(--gold); }
+.s4 .s-ghost5  { font-family:'Gilda Display',serif; font-size:110px; font-weight:400; color:var(--luminous); opacity:0.07; line-height:1; }
+.s4 .s-closesub { font-family:'Gilda Display',serif; font-size:16px; font-weight:400; color:var(--ash-light); margin-top:20px; letter-spacing:0.02em; }
+
+/* ════════════════════════════════════════════
+   V1 — FLIPPED
+   Gold italic = structural nouns (Soul, Core, Show)
+   White Oswald = the descriptor words (School, Pillars., Up.)
+════════════════════════════════════════════ */
+.v1 .stencil-xl  { font-family:'Playfair Display',serif; font-size:clamp(72px,13vw,120px); font-style:italic; font-weight:400; color:var(--gold); line-height:0.88; letter-spacing:-0.02em; display:block; }
+.v1 .italic-xl   { font-family:'Oswald',sans-serif; font-size:clamp(72px,13vw,120px); font-weight:400; letter-spacing:0.02em; text-transform:uppercase; color:var(--soft); line-height:0.88; display:block; }
+.v1 .stencil-lg  { font-family:'Playfair Display',serif; font-size:clamp(40px,7vw,72px); font-style:italic; font-weight:400; color:var(--gold); line-height:0.9; letter-spacing:-0.02em; display:block; }
+.v1 .italic-lg   { font-family:'Oswald',sans-serif; font-size:clamp(40px,7vw,72px); font-weight:400; letter-spacing:0.02em; text-transform:uppercase; color:var(--soft); line-height:0.9; display:block; }
+.v1 .section-title { font-family:'Oswald',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.32em; text-transform:uppercase; color:#8A8480; display:flex; align-items:center; gap:12px; margin-bottom:48px; }
+.v1 .section-title::after { content:''; flex:1; height:1px; background:var(--ember); }
+.v1 .body { font-family:'DM Sans',sans-serif; font-size:13px; font-weight:400; line-height:1.85; color:rgba(243,241,235,0.75); }
+.v1 .italic-pull { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(18px,2.8vw,26px); font-weight:400; color:var(--gold); line-height:1.35; }
+.v1 .v1-mono { font-family:'DM Mono',monospace; font-size:9px; color:#8A8480; letter-spacing:0.1em; line-height:2.2; }
+.v1 .v1-mono-tag { font-family:'DM Mono',monospace; font-size:11px; color:var(--luminous); letter-spacing:0.12em; background:var(--ember); padding:10px 16px; border-radius:2px; display:inline-block; }
+.v1 .v1-cta { font-family:'Oswald',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--void); background:var(--gold); padding:12px 24px; border-radius:2px; display:inline-block; }
+.v1 .pillar-name { font-family:'Playfair Display',serif; font-size:20px; font-style:italic; font-weight:400; color:var(--soft); line-height:1.1; margin-bottom:6px; }
+.v1 .practice-name { font-family:'Oswald',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--soft); margin-bottom:5px; }
+.v1 .practice-desc { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:400; line-height:1.7; color:rgba(243,241,235,0.7); }
+.v1 .col-left { padding-right:52px; border-right:1px solid var(--ember); }
+.v1 .col-right { padding-left:52px; }
+.v1 .card-dark { background:var(--deep); border:1px solid var(--ember); border-radius:2px; padding:24px 22px; }
+.v1 .card-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--ember); border:1px solid var(--ember); border-radius:2px; overflow:hidden; }
+.v1 .card-cell { background:var(--deep); padding:26px 24px; position:relative; overflow:hidden; }
+.v1 .cell-ghost { position:absolute; right:8px; bottom:-14px; font-family:'DM Mono',monospace; font-size:80px; color:rgba(90,86,80,0.05); pointer-events:none; user-select:none; line-height:1; }
+.v1 .pillar-table { border-top:1px solid var(--ember); }
+.v1 .pillar-row { display:grid; grid-template-columns:3px 1fr; gap:20px; padding:20px 0; border-bottom:1px solid var(--ember); align-items:start; }
+.v1 .pillar-row:last-child { border-bottom:none; }
+.v1 .pillar-stripe { border-radius:2px; align-self:stretch; min-height:16px; }
+.v1 .v1-list { display:flex; flex-direction:column; }
+.v1 .list-row { display:grid; grid-template-columns:6px 1fr; gap:14px; padding:12px 0; border-bottom:1px solid var(--ember); align-items:start; }
+.v1 .list-row:last-child { border-bottom:none; }
+.v1 .list-dot { width:6px; height:6px; border-radius:50%; background:var(--gold); margin-top:5px; flex-shrink:0; }
+.v1 .practices { border:1px solid var(--ember); border-radius:2px; overflow:hidden; }
+.v1 .practice-row { padding:14px 18px; border-bottom:1px solid var(--ember); background:var(--deep); }
+.v1 .practice-row:last-child { border-bottom:none; }
+.v1 .v1-gold-rule { height:2px; background:linear-gradient(90deg,transparent,var(--ancient) 15%,var(--gold) 40%,var(--luminous) 50%,var(--gold) 60%,var(--ancient) 85%,transparent); max-width:900px; margin:0 auto; }
+.v1 .close-bg-v1 { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:clamp(80px,15vw,160px); color:var(--gold); opacity:0.06; user-select:none; pointer-events:none; white-space:nowrap; line-height:1; letter-spacing:-0.02em; }
+
+/* ════════════════════════════════════════════
+   V0 — ORIGINAL (Oswald × Playfair Display)
+   White stencil at 400 weight — thinner, cooler
+════════════════════════════════════════════ */
+.v0 .stencil-xl {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(72px, 13vw, 120px); font-weight: 400;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--soft); line-height: 0.88; display: block;
+}
+.v0 .italic-xl {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(72px, 13vw, 120px); font-style: italic; font-weight: 400;
+  color: var(--gold); line-height: 0.88; letter-spacing: -0.02em; display: block;
+}
+.v0 .stencil-lg {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(40px, 7vw, 72px); font-weight: 400;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--soft); line-height: 0.9; display: block;
+}
+.v0 .italic-lg {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 7vw, 72px); font-style: italic; font-weight: 400;
+  color: var(--gold); line-height: 0.9; letter-spacing: -0.02em; display: block;
+}
+.v0 .section-title {
+  font-family: 'Oswald', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.32em; text-transform: uppercase; color: #8A8480;
+  display: flex; align-items: center; gap: 12px; margin-bottom: 48px;
+}
+.v0 .section-title::after { content: ''; flex: 1; height: 1px; background: var(--ember); }
+.v0 .body {
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 400;
+  line-height: 1.85; color: rgba(243,241,235,0.75);
+}
+.v0 .italic-pull {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(18px, 2.8vw, 26px); font-weight: 400;
+  color: var(--gold); line-height: 1.35;
+}
+.v0 .v0-mono {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  color: #8A8480; letter-spacing: 0.1em; line-height: 2.2;
+}
+.v0 .v0-mono-tag {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: var(--luminous); letter-spacing: 0.12em;
+  background: var(--ember); padding: 10px 16px; border-radius: 2px; display: inline-block;
+}
+.v0 .v0-cta {
+  font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--void); background: var(--gold); padding: 12px 24px;
+  border-radius: 2px; display: inline-block;
+}
+.v0 .pillar-name {
+  font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic;
+  font-weight: 400; color: var(--soft); line-height: 1.1; margin-bottom: 6px;
+}
+.v0 .practice-name {
+  font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--soft); margin-bottom: 5px;
+}
+.v0 .practice-desc {
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 400;
+  line-height: 1.7; color: rgba(243,241,235,0.7);
+}
+.v0 .col-left { padding-right: 52px; border-right: 1px solid var(--ember); }
+.v0 .col-right { padding-left: 52px; }
+.v0 .card-dark { background: var(--deep); border: 1px solid var(--ember); border-radius: 2px; padding: 24px 22px; }
+.v0 .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--ember); border: 1px solid var(--ember); border-radius: 2px; overflow: hidden; }
+.v0 .card-cell { background: var(--deep); padding: 26px 24px; position: relative; overflow: hidden; }
+.v0 .cell-ghost { position: absolute; right: 8px; bottom: -14px; font-family: 'DM Mono', monospace; font-size: 80px; color: rgba(90,86,80,0.05); pointer-events: none; user-select: none; line-height: 1; }
+.v0 .pillar-table { border-top: 1px solid var(--ember); }
+.v0 .pillar-row { display: grid; grid-template-columns: 3px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--ember); align-items: start; }
+.v0 .pillar-row:last-child { border-bottom: none; }
+.v0 .pillar-stripe { border-radius: 2px; align-self: stretch; min-height: 16px; }
+.v0 .v0-list { display: flex; flex-direction: column; }
+.v0 .list-row { display: grid; grid-template-columns: 6px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--ember); align-items: start; }
+.v0 .list-row:last-child { border-bottom: none; }
+.v0 .list-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin-top: 5px; flex-shrink: 0; }
+.v0 .practices { border: 1px solid var(--ember); border-radius: 2px; overflow: hidden; }
+.v0 .practice-row { padding: 14px 18px; border-bottom: 1px solid var(--ember); background: var(--deep); }
+.v0 .practice-row:last-child { border-bottom: none; }
+.v0 .v0-gold-rule { height: 2px; background: linear-gradient(90deg, transparent, var(--ancient) 15%, var(--gold) 40%, var(--luminous) 50%, var(--gold) 60%, var(--ancient) 85%, transparent); max-width: 900px; margin: 0 auto; }
+.v0 .close-bg-v0 { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); font-family: 'Oswald', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(80px,15vw,160px); color: var(--soft); opacity: 0.022; user-select: none; pointer-events: none; white-space: nowrap; line-height: 1; letter-spacing: 0.02em; }
+
+</style>
+</head>
+<body>
+
+<div class="tabs">
+  <div class="tab active" onclick="show('v0',this)">V0 — Original</div>
+</div>
+
+<div class="version v0 active" id="v-v0"><div class="zine">
+
+<div class="spread" style="justify-content:space-between; padding:56px 64px 48px; min-height:100vh;">
+  <div style="display:flex; justify-content:space-between;"><div class="v0-mono">Soul School</div><div class="v0-mono" style="text-align:right;">WEAREFREE</div></div>
+  <div>
+    <div style="margin-bottom:20px; display:flex; align-items:center; gap:12px;"><div style="width:32px;height:2px;background:var(--gold);"></div><span style="font-family:'Oswald',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);">Soul School</span></div>
+    <span class="stencil-xl">Soul</span>
+    <span class="italic-xl">School</span>
+    <div style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:200;letter-spacing:0.32em;text-transform:uppercase;color:rgba(243,241,235,0.6);margin-top:28px;">A new educational playground for the future human.</div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--ember);padding-top:20px;">
+    <div class="v0-mono">Enter Soul School<br>What is Soul School?<br>Member Login</div>
+    <div style="font-family:'Oswald',sans-serif;font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);">WE ARE FREE</div>
+  </div>
+  <div style="height:2px;background:linear-gradient(90deg,var(--gold),var(--luminous),var(--gold));position:absolute;left:0;right:0;bottom:0;"></div>
+</div>
+<div class="v0-gold-rule"></div>
+
+<div class="spread">
+  <div class="section-title">The Era We're Entering</div>
+  <div class="two-col">
+    <div class="col-left">
+      <span class="stencil-lg">The Era</span>
+      <span class="italic-lg">We're Entering.</span>
+      <div class="body" style="margin-top:28px;">We are living in an era of profound disorientation. The internet has connected us to everything while simultaneously disconnecting us from ourselves. Information is infinite, yet meaning is scarce.</div>
+      <div class="body" style="margin-top:16px;">Artificial intelligence now surpasses human analytic capacity while human emotional maturity, perceptual clarity, and inner coherence remain underdeveloped.</div>
+      <div class="card-dark" style="margin-top:24px;"><div class="body">The result is a widespread inability to sense what is real, meaningful, or aligned.</div></div>
+    </div>
+    <div class="col-right">
+      <div style="font-family:'Oswald',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">What's Broken in Higher Education</div>
+      <div class="body">Most systems of traditional higher education were designed for an industrial world. They train the analytic intellect while neglecting the inner world — the place where perception, intuition, discernment, and emotional coherence actually live.</div>
+      <div class="body" style="margin-top:16px;margin-bottom:14px;">As a result, many people enter adulthood without the ability to:</div>
+      <div class="v0-list">
+        <div class="list-row"><div class="list-dot"></div><div class="body" style="margin:0;">steward their attention</div></div>
+        <div class="list-row"><div class="list-dot" style="background:var(--green);"></div><div class="body" style="margin:0;">regulate their nervous systems</div></div>
+        <div class="list-row"><div class="list-dot" style="background:var(--purple);"></div><div class="body" style="margin:0;">interpret reality with discernment</div></div>
+        <div class="list-row"><div class="list-dot" style="background:var(--cyan);"></div><div class="body" style="margin:0;">trust their intuition</div></div>
+        <div class="list-row"><div class="list-dot" style="background:var(--orange);"></div><div class="body" style="margin:0;">build lives aligned with their values</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="v0-gold-rule"></div>
+
+<div class="spread">
+  <div class="section-title">Soul School Response</div>
+  <div style="margin-bottom:44px;"><span class="stencil-lg">Soul School</span><span class="italic-lg">Response.</span></div>
+  <div class="card-grid">
+    <div class="card-cell"><div class="body">Soul School is a new model of higher education designed for the era we are entering.</div><div class="cell-ghost">New</div></div>
+    <div class="card-cell"><div class="body">We cultivate the capacities machines cannot replicate and institutions rarely teach: discernment, intuition, embodied intelligence, inscendence, creative courage, and the ability to generate coherence within oneself and in community.</div><div class="cell-ghost">Free</div></div>
+    <div class="card-cell"><div class="italic-pull">Our dream is simple: to support the emergence of grounded, coherent, joyful adults.</div><div class="cell-ghost">Joy</div></div>
+    <div class="card-cell"><div class="body">Love and joy are the ground of this work.</div><div class="body" style="margin-top:12px;">Nervous system stability is the baseline that allows clarity, intuition, creativity, and courage to emerge.</div><div class="cell-ghost">Soul</div></div>
+  </div>
+</div>
+<div class="v0-gold-rule"></div>
+
+<div class="spread">
+  <div class="section-title">Core Pillars</div>
+  <div style="display:grid;grid-template-columns:1fr auto;align-items:end;margin-bottom:48px;">
+    <div><span class="stencil-lg">Core</span><span class="italic-lg">Pillars.</span></div>
+    <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:120px;font-weight:400;color:var(--luminous);opacity:0.07;line-height:1;">5</div>
+  </div>
+  <div class="pillar-table">
+    <div class="pillar-row"><div class="pillar-stripe" style="background:var(--green);"></div><div><div class="pillar-name">Nervous System Alchemy</div><div class="body">A settled nervous system gives people access to themselves. Regulation is not the end goal; it is the foundation that allows clarity, intuition, creativity, and courage to take root.</div></div></div>
+    <div class="pillar-row"><div class="pillar-stripe" style="background:var(--purple);"></div><div><div class="pillar-name">Inscendence</div><div class="body">The inward movement of consciousness allowing the soul to inhabit the body more fully. Students learn to integrate soul and ego so that action arises from alignment rather than fear, performance, or conditioning.</div></div></div>
+    <div class="pillar-row"><div class="pillar-stripe" style="background:var(--gold);"></div><div><div class="pillar-name">Sovereign Discernment</div><div class="body">The ability to sense what is true and aligned in a noisy world. Students learn how perception is shaped and how to recognize the inner signals that guide them toward clarity and integrity.</div></div></div>
+    <div class="pillar-row"><div class="pillar-stripe" style="background:var(--orange);"></div><div><div class="pillar-name">Authentic Creative Expression</div><div class="body">When the soul is rooted in the body, expression becomes a form of coherence. Creative action, spoken truth, and relational presence allow inner insight to become visible and useful in the world.</div></div></div>
+    <div class="pillar-row"><div class="pillar-stripe" style="background:var(--cyan);"></div><div><div class="pillar-name">Field Intelligence</div><div class="body">Human groups are living systems. Students learn to sense and participate in the shared field, co-creating environments of trust, creativity, and mutual uplift.</div></div></div>
+  </div>
+</div>
+<div class="v0-gold-rule"></div>
+
+<div class="spread">
+  <div class="section-title">The Paradigm Shift</div>
+  <div class="two-col">
+    <div class="col-left">
+      <span class="stencil-lg">The Paradigm</span>
+      <span class="italic-lg">Shift.</span>
+      <div class="body" style="margin-top:28px;">A growing body of research across neuroscience, physics, and consciousness studies points toward a profound shift in how we understand reality: consciousness is foundational.</div>
+      <div class="body" style="margin-top:16px;">At a time when artificial intelligence is advancing rapidly, the leading edge of human evolution is the expansion of consciousness itself — yet most old-world institutions behave as if consciousness is not even a legitimate subject of study.</div>
+    </div>
+    <div class="col-right">
+      <div style="display:grid;grid-template-columns:3px 1fr;gap:20px;align-items:stretch;">
+        <div style="background:var(--gold);border-radius:2px;"></div>
+        <div class="italic-pull">Soul School exists to train the capacities of expanded consciousness so that the future human can begin to take shape.</div>
+      </div>
+      <div class="card-dark" style="margin-top:28px;">
+        <div class="body">Soul School is an educational experiment rooted in a simple recognition: consciousness is foundational to reality, and human development must begin there.</div>
+        <div class="body" style="margin-top:14px;">From that foundation we explore expanded perception, discernment, authentic expression, and the creation of coherent communities capable of meeting the future with wisdom and care.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="v0-gold-rule"></div>
+
+<div class="spread">
+  <div class="section-title">Is Soul School for me?</div>
+  <div class="two-col">
+    <div class="col-left">
+      <span class="stencil-lg">Is Soul School</span>
+      <span class="italic-lg">for me?</span>
+      <div class="body" style="margin-top:24px;margin-bottom:16px;">Soul School is for people who:</div>
+      <div class="v0-list">
+        <div class="list-row"><div class="list-dot"></div><div class="body" style="margin:0;">have a sense that something about the current world (and the current educational system) isn't quite right</div></div>
+        <div class="list-row"><div class="list-dot"></div><div class="body" style="margin:0;">want something deeper than conventional higher education tends to offer</div></div>
+        <div class="list-row"><div class="list-dot"></div><div class="body" style="margin:0;">are curious about consciousness and open to the possibility that it is foundational to reality</div></div>
+        <div class="list-row"><div class="list-dot"></div><div class="body" style="margin:0;">would rather help build the future than spend their lives critiquing the present</div></div>
+        <div class="list-row"><div class="list-dot"></div><div class="body" style="margin:0;">understand that real Jedi-style mastery requires practice, discipline, and humility</div></div>
+      </div>
+      <div class="card-dark" style="margin-top:24px;">
+        <div class="italic-pull" style="font-size:16px;">Soul School is designed for people who are ready to step into the future from the inner authority of the soul.</div>
+      </div>
+    </div>
+    <div class="col-right">
+      <div class="practices">
+        <div class="practice-row"><div class="practice-name">Ungunking the Filter</div><div class="practice-desc">Practices that clear conditioned perception so reality can be encountered more directly.</div></div>
+        <div class="practice-row"><div class="practice-name">The Gremlin</div><div class="practice-desc">Learning to recognize and move beyond internal voices that limit expression and growth.</div></div>
+        <div class="practice-row"><div class="practice-name">Energetic Hygiene</div><div class="practice-desc">Practices that maintain clear emotional and perceptual boundaries.</div></div>
+        <div class="practice-row"><div class="practice-name">Attention Sovereignty</div><div class="practice-desc">Training the ability to direct awareness intentionally rather than reactively.</div></div>
+        <div class="practice-row"><div class="practice-name">Creative Transmission</div><div class="practice-desc">Practices that translate expanded states of awareness into creative expression and contribution.</div></div>
+      </div>
+      <div style="margin-top:28px;padding:22px;border-left:2px solid var(--gold);background:rgba(201,151,42,0.04);">
+        <div class="body">In a world engineered for distraction, showing up is RADICAL. Above all, we show up, for ourselves, each other, and our planet.</div>
+      </div>
+      <div style="margin-top:20px;">
+        <div class="body" style="margin-bottom:12px;">Attend a gathering. Meet the community. Look for the Soul School bus.</div>
+        <div class="body">Participants at events may receive the access code.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="v0-gold-rule"></div>
+
+<div class="spread" style="justify-content:space-between;min-height:100vh;">
+  <div class="close-bg-v0">FREE</div>
+  <div class="v0-mono" style="position:relative;z-index:1;">Soul School</div>
+  <div style="position:relative;z-index:1;">
+    <span class="stencil-xl">Show</span>
+    <span class="italic-xl">Up.</span>
+    <div style="font-family:'Oswald',sans-serif;font-size:clamp(16px,3vw,28px);font-weight:200;letter-spacing:0.28em;text-transform:uppercase;color:rgba(243,241,235,0.6);line-height:1.2;margin-top:16px;max-width:560px;">The best way to participate in Soul School is still the same.</div>
+    <div style="margin-top:32px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+      <div class="v0-cta">Enter Soul School</div>
+      <div class="v0-mono-tag">WEAREFREE</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--ember);padding-top:20px;position:relative;z-index:1;">
+    <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--gold);">Soul School</div>
+    <div class="v0-mono" style="text-align:right;">A new educational playground<br>for the future human.</div>
+  </div>
+</div>
+
+</div></div><!-- /v0 -->
+<script>
+function show(id, el) {
+  document.querySelectorAll('.version').forEach(e => e.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
+  document.getElementById('v-' + id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
