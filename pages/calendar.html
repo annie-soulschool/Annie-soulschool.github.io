@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Soul School — A new educational playground for the future human.">
+  <meta name="theme-color" content="#0A0A08">
   <title>Soul School · Gatherings</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,14 +16,30 @@
 
   <div class="bg-layer" aria-hidden="true"></div>
 
+  <!-- ── Top navigation ── -->
+  <nav class="site-nav">
+    <a href="../index.html" class="site-nav-logo">Soul School</a>
+    <span class="wearefree-tag">WEAREFREE</span>
+  </nav>
+
+  <!-- ── Header section ── -->
+  <section class="page-header">
+    <p class="section-label">UPCOMING GATHERINGS</p>
+    <p class="stencil" style="font-size: clamp(48px, 8vw, 96px);">GATHER</p>
+    <p class="italic-gold" style="font-size: clamp(40px, 7vw, 84px);">Together.</p>
+    <p class="body-text" style="margin-top: 24px; max-width: 560px;">
+      The best way to understand Soul School is to show up. Below are upcoming
+      opportunities to attend, connect, and participate.
+    </p>
+  </section>
+
+  <!-- ── Gold rule divider ── -->
+  <hr class="gold-rule-full">
+
   <main class="calendar-page">
 
-    <header class="cal-header">
-      <span class="eyebrow">Come as you are</span>
-      <h1>Gatherings</h1>
-      <span class="gold-rule"></span>
-      <p class="cal-intro">Events are the doorway. Show up and see what opens.</p>
-    </header>
+    <!-- Empty anchor for JS setup banner insertion -->
+    <header class="cal-header"></header>
 
     <!-- ── Month navigation ── -->
     <div class="month-nav">
@@ -43,29 +61,55 @@
     <section class="events-section">
       <span class="eyebrow">Upcoming</span>
       <div class="events-list" id="events-list">
-        <!-- Populated by JS -->
+        <!-- Placeholder cards shown before Google Calendar is connected -->
+        <div class="pill-event-card">
+          <span class="pill-event-title">Soul School Bus Popups</span>
+          <span class="pill-event-date">Boulder — Coming Soon</span>
+        </div>
+        <div class="pill-event-card">
+          <span class="pill-event-title">Soul School Office Hours</span>
+          <span class="pill-event-date">Zoom — Coming Soon</span>
+        </div>
+        <div class="pill-event-card">
+          <span class="pill-event-title">Retreat Orientation</span>
+          <span class="pill-event-date">Coming Soon</span>
+        </div>
       </div>
     </section>
 
-    <!-- ── Event detail modal ── -->
-    <div class="modal" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-content">
-        <button class="btn-close" id="modal-close" aria-label="Close">&#10005;</button>
-        <span class="eyebrow" id="modal-eyebrow"></span>
-        <h3 id="modal-title"></h3>
-        <p class="modal-copy" id="modal-time"></p>
-        <p id="modal-location"></p>
-        <p id="modal-desc"></p>
-        <div class="modal-actions">
-          <a class="btn btn-primary" id="modal-gcal-link" href="#" target="_blank" rel="noopener">Add to Calendar</a>
-        </div>
-      </div>
-    </div>
-
-    <a href="../index.html" class="back-link" style="display:block; text-align:center; margin: 3rem auto 2rem;">← Back to Home</a>
+    <!--
+      TODO: Connect Google Calendar API here.
+      - Set up service account credentials in Google Cloud Console (Sena's personal account)
+      - Fetch events from the Soul School calendar feed
+      - Replace placeholder cards with dynamically rendered event data
+      - Display only upcoming events, not full calendar grid
+    -->
 
   </main>
 
-  <script src="../scripts/calendar.js"></script>
+  <!-- ── Access note ── -->
+  <section class="access-note">
+    <p class="body-text" style="color: rgba(243,241,235,0.5); margin-bottom: 20px;">
+      Participants at events may receive the access code to Soul School's deeper materials.
+    </p>
+    <a href="enter.html" class="btn-pill">Enter Soul School</a>
+  </section>
+
+  <!-- ── Event detail modal ── -->
+  <div class="modal" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button class="btn-close" id="modal-close" aria-label="Close">&#10005;</button>
+      <span class="eyebrow" id="modal-eyebrow"></span>
+      <h3 id="modal-title"></h3>
+      <p class="modal-copy" id="modal-time"></p>
+      <p id="modal-location"></p>
+      <p id="modal-desc"></p>
+      <div class="modal-actions">
+        <a class="btn btn-primary" id="modal-gcal-link" href="#" target="_blank" rel="noopener">Add to Calendar</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../movement/calendar.js"></script>
 </body>
 </html>
