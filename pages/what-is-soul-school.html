@@ -3,174 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Soul School — A new educational playground for the future human.">
+  <meta name="theme-color" content="#0A0A08">
   <title>What Is Soul School?</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap">
   <link rel="stylesheet" href="../styles/main.css">
-  <style>
-    /* ── Overflow lock (scoped to carousel so post-carousel sections are scrollable) ── */
-    html, body {
-      margin: 0;
-    }
-    #carousel {
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    /* ── Top nav ── */
-    .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 64px;
-      background: var(--void);
-      border-bottom: 1px solid rgba(201, 151, 42, 0.12);
-      z-index: 100;
-    }
-
-    .site-nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      color: var(--gold);
-      font-size: 22px;
-      text-decoration: none;
-    }
-
-    /* ── Utility classes (not in main.css) ── */
-    .wearefree-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.28em;
-      color: rgba(201, 151, 42, 0.6);
-      text-transform: uppercase;
-    }
-
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin: 0 0 20px;
-    }
-
-    /* ── Slides ── */
-    .slide {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 100vh;
-      background: var(--void);
-      padding: 72px 64px;
-    }
-
-    .slide.active {
-      display: flex;
-    }
-
-    /* ── Dot navigation — right side, vertically centered ── */
-    .dot-nav {
-      position: fixed;
-      right: 24px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 200;
-    }
-
-    .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(201, 151, 42, 0.3);
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: background 0.25s, box-shadow 0.25s;
-    }
-
-    .dot.active {
-      background: var(--gold);
-      box-shadow: 0 0 6px var(--gold);
-    }
-
-    /* ── Pill buttons ── */
-    .btn-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(245, 223, 160, 0.45);
-      border-radius: 999px;
-      color: var(--soft);
-      background: rgba(30, 29, 26, 0.68);
-      cursor: pointer;
-      padding: 8px 20px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .btn-pill:hover {
-      background: rgba(90, 86, 80, 0.45);
-      border-color: var(--luminous);
-    }
-
-    /* ── Fixed arrow positions ── */
-    .nav-prev {
-      position: fixed;
-      bottom: 32px;
-      left: 32px;
-      z-index: 200;
-    }
-
-    .nav-next {
-      position: fixed;
-      bottom: 32px;
-      right: 56px; /* offset from dot nav */
-      z-index: 200;
-    }
-
-    .nav-prev[hidden],
-    .nav-next[hidden] {
-      display: none;
-    }
-
-    .body-text {
-      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: var(--soft);
-      margin: 0 0 20px;
-    }
-
-    .stencil {
-      font-family: 'Josefin Sans', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--soft);
-      margin: 0 0 16px;
-      line-height: 1.1;
-    }
-
-    .italic-gold {
-      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
-      font-style: italic;
-      color: var(--gold);
-      margin: 0 0 16px;
-      line-height: 1.2;
-    }
-  </style>
+  <link rel="stylesheet" href="../styles/what-is-soul-school.css">
 </head>
 <body>
 
@@ -186,6 +26,9 @@
     <div class="slide active" id="c1">
       <div style="max-width:720px;margin:0 auto;text-align:left;">
         <p class="section-label">WHAT'S BROKEN IN HIGHER EDUCATION</p>
+        <!-- TODO: Replace with Annie's handwritten traced banner image when provided.
+             Image should be white text on transparent background, color-reversed. -->
+        <p class="stencil" style="color:var(--gold); font-size:clamp(16px,2.5vw,26px); margin-bottom:24px;">Traditional Higher Education Was Designed For An Industrial World.</p>
         <p class="body-text">Most systems of traditional higher education were designed for an industrial world. They train the analytic intellect while neglecting the inner world — the place where perception, intuition, discernment, and emotional coherence actually live.</p>
         <p class="body-text">As a result, many people enter adulthood without the ability to:</p>
         <ul style="list-style:none;margin:0;padding:0;">
@@ -496,8 +339,22 @@
       var btnNext = document.getElementById('btn-next');
       var current = 0;
       var total   = slides.length;
+      var inCarousel = true;
+
+      /* Lock body scroll while carousel is active */
+      document.documentElement.style.overflow = 'hidden';
+
+      function exitCarousel() {
+        inCarousel = false;
+        document.documentElement.style.overflow = '';
+        var afterCarousel = document.getElementById('carousel').nextElementSibling;
+        if (afterCarousel) {
+          afterCarousel.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
 
       function goTo(index) {
+        if (index < 0 || index >= total) return;
         slides[current].classList.remove('active');
         dots[current].classList.remove('active');
         current = index;
@@ -520,8 +377,58 @@
           goTo(parseInt(dot.dataset.index, 10));
         });
       });
+
+      /* Keyboard navigation */
+      document.addEventListener('keydown', function (e) {
+        if (!inCarousel) return;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          if (current < total - 1) { goTo(current + 1); }
+          else { exitCarousel(); }
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          if (current > 0) goTo(current - 1);
+        }
+      });
+
+      /* Mouse wheel navigation */
+      var wheelTimer = null;
+      document.addEventListener('wheel', function (e) {
+        if (!inCarousel) return;
+        clearTimeout(wheelTimer);
+        wheelTimer = setTimeout(function () {
+          if (e.deltaY > 0) {
+            if (current < total - 1) { goTo(current + 1); }
+            else { exitCarousel(); }
+          } else if (e.deltaY < 0) {
+            if (current > 0) goTo(current - 1);
+          }
+        }, 50);
+      }, { passive: true });
+
+      /* Touch / swipe navigation */
+      var touchStartY = 0;
+      document.addEventListener('touchstart', function (e) {
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      document.addEventListener('touchend', function (e) {
+        if (!inCarousel) return;
+        var deltaY = touchStartY - e.changedTouches[0].clientY;
+        if (Math.abs(deltaY) > 40) {
+          if (deltaY > 0) {
+            if (current < total - 1) { goTo(current + 1); }
+            else { exitCarousel(); }
+          } else {
+            if (current > 0) goTo(current - 1);
+          }
+        }
+      }, { passive: true });
     })();
   </script>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span class="site-footer-logo">Soul School</span>
+    <span class="site-footer-copy">© 2025 Soul School</span>
+  </footer>
 
 </body>
 </html>

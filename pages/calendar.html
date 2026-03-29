@@ -3,189 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Soul School — A new educational playground for the future human.">
+  <meta name="theme-color" content="#0A0A08">
   <title>Soul School · Gatherings</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap">
   <link rel="stylesheet" href="../styles/main.css">
-  <style>
-    html, body {
-      margin: 0;
-    }
-
-    /* ── Top nav ── */
-    .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 64px;
-      background: var(--void);
-      border-bottom: 1px solid rgba(201, 151, 42, 0.12);
-      z-index: 100;
-    }
-
-    .site-nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      color: var(--gold);
-      font-size: 22px;
-      text-decoration: none;
-    }
-
-    /* ── Utility classes ── */
-    .wearefree-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.28em;
-      color: rgba(201, 151, 42, 0.6);
-      text-transform: uppercase;
-    }
-
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin: 0 0 20px;
-    }
-
-    .body-text {
-      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: var(--soft);
-      margin: 0 0 20px;
-    }
-
-    .stencil {
-      font-family: 'Josefin Sans', sans-serif;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--soft);
-      margin: 0 0 16px;
-      line-height: 1.1;
-    }
-
-    .italic-gold {
-      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
-      font-style: italic;
-      color: var(--gold);
-      margin: 0 0 16px;
-      line-height: 1.2;
-    }
-
-    .btn-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(245, 223, 160, 0.45);
-      border-radius: 999px;
-      color: var(--soft);
-      background: rgba(30, 29, 26, 0.68);
-      cursor: pointer;
-      padding: 8px 20px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .btn-pill:hover {
-      background: rgba(90, 86, 80, 0.45);
-      border-color: var(--luminous);
-    }
-
-    /* ── Gold rule divider ── */
-    .gold-rule-full {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(201, 151, 42, 0.35), transparent);
-      border: none;
-      margin: 0;
-    }
-
-    /* ── Page sections ── */
-    .page-header {
-      background: var(--void);
-      padding: 100px 64px 48px;
-    }
-
-    .events-section {
-      background: var(--void);
-      padding: 64px;
-    }
-
-    .access-note {
-      background: var(--void);
-      padding: 32px 64px 100px;
-      text-align: center;
-    }
-
-    /* ── Event pill cards ── */
-    .event-card {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: var(--deep);
-      border: 1px solid rgba(201, 151, 42, 0.2);
-      border-radius: 999px;
-      padding: 18px 36px;
-      box-shadow: 0 0 14px rgba(201, 151, 42, 0.12);
-      margin-bottom: 16px;
-    }
-
-    .event-title {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 17px;
-      color: var(--soft);
-      margin: 0;
-    }
-
-    .event-date {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ash-light);
-      margin: 0;
-    }
-
-    @media (max-width: 600px) {
-      .site-nav {
-        padding: 16px 24px;
-      }
-
-      .page-header {
-        padding: 88px 24px 40px;
-      }
-
-      .events-section {
-        padding: 40px 24px;
-      }
-
-      .access-note {
-        padding: 32px 24px 80px;
-      }
-
-      .event-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        border-radius: 20px;
-        padding: 18px 24px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="../styles/calendar.css">
 </head>
 <body>
+
+  <div class="bg-layer" aria-hidden="true"></div>
 
   <!-- ── Top navigation ── -->
   <nav class="site-nav">
@@ -207,23 +36,46 @@
   <!-- ── Gold rule divider ── -->
   <hr class="gold-rule-full">
 
-  <!-- ── Events list section ── -->
-  <section class="events-section">
+  <main class="calendar-page">
 
-    <div class="event-card">
-      <span class="event-title">Soul School Bus Popups</span>
-      <span class="event-date">Boulder — Coming Soon</span>
+    <!-- Empty anchor for JS setup banner insertion -->
+    <header class="cal-header"></header>
+
+    <!-- ── Month navigation ── -->
+    <div class="month-nav">
+      <button class="month-btn" id="btn-prev" aria-label="Previous month">&#8592;</button>
+      <h2 class="month-label" id="month-label">Month Year</h2>
+      <button class="month-btn" id="btn-next" aria-label="Next month">&#8594;</button>
     </div>
 
-    <div class="event-card">
-      <span class="event-title">Soul School Office Hours</span>
-      <span class="event-date">Zoom — Coming Soon</span>
+    <!-- ── Calendar grid ── -->
+    <div class="cal-grid-wrapper">
+      <div class="cal-weekdays" aria-hidden="true">
+        <span>Sun</span><span>Mon</span><span>Tue</span>
+        <span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+      </div>
+      <div class="cal-grid" id="cal-grid" role="grid" aria-label="Calendar"></div>
     </div>
 
-    <div class="event-card">
-      <span class="event-title">Retreat Orientation</span>
-      <span class="event-date">Coming Soon</span>
-    </div>
+    <!-- ── Upcoming events list ── -->
+    <section class="events-section">
+      <span class="eyebrow">Upcoming</span>
+      <div class="events-list" id="events-list">
+        <!-- Placeholder cards shown before Google Calendar is connected -->
+        <div class="pill-event-card">
+          <span class="pill-event-title">Soul School Bus Popups</span>
+          <span class="pill-event-date">Boulder — Coming Soon</span>
+        </div>
+        <div class="pill-event-card">
+          <span class="pill-event-title">Soul School Office Hours</span>
+          <span class="pill-event-date">Zoom — Coming Soon</span>
+        </div>
+        <div class="pill-event-card">
+          <span class="pill-event-title">Retreat Orientation</span>
+          <span class="pill-event-date">Coming Soon</span>
+        </div>
+      </div>
+    </section>
 
     <!--
       TODO: Connect Google Calendar API here.
@@ -233,7 +85,7 @@
       - Display only upcoming events, not full calendar grid
     -->
 
-  </section>
+  </main>
 
   <!-- ── Access note ── -->
   <section class="access-note">
@@ -243,5 +95,21 @@
     <a href="enter.html" class="btn-pill">Enter Soul School</a>
   </section>
 
+  <!-- ── Event detail modal ── -->
+  <div class="modal" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button class="btn-close" id="modal-close" aria-label="Close">&#10005;</button>
+      <span class="eyebrow" id="modal-eyebrow"></span>
+      <h3 id="modal-title"></h3>
+      <p class="modal-copy" id="modal-time"></p>
+      <p id="modal-location"></p>
+      <p id="modal-desc"></p>
+      <div class="modal-actions">
+        <a class="btn btn-primary" id="modal-gcal-link" href="#" target="_blank" rel="noopener">Add to Calendar</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../movement/calendar.js"></script>
 </body>
 </html>
