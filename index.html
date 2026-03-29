@@ -10,33 +10,52 @@
 	<link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-	<main class="page-center">
-		<section class="hero-card">
-			<img src="assets/SOUL-SCHOOL-HEADER-GOLD.png" alt="SOUL SCHOOL - the transmission of love and joy and liberation of all beings!" class="logo">
-			<div class="button-group">
-				<button id="enterSoulSchool" type="button" class="btn btn-primary">Enter Soul School</button>
-				<a class="btn btn-secondary" href="/pages/what-is-soul-school.html">What is Soul School?</a>
-				<a class="btn btn-secondary" href="/pages/member-login.html">Member Login</a>
-			</div>
-		</section>
-	</main>
 
-	<div id="passwordModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
-		<div class="modal-content">
-			<button type="button" id="closeModal" class="btn-close" aria-label="Close">×</button>
-            <h3 id="modalTitle">Enter Password</h3>
-            <p class="modal-copy">What is the magical combination?</p>
-            <form id="passwordForm">
-                <label for="soulPassword" class="sr-only">Password</label>
-                <input id="soulPassword" name="soulPassword" type="password" autocomplete="current-password" required placeholder="Password">
-                <p id="passwordError" class="error-message" role="alert"></p>
-                <div class="modal-actions">
-                    <button type="submit" class="btn btn-primary">Enter</button>
-                </div>
-            </form>
-        </div>
-    </div>
+	<!-- NAV -->
+	<nav style="display:flex; align-items:center; justify-content:space-between; padding:24px 64px; background:var(--void);">
+		<span style="font-family:'Playfair Display', serif; font-style:italic; color:var(--gold); font-size:22px;">Soul School</span>
+		<span class="wearefree-tag">WEAREFREE</span>
+	</nav>
 
-	<script src="movement/main.js"></script>
+	<!-- HERO -->
+	<section style="position:relative; min-height:100vh; background:var(--void); padding:72px 64px; display:flex; flex-direction:column; justify-content:center;">
+		<span class="corner-tl"></span>
+		<span class="corner-tr"></span>
+		<span class="corner-bl"></span>
+		<span class="corner-br"></span>
+
+		<p class="section-label" style="font-family:'DM Mono', monospace; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:24px;">Soul School</p>
+
+		<div>
+			<div class="stencil" style="font-size:clamp(80px, 14vw, 160px); line-height:1; display:block;">SOUL</div>
+			<div class="italic-gold" style="font-size:clamp(70px, 13vw, 150px); line-height:1; display:block;">School</div>
+		</div>
+
+		<p style="font-family:'Josefin Sans', sans-serif; font-weight:200; letter-spacing:0.28em; font-size:clamp(10px, 1.4vw, 14px); color:rgba(243,241,235,0.6); text-transform:uppercase; margin-top:32px; margin-bottom:40px;">A NEW EDUCATIONAL PLAYGROUND FOR THE FUTURE HUMAN.</p>
+
+		<div style="display:flex; flex-wrap:wrap; gap:16px;">
+			<a href="enter.html" class="btn-pill">Enter Soul School</a>
+			<a href="/pages/what-is-soul-school.html" class="btn-pill">What is Soul School?</a>
+			<a href="protected.html" class="btn-pill">Member Login</a>
+		</div>
+	</section>
+
+	<!-- DIVIDER -->
+	<div class="gold-rule"><div class="lt"></div><div class="ln"></div></div>
+
+	<!-- UPCOMING GATHERINGS -->
+	<section style="padding:72px 64px; background:var(--void);">
+		<p class="section-label">UPCOMING GATHERINGS</p>
+		<div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:32px;">
+			<div style="background:var(--deep); border:1px solid rgba(201,151,42,0.2); border-radius:999px; padding:14px 28px; display:inline-block; box-shadow:0 0 12px rgba(201,151,42,0.15);">Soul School Bus Popups — Boulder</div>
+			<div style="background:var(--deep); border:1px solid rgba(201,151,42,0.2); border-radius:999px; padding:14px 28px; display:inline-block; box-shadow:0 0 12px rgba(201,151,42,0.15);">Soul School Office Hours (Zoom)</div>
+			<div style="background:var(--deep); border:1px solid rgba(201,151,42,0.2); border-radius:999px; padding:14px 28px; display:inline-block; box-shadow:0 0 12px rgba(201,151,42,0.15);">Retreat Orientation</div>
+		</div>
+		<!-- TODO: Replace placeholder events with Google Calendar API feed -->
+	</section>
+
+	<!-- DIVIDER -->
+	<div class="gold-rule"><div class="lt"></div><div class="ln"></div></div>
+
 </body>
 </html>
