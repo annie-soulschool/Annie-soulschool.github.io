@@ -8,14 +8,141 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap">
   <link rel="stylesheet" href="../styles/main.css">
+  <style>
+    html, body {
+      margin: 0;
+    }
+
+    /* ── Top nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 64px;
+      background: var(--void);
+      border-bottom: 1px solid rgba(201, 151, 42, 0.12);
+      z-index: 100;
+    }
+
+    .site-nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 22px;
+      text-decoration: none;
+    }
+
+    /* ── Utility classes ── */
+    .wearefree-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      color: rgba(201, 151, 42, 0.6);
+      text-transform: uppercase;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0 0 20px;
+    }
+
+    .body-text {
+      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--soft);
+      margin: 0 0 20px;
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(245, 223, 160, 0.45);
+      border-radius: 999px;
+      color: var(--soft);
+      background: rgba(30, 29, 26, 0.68);
+      text-decoration: none;
+      cursor: pointer;
+      padding: 8px 20px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn-pill:hover {
+      background: rgba(90, 86, 80, 0.45);
+      border-color: var(--luminous);
+    }
+
+    /* ── Gold rule ── */
+    .gold-rule-full {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border: none;
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
-  <main class="page-center">
-    <section class="hero-card content-card">
-      <h1>Welcome to Soul School</h1>
-      <p>You are now inside the private member space.</p>
-      <a class="btn btn-primary" href="../index.html">Return to Landing Page</a>
-    </section>
-  </main>
+
+  <script>
+    if (sessionStorage.getItem('soulschool_auth') !== 'true') {
+      window.location.href = 'enter.html';
+    }
+  </script>
+
+  <!-- ── Top navigation ── -->
+  <nav class="site-nav">
+    <a href="../index.html" class="site-nav-logo">Soul School</a>
+    <span class="wearefree-tag">WEAREFREE</span>
+  </nav>
+
+  <!-- ── Welcome section ── -->
+  <section style="background: var(--void); padding: 100px 64px; padding-top: 160px;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <p class="section-label">WELCOME</p>
+      <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(36px, 5vw, 56px); color: var(--soft); margin-bottom: 32px; margin-top: 0;">Welcome to Soul School.</h2>
+      <p class="body-text">This is where we share the information, practices, and experiments that shape this educational project.</p>
+      <p class="body-text">Soul School is an educational experiment rooted in a simple recognition: consciousness is foundational to reality, and human development must begin there.</p>
+      <p class="body-text">Love and joy are the ground of this work.</p>
+      <p class="body-text">Nervous system stability is the baseline that allows clarity, intuition, creativity, and courage to emerge.</p>
+      <p class="body-text">From that foundation we explore expanded perception, discernment, authentic expression, and the creation of coherent communities capable of meeting the future with wisdom and care.</p>
+    </div>
+  </section>
+
+  <!-- ── Gold rule ── -->
+  <hr class="gold-rule-full">
+
+  <!-- ── Initiation CTA section ── -->
+  <section style="padding: 64px; text-align: center;">
+    <p class="body-text" style="margin-bottom: 24px;">Ready to go deeper?</p>
+    <a href="#" class="btn-pill">Schedule a 30-Minute Initiation Conversation</a>
+    <!-- TODO: Link button to booking system. Route contact form to Soul School email.
+         Sena to investigate Google Calendar write + notification integration. -->
+  </section>
+
+  <!-- ── Gold rule ── -->
+  <hr class="gold-rule-full">
+
+  <!-- ── Member Login section ── -->
+  <section style="padding: 64px 64px 100px;">
+    <p class="section-label">MEMBER LOGIN</p>
+    <p class="body-text" style="margin-bottom: 24px;">Class recordings, session notes, and practice materials are available to active members.</p>
+    <a href="#" class="btn-pill">Member Login</a>
+    <!-- TODO: Member login uses a separate private password.
+         Post excerpts from class. Privacy required. -->
+  </section>
+
 </body>
 </html>

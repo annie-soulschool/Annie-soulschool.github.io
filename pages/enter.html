@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Login - Soul School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="../index.html" class="nav-wordmark" style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:22px;text-decoration:none;">Soul School</a>
+    <span class="wearefree-tag">WEAREFREE</span>
+  </nav>
+
+  <main style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:var(--void);padding:64px;">
+
+    <p class="section-label" style="margin-bottom:32px;">ENTER SOUL SCHOOL</p>
+
+    <p class="body-text" style="max-width:480px;margin:auto;">
+      Access to deeper materials and practices is shared with participants who attend gatherings.
+    </p>
+    <p class="body-text" style="margin-top:12px;color:rgba(243,241,235,0.5);">
+      If you have received the access code, you may enter below.
+    </p>
+
+    <hr style="width:48px;height:1px;background:var(--gold);border:none;margin:40px auto;">
+
+    <div style="margin-top:0;display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <input
+        type="password"
+        id="access-code"
+        placeholder="Enter access code"
+        style="background:transparent;border:1px solid rgba(201,151,42,0.3);border-radius:999px;padding:14px 32px;color:var(--soft);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.18em;text-align:center;width:280px;outline:none;"
+        onfocus="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 12px rgba(201,151,42,0.2)';"
+        onblur="this.style.borderColor='rgba(201,151,42,0.3)';this.style.boxShadow='none';"
+      >
+      <button class="btn-pill" onclick="checkPassword()">Enter</button>
+    </div>
+
+    <div id="error-msg" style="display:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;color:rgba(201,151,42,0.6);margin-top:16px;">
+      That's not the code. Attend a gathering to receive access.
+    </div>
+
+  </main>
+
+  <!-- TODO: Move password validation to server-side before launch for real security -->
+  <script>
+    function checkPassword() {
+      const input = document.getElementById('access-code').value.trim().toUpperCase();
+      const error = document.getElementById('error-msg');
+      if (input === 'WEAREFREE') {
+        sessionStorage.setItem('soulschool_auth', 'true');
+        window.location.href = 'soul-school-portal.html';
+      } else {
+        error.style.display = 'block';
+      }
+    }
+
+    document.getElementById('access-code').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') checkPassword();
+    });
+  </script>
+
+</body>
+</html>
