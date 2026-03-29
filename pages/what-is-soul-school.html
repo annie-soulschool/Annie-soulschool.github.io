@@ -338,26 +338,30 @@
 
   <script>
     (function () {
-      var slides  = document.querySelectorAll('.slide');
-      var dots    = document.querySelectorAll('.dot');
-      var btnPrev = document.getElementById('btn-prev');
-      var btnNext = document.getElementById('btn-next');
-      var current = 0;
-      var total   = slides.length;
+      var slides   = document.querySelectorAll('.slide');
+      var dots     = document.querySelectorAll('.dot');
+      var btnPrev  = document.getElementById('btn-prev');
+      var btnNext  = document.getElementById('btn-next');
+      var current  = 0;
+      var total    = slides.length;
       var inCarousel = true;
+      var wheelTimer = null;
 
       /* Lock body scroll while carousel is active */
       document.documentElement.style.overflow = 'hidden';
 
-      function exitCarousel() {
-        inCarousel = false;
-        document.documentElement.style.overflow = '';
-        var afterCarousel = document.getElementById('carousel').nextElementSibling;
-        if (afterCarousel) {
-          afterCarousel.scrollIntoView({ behavior: 'smooth' });
-        }
+      /* ── Scroll-state helpers ── */
+      function isScrollable(slide) {
+        return slide.scrollHeight > slide.clientHeight + 1;
+      }
+      function atBottom(slide) {
+        return slide.scrollTop + slide.clientHeight >= slide.scrollHeight - 2;
+      }
+      function atTop(slide) {
+        return slide.scrollTop <= 0;
       }
 
+      /* ── Slide navigation ── */
       function goTo(index) {
         if (index < 0 || index >= total) return;
         slides[current].classList.remove('active');
@@ -369,21 +373,31 @@
         btnNext.hidden = (current === total - 1);
       }
 
+      function exitCarousel() {
+        inCarousel = false;
+        document.documentElement.style.overflow = '';
+        var afterCarousel = document.getElementById('carousel').nextElementSibling;
+        if (afterCarousel) {
+          afterCarousel.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      /* ── Arrow buttons (unchanged behaviour) ── */
       btnNext.addEventListener('click', function () {
         if (current < total - 1) goTo(current + 1);
       });
-
       btnPrev.addEventListener('click', function () {
         if (current > 0) goTo(current - 1);
       });
 
+      /* ── Dot navigation (unchanged behaviour) ── */
       dots.forEach(function (dot) {
         dot.addEventListener('click', function () {
           goTo(parseInt(dot.dataset.index, 10));
         });
       });
 
-      /* Keyboard navigation */
+      /* ── Keyboard navigation ── */
       document.addEventListener('keydown', function (e) {
         if (!inCarousel) return;
         if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
@@ -394,36 +408,70 @@
         }
       });
 
-      /* Mouse wheel navigation */
-      var wheelTimer = null;
+      /* ── Wheel — non-passive so preventDefault can block page scroll ──
+         Logic:
+           • If the active slide has unread content in the scroll direction,
+             scroll the slide internally and do NOT advance.
+           • Only advance (or exit) once the slide is at its scroll edge.
+           • When inCarousel is false, return without preventDefault so the
+             post-carousel sections scroll normally.                          */
       document.addEventListener('wheel', function (e) {
         if (!inCarousel) return;
-        clearTimeout(wheelTimer);
-        wheelTimer = setTimeout(function () {
-          if (e.deltaY > 0) {
+        e.preventDefault();
+
+        var slide = slides[current];
+
+        if (e.deltaY > 0) {
+          // Scrolling down
+          if (isScrollable(slide) && !atBottom(slide)) {
+            slide.scrollTop += Math.abs(e.deltaY);   // scroll internally
+          } else if (!wheelTimer) {
             if (current < total - 1) { goTo(current + 1); }
             else { exitCarousel(); }
-          } else if (e.deltaY < 0) {
-            if (current > 0) goTo(current - 1);
+            wheelTimer = setTimeout(function () { wheelTimer = null; }, 700);
           }
-        }, 50);
-      }, { passive: true });
+        } else if (e.deltaY < 0) {
+          // Scrolling up
+          if (isScrollable(slide) && !atTop(slide)) {
+            slide.scrollTop += e.deltaY;              // e.deltaY is negative
+          } else if (!wheelTimer) {
+            if (current > 0) goTo(current - 1);
+            wheelTimer = setTimeout(function () { wheelTimer = null; }, 700);
+          }
+        }
+      }, { passive: false });
 
-      /* Touch / swipe navigation */
+      /* ── Touch / swipe — 50 px threshold ──
+         The browser handles internal touch-scroll naturally (slides have
+         overflow-y:auto).  We capture scrollTop at touchstart so we can
+         check whether the slide was already at its edge when the swipe began.
+         If it was not at the edge, we let the natural scroll finish and do
+         not advance the carousel.                                            */
       var touchStartY = 0;
+      var touchStartScrollTop = 0;
+
       document.addEventListener('touchstart', function (e) {
         touchStartY = e.touches[0].clientY;
+        touchStartScrollTop = slides[current].scrollTop;
       }, { passive: true });
+
       document.addEventListener('touchend', function (e) {
         if (!inCarousel) return;
         var deltaY = touchStartY - e.changedTouches[0].clientY;
-        if (Math.abs(deltaY) > 40) {
-          if (deltaY > 0) {
-            if (current < total - 1) { goTo(current + 1); }
-            else { exitCarousel(); }
-          } else {
-            if (current > 0) goTo(current - 1);
-          }
+        if (Math.abs(deltaY) < 50) return;           // ignore small swipes
+
+        var slide = slides[current];
+        var maxScrollTop = slide.scrollHeight - slide.clientHeight;
+
+        if (deltaY > 0) {
+          // Swiped up — only advance if slide was already at the bottom
+          if (isScrollable(slide) && touchStartScrollTop < maxScrollTop - 2) return;
+          if (current < total - 1) { goTo(current + 1); }
+          else { exitCarousel(); }
+        } else {
+          // Swiped down — only go back if slide was already at the top
+          if (isScrollable(slide) && touchStartScrollTop > 0) return;
+          if (current > 0) goTo(current - 1);
         }
       }, { passive: true });
     })();
