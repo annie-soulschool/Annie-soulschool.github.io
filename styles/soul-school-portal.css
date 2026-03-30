@@ -1,3 +1,243 @@
 /* ── Soul School · soul-school-portal.css ── */
 /* Page-specific styles for the member portal.
    Shared nav, utility, and footer classes live in main.css. */
+
+/* ── Section layout ── */
+
+.portal-section {
+  padding: 80px 64px;
+  background: var(--void);
+}
+
+.portal-section-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--soft);
+  margin: 0 0 40px;
+}
+
+/* ── Calendar: 7-day week grid ── */
+
+.portal-week-wrapper {
+  background: rgba(17, 17, 16, 0.45);
+  border: 1px solid rgba(201, 151, 42, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 900px;
+}
+
+.portal-week-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: rgba(201, 151, 42, 0.08);
+  border-bottom: 1px solid rgba(201, 151, 42, 0.12);
+}
+
+.portal-week-day-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ash);
+  text-align: center;
+  padding: 0.7rem 0;
+}
+
+.portal-week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.portal-week-day {
+  min-height: 100px;
+  border-right: 1px solid rgba(201, 151, 42, 0.07);
+  padding: 0.6rem 0.5rem;
+  position: relative;
+}
+
+.portal-week-day:last-child {
+  border-right: none;
+}
+
+.portal-week-day.portal-week-today {
+  background: rgba(201, 151, 42, 0.1);
+}
+
+.portal-week-day.portal-week-today .portal-day-num {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.portal-day-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--ash);
+  display: block;
+}
+
+/* ── Upcoming events list (pill style, matches calendar.html) ── */
+
+.portal-events-list {
+  max-width: 760px;
+}
+
+.pill-event-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--deep);
+  border: 1px solid rgba(201, 151, 42, 0.2);
+  border-radius: 999px;
+  padding: 18px 36px;
+  box-shadow: 0 0 14px rgba(201, 151, 42, 0.12);
+  margin-bottom: 16px;
+}
+
+.pill-event-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--soft);
+}
+
+.pill-event-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ash-light);
+}
+
+/* ── Soul Practices ── */
+
+.portal-practice-cta {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(36px, 5vw, 64px);
+  color: var(--luminous);
+  margin: 0 0 48px;
+  line-height: 1.1;
+}
+
+.portal-practices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--ember);
+  border: 1px solid rgba(201, 151, 42, 0.1);
+  max-width: 1100px;
+}
+
+.portal-practice-card {
+  background: var(--deep);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.portal-practice-name {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--soft);
+  display: block;
+}
+
+.portal-practice-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--ash-light);
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+}
+
+.portal-soundcloud-placeholder {
+  border: 1px dashed rgba(201, 151, 42, 0.25);
+  border-radius: 8px;
+  padding: 18px 16px;
+  text-align: center;
+  color: var(--ash);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  margin-top: auto;
+}
+
+/* ── Booking placeholder ── */
+
+.portal-booking-placeholder {
+  border: 1px dashed rgba(201, 151, 42, 0.25);
+  border-radius: 12px;
+  padding: 60px 40px;
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ── Story of Why: section blocks ── */
+
+.portal-why-block {
+  max-width: 760px;
+  margin-bottom: 72px;
+}
+
+.portal-why-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto 72px;
+}
+
+.portal-why-split-left {
+  border-right: 1px solid rgba(201, 151, 42, 0.14);
+  padding-right: 52px;
+}
+
+.portal-why-split-right {
+  padding-left: 52px;
+}
+
+/* ── Mobile ── */
+
+@media (max-width: 768px) {
+  .portal-section {
+    padding: 60px 24px;
+  }
+
+  .portal-practices-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-why-split {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-why-split-left {
+    border-right: none;
+    border-bottom: 1px solid rgba(201, 151, 42, 0.14);
+    padding-right: 0;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+  }
+
+  .portal-why-split-right {
+    padding-left: 0;
+  }
+
+  .pill-event-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 20px;
+    padding: 18px 24px;
+  }
+
+  .portal-week-day {
+    min-height: 70px;
+  }
+}

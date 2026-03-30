@@ -63,6 +63,7 @@
       const error = document.getElementById('error-msg');
       if (input === 'WEAREFREE') {
         sessionStorage.setItem('soulschool_auth', 'true');
+        sessionStorage.setItem('soulschool_entry_date', new Date().toISOString());
         window.location.href = 'soul-school-portal.html';
       } else {
         error.style.display = 'block';

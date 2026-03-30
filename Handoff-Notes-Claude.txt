@@ -44,3 +44,5 @@ The enter.html password form already sets sessionStorage.setItem('soulschool_aut
 index.html restructured, enter.html updated, password gate on 
 what-is-soul-school.html. 
 Next: Phase 3 — Protected page (inside Soul School) content structure.
+
+Edit: reverted changes on button logic due to redundancy of code and incorrect application. Will revisit in a later phase. 
