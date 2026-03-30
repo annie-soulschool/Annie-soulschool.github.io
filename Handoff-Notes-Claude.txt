@@ -1,0 +1,46 @@
+Phase 1 complete. Files edited:
+styles/main.css
+
+Task 1: Removed .btn, .btn-primary, .btn-secondary, .btn-close blocks. Replaced with button {} / button:hover {} / button:active {} (exact gold-on-black neumorphic style you provided). Updated .btn-pill to match the same style for <a> elements. Removed old .btn mobile override.
+Task 3: Changed body, p, .body-text, input, .error-message font-family from 'Cormorant Garamond'/'Inter' to 'DM Sans', sans-serif. Titles/headers (h1–h3, label, eyebrow, section-label, site-nav) are untouched.
+Task 4: Added ul li::marker cycling rules — Gold → Deep Electric Purple → Field Green → Hot Magenta (from the palette zine Rules section).
+styles/what-is-soul-school.css
+
+Task 1b: Updated .dot class with explicit resets (height:6px; width:6px; margin:0; box-shadow:none; font-size:0) so the tiny nav dots don't inherit the 120×50px button {} size.
+styles/calendar.css
+
+Task 1c: Updated .month-btn / .month-btn:hover with explicit resets so the circular calendar nav buttons keep their 38×38px circular appearance.
+index.html
+
+Task 2: Changed the button wrapper div from display:flex; flex-wrap:wrap to display:flex; flex-direction:column; align-items:flex-start — buttons now stack vertically, left-aligned.
+pages/what-is-soul-school.html
+
+Task 5: Both RADICAL instances replaced with per-letter rainbow spans: R(red) A(orange) D(yellow) I(green) C(blue) A(purple) L(violet).
+zines/soul_school_font_zine.html
+
+Task 5b: The one plain-text RADICAL replaced with the same per-letter rainbow spans.
+Global button CSS updated. Fonts, bullets, RADICAL rainbow done.
+
+Next: Phase 2 — index.html restructure and enter.html content changes.
+
+
+Phase 2 complete. Files edited:
+All 7 tasks are complete. Here's a summary of what was changed:
+
+index.html
+
+Removed the "What is Soul School?" button (2 buttons remain)
+Removed min-height:100vh from the hero section and reduced padding so the gatherings section is visible without scrolling
+Renamed "UPCOMING GATHERINGS" → "GATHER TOGETHER" with subheading "The best way to understand Soul School is to show up."
+Removed "Retreat Orientation" placeholder (only Popups + Office Hours remain); added <!-- CALENDAR: show next 3 public events only --> comment
+pages/enter.html
+
+Added the HOW ACCESS WORKS block above the password input, including RADICAL styled with the .radical rainbow gradient class
+pages/what-is-soul-school.html
+
+Removed the HOW ACCESS WORKS section and its trailing gold rule divider
+Added a <script> block before <body> that redirects to enter.html if soulschool_auth is not set in sessionStorage
+The enter.html password form already sets sessionStorage.setItem('soulschool_auth', 'true') on success, so the gate is complete end-to-end.
+index.html restructured, enter.html updated, password gate on 
+what-is-soul-school.html. 
+Next: Phase 3 — Protected page (inside Soul School) content structure.

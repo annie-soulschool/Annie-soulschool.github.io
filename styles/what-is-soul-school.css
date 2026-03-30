@@ -38,12 +38,19 @@
 }
 
 .dot {
+  /* Reset button {} overrides — keep dots tiny and circular */
   width: 6px;
   height: 6px;
+  margin: 0;
   border-radius: 50%;
-  background: rgba(201, 151, 42, 0.3);
   border: none;
   padding: 0;
+  background: rgba(201, 151, 42, 0.3);
+  color: transparent;
+  font-size: 0;
+  letter-spacing: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
   cursor: pointer;
   transition: background 0.25s, box-shadow 0.25s;
 }
@@ -51,6 +58,7 @@
 .dot.active {
   background: var(--gold);
   box-shadow: 0 0 6px var(--gold);
+  -webkit-box-shadow: 0 0 6px var(--gold);
 }
 
 /* ── Fixed arrow buttons ── */

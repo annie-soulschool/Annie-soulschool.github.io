@@ -20,7 +20,7 @@
 	</nav>
 
 	<!-- HERO -->
-	<section style="position:relative; min-height:100vh; background:var(--void); padding:80px 64px; display:flex; flex-direction:column; justify-content:center;">
+	<section style="position:relative; background:var(--void); padding:60px 64px 44px; display:flex; flex-direction:column;">
 		<span class="corner-tl"></span>
 		<span class="corner-tr"></span>
 		<span class="corner-bl"></span>
@@ -34,9 +34,8 @@
 
 		<p style="font-family:'Josefin Sans', sans-serif; font-weight:200; letter-spacing:0.28em; font-size:clamp(10px, 1.4vw, 14px); color:rgba(243,241,235,0.6); text-transform:uppercase; margin-top:32px; margin-bottom:40px;">THE TRANSMISSION OF LOVE AND JOY AND THE LIBERATION OF ALL BEINGS</p>
 
-		<div style="display:flex; flex-wrap:wrap; gap:16px;">
-			<a href="enter.html" class="btn-pill">Enter Soul School</a>
-			<a href="/pages/what-is-soul-school.html" class="btn-pill">What is Soul School?</a>
+		<div style="display:flex; flex-direction:column; align-items:flex-start; gap:16px;">
+			<a href="/pages/enter.html" class="btn-pill">Enter Soul School</a>
 			<a href="/pages/enter.html" class="btn-pill">Member Login</a>
 		</div>
 	</section>
@@ -44,15 +43,16 @@
 	<!-- DIVIDER -->
 	<div class="gold-rule"><div class="lt"></div><div class="ln"></div></div>
 
-	<!-- UPCOMING GATHERINGS -->
-	<section style="padding:72px 64px; background:var(--void);">
-		<p class="section-label">UPCOMING GATHERINGS</p>
-		<div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:32px;">
+	<!-- GATHER TOGETHER / CALENDAR -->
+	<section style="padding:40px 64px; background:var(--void);">
+		<p class="section-label">GATHER TOGETHER</p>
+		<p class="body-text" style="margin-top:8px; margin-bottom:24px; color:rgba(243,241,235,0.6);">The best way to understand Soul School is to show up.</p>
+		<!-- CALENDAR: show next 3 public events only -->
+		<div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:8px;">
 			<div style="background:var(--deep); border:1px solid rgba(201,151,42,0.2); border-radius:999px; padding:14px 28px; display:inline-block; box-shadow:0 0 12px rgba(201,151,42,0.15);">Soul School Bus Popups — Boulder</div>
 			<div style="background:var(--deep); border:1px solid rgba(201,151,42,0.2); border-radius:999px; padding:14px 28px; display:inline-block; box-shadow:0 0 12px rgba(201,151,42,0.15);">Soul School Office Hours (Zoom)</div>
-			<div style="background:var(--deep); border:1px solid rgba(201,151,42,0.2); border-radius:999px; padding:14px 28px; display:inline-block; box-shadow:0 0 12px rgba(201,151,42,0.15);">Retreat Orientation</div>
 		</div>
-		<!-- TODO: Replace placeholder events with Google Calendar API feed -->
+		<!-- TODO: Replace placeholder events with Google Calendar API feed (filter: Popups + Office Hours types, limit: 3) -->
 	</section>
 
 	<!-- DIVIDER -->

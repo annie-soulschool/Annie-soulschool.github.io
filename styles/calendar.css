@@ -74,13 +74,19 @@ body {
 }
 
 .month-btn {
+  /* Reset button {} — keep month nav circular */
   background: none;
   border: 1px solid rgba(232, 199, 106, 0.3);
   border-radius: 50%;
   width: 38px;
   height: 38px;
+  margin: 0;
   color: var(--luminous);
+  font-family: inherit;
   font-size: 1rem;
+  letter-spacing: 0;
+  box-shadow: none;
+  -webkit-box-shadow: none;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -91,6 +97,10 @@ body {
 .month-btn:hover {
   background: rgba(201, 151, 42, 0.15);
   border-color: var(--luminous);
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  color: var(--luminous);
+  transition: background 0.2s, border-color 0.2s;
 }
 
 /* ── Calendar grid ── */

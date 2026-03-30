@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /c/Users/suctu/OneDrive/Documents/GitHub/Annie-soulschool.github.io/pages/*.html /c/Users/suctu/OneDrive/Documents/GitHub/Annie-soulschool.github.io/styles/*.css /c/Users/suctu/OneDrive/Documents/GitHub/Annie-soulschool.github.io/movement/*.js)"
+    ]
+  }
+}

@@ -28,7 +28,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'DM Sans', sans-serif;
   color: var(--soft);
   background: linear-gradient(
     160deg,
@@ -92,7 +92,7 @@ h3 {
 }
 
 p {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: clamp(1rem, 1.8vw, 1.2rem);
   font-weight: 300;
   line-height: 1.75;
@@ -234,7 +234,7 @@ input {
   background: rgba(17, 17, 16, 0.85);
   color: var(--soft);
   padding: 0.75rem 0.8rem;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 1rem;
   transition: border-color 0.2s;
 }
@@ -253,7 +253,7 @@ input::placeholder {
   min-height: 1.15rem;
   margin: 0.1rem 0 0.4rem;
   color: #c4607a;
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
 }
@@ -350,6 +350,12 @@ input::placeholder {
   border: 0;
 }
 
+/* ── Bullet point color pops (palette accent colors, Rules section) ── */
+ul li::marker              { color: #C9972A; } /* Signal Gold */
+ul li:nth-child(4n+2)::marker { color: #9333EA; } /* Deep Electric Purple */
+ul li:nth-child(4n+3)::marker { color: #3D8C6A; } /* Field Green */
+ul li:nth-child(4n+4)::marker { color: #FF2D9B; } /* Hot Magenta */
+
 /* ── RADICAL rainbow text ── */
 .radical {
   background: linear-gradient(90deg, #e84949, #e8823a, #d4c43a, #4abd6f, #4a7fe8, #8a4ae8, #d44ab0);
@@ -427,7 +433,7 @@ input::placeholder {
 }
 
 .body-text {
-  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 1.1rem;
   line-height: 1.75;
   color: var(--soft);
