@@ -130,6 +130,16 @@
   border-radius: 2px;
 }
 
+/* Carousel images */
+.carousel-image {
+  flex-shrink: 0;
+  width: 360px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  scroll-snap-align: start;
+}
+
 /* Placeholder boxes — replace with <img> tags when images are available */
 .carousel-placeholder-box {
   flex-shrink: 0;
@@ -269,7 +279,8 @@
   }
 
   /* Carousel boxes shrink to near full-width on phone */
-  .carousel-placeholder-box {
+  .carousel-placeholder-box,
+  .carousel-image {
     width: 80vw;
     height: 52vw;
   }
