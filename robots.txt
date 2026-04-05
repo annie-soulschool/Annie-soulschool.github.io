@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /pages/member-portal.html
+Disallow: /pages/what-is-soul-school.html
+Disallow: /pages/archive.html
+Disallow: /zines/
+Disallow: /movement/
+
+Allow: /
+Allow: /pages/enter.html
+
+Sitemap: https://soulschool.live/sitemap.xml
