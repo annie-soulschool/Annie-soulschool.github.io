@@ -2,6 +2,25 @@
 
 @import url('main.css');
 
+/* ── Rainbow gradient utility ── */
+
+.rainbow-text {
+  background: linear-gradient(
+    90deg,
+    #ff6b6b 0%,
+    #ffa94d 18%,
+    #ffe066 36%,
+    #69db7c 52%,
+    #4dabf7 68%,
+    #9775fa 84%,
+    #f783ac 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 /* ── Hero section ── */
 
 .hero {
@@ -10,6 +29,15 @@
   padding: 60px 64px 44px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-logo-wrap {
+  margin-top: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .hero-logo-img {
@@ -20,46 +48,130 @@
 .hero-tagline {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 200;
-  letter-spacing: 0.28em;
-  font-size: clamp(10px, 1.4vw, 14px);
-  color: rgba(243, 241, 235, 0.6);
-  text-transform: uppercase;
-  margin-top: 32px;
+  letter-spacing: 0.12em;
+  font-size: clamp(12px, 1.6vw, 16px);
+  color: rgba(243, 241, 235, 0.7);
+  font-style: italic;
+  margin-top: 28px;
   margin-bottom: 40px;
 }
 
 .hero-cta {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
+  justify-content: center;
+  gap: 20px;
 }
 
-/* ── Gather Together / Calendar section ── */
+/* ── Tagline block ── */
 
-.gather-section {
-  padding: 40px 64px;
+.tagline-block {
   background: var(--void);
+  padding: 64px 64px 56px;
+  text-align: center;
 }
 
-.gather-section .body-text {
-  margin-top: 8px;
-  margin-bottom: 24px;
-  color: rgba(243, 241, 235, 0.6);
+.tagline-show-up {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(40px, 8vw, 96px);
+  letter-spacing: 0.1em;
+  color: var(--cream);
+  margin: 0;
+  line-height: 1.1;
 }
 
-.event-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 8px;
+.tagline-radical {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 6vw, 72px);
+  letter-spacing: 0.08em;
+  margin: 12px 0 0;
+  line-height: 1.1;
+  color: var(--cream);
 }
 
-.event-pill {
+/* ── Events section ── */
+
+.events-section {
+  background: var(--void);
+  padding: 48px 64px 72px;
+}
+
+.event-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.event-card {
   background: var(--deep);
   border: 1px solid rgba(201, 151, 42, 0.2);
-  border-radius: 999px;
-  padding: 14px 28px;
-  display: inline-block;
-  box-shadow: 0 0 12px rgba(201, 151, 42, 0.15);
+  border-radius: 16px;
+  padding: 28px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.event-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(14px, 1.4vw, 18px);
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  margin: 0;
+}
+
+.event-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: clamp(10px, 1vw, 12px);
+  letter-spacing: 0.1em;
+  color: rgba(243, 241, 235, 0.5);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.event-location {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(11px, 1.1vw, 13px);
+  letter-spacing: 0.06em;
+  color: rgba(243, 241, 235, 0.55);
+  margin: 0;
+}
+
+.event-desc {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: clamp(11px, 1.1vw, 13px);
+  letter-spacing: 0.04em;
+  color: rgba(243, 241, 235, 0.6);
+  line-height: 1.7;
+  margin: 4px 0 0;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 40px 32px 36px;
+  }
+
+  .hero-logo-img {
+    width: 90%;
+  }
+
+  .tagline-block {
+    padding: 48px 32px 40px;
+  }
+
+  .events-section {
+    padding: 40px 24px 56px;
+  }
+
+  .event-cards {
+    grid-template-columns: 1fr;
+  }
 }
