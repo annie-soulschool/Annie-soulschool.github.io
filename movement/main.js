@@ -63,7 +63,7 @@
 
       const password = soulPassword.value.trim();
       if (password === 'soulschool') {
-        window.location.href = '../pages/soul-school-portal.html';
+        window.location.href = '../pages/archive.html';
         return;
       }
 
@@ -81,7 +81,7 @@
       const loginPassword = memberPassword.value.trim();
 
       if (loginPassword === 'welcomehome') {
-        window.location.href = '../pages/soul-school-portal.html';
+        window.location.href = '../pages/archive.html';
         return;
       }
 

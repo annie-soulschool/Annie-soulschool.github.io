@@ -30,11 +30,12 @@ body {
   color: var(--soft);
   background: linear-gradient(
     160deg,
-    var(--void) 0%,
-    var(--deep) 40%,
-    var(--ember-dark) 75%,
-    var(--burnt) 100%
+    #0A0A08 0%,
+    #111110 40%,
+    #1E1D1A 75%,
+    #2E2219 100%
   );
+  background-attachment: fixed;
 }
 
 /* ── Layout ── */
@@ -398,7 +399,9 @@ ul li:nth-child(4n+4)::marker { color: #FF2D9B; }
   align-items: center;
   justify-content: space-between;
   padding: 20px 64px;
-  background: var(--void);
+  background: rgba(10, 10, 8, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--ember);
   z-index: 100;
 }
@@ -449,8 +452,9 @@ ul li:nth-child(4n+4)::marker { color: #FF2D9B; }
 }
 
 .italic-gold {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-style: italic;
+  font-weight: 300;
   color: var(--gold);
   margin: 0 0 16px;
   line-height: 1.2;
@@ -493,7 +497,7 @@ ul li:nth-child(4n+4)::marker { color: #FF2D9B; }
 /* ── Site footer ── */
 
 .site-footer {
-  background: var(--void);
+  background: transparent;
   border-top: 1px solid var(--ember);
   padding: 24px 64px;
   display: flex;
@@ -502,8 +506,9 @@ ul li:nth-child(4n+4)::marker { color: #FF2D9B; }
 }
 
 .site-footer-logo {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-style: italic;
+  font-weight: 300;
   font-size: 16px;
   color: rgba(201, 151, 42, 0.5);
 }

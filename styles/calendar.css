@@ -435,8 +435,9 @@ body {
 }
 
 .pill-event-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-style: italic;
+  font-weight: 300;
   font-size: 17px;
   color: var(--soft);
 }

@@ -10,8 +10,8 @@
 }
 
 .portal-section-heading {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
   font-size: clamp(28px, 4vw, 44px);
   color: var(--soft);
   margin: 0 0 40px;
@@ -96,8 +96,9 @@
 }
 
 .pill-event-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-style: italic;
+  font-weight: 300;
   font-size: 17px;
   color: var(--soft);
 }
@@ -113,8 +114,9 @@
 /* ── Soul Practices ── */
 
 .portal-practice-cta {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-style: italic;
+  font-weight: 300;
   font-size: clamp(36px, 5vw, 64px);
   color: var(--luminous);
   margin: 0 0 48px;
@@ -139,8 +141,9 @@
 }
 
 .portal-practice-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-style: italic;
+  font-weight: 300;
   font-size: 18px;
   color: var(--soft);
   display: block;
