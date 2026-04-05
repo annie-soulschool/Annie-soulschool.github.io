@@ -148,6 +148,41 @@ styles/enter.css	Same.
 styles/member-portal.css	Same.
 styles/what-is-soul-school.css	Same.
 
+
+Phase 7:
+All four existing files are updated. Here's a summary of what was done and one thing to flag:
+
+index.html	Replaced <title> + old description; added keywords, author, Open Graph, and Twitter Card meta tags
+pages/enter.html	Replaced description; added OG title, url, type, image tags
+pages/member-portal.html	Updated <title> to "Soul School Member Portal"; added noindex, nofollow
+pages/archive.html	Updated <title> to "Soul School — Archive"; added noindex, nofollow
+One thing to flag: pages/what-is-soul-school.html does not exist in the repo — only these files are in pages/: enter.html, member-portal.html, archive.html, soul-school-portal.html, calendar.html. If what-is-soul-school.html needs to be created or if it's actually one of these other files under a different name, let me know and I'll handle it.
+
+All existing <head> sections already had both <meta charset="UTF-8"> and <meta name="viewport" content="width=device-width, initial-scale=1.0"> — no changes needed there.
+
+Phase 8:
+
+index.html
+Added <h1 class="visually-hidden">Soul School</h1> inside .hero-logo-wrap — establishes the single required <h1> without changing the visual layout (hidden via CSS)
+alt="Soul School logo" → alt="Soul School wordmark in gold" on SOUL-SCHOOL-HEADER-GOLD.png
+<p class="tagline-show-up">SHOW UP.</p> → <h2> — promotes the section header to the correct semantic level
+All three <h3 class="event-title"> → <h2> (Soul School Bus Popup, Office Hours with Annie, Full Moon Gathering) — also fixed the mismatched </h3> closing tags left over from the original
+pages/soul-school-portal.html
+All six <h3 class="event-title"> → <h2> — also fixed all six mismatched </h3> closing tags
+alt="WE ARE FREE TODAY Grass picture" → alt="Soul School community gathering" on carousel image
+alt="We Are Free We Are Free We Are Free" → alt="We Are Free — Soul School community" on We-are-free-GOLD.png
+<p class="wiss-booking-prompt"> → <h2> on "If you are ready, let us talk." — establishes semantic heading for the Book a Call section
+pages/archive.html
+alt="Advisory Council" → alt="We Are Free — Soul School community" on We-are-free-GOLD.png
+styles/main.css
+Added .visually-hidden utility class — standard screen-reader-visible / visually-hidden pattern, required to support the new <h1> in index.html without affecting layout
+No changes needed
+carousel.js — does not inject <img> tags via JS template strings; it only manipulates pre-existing DOM slides. The one live carousel image is statically in the HTML and was updated there.
+pages/archive.html section 4 — "Book an Initiation Call" was already an <h2>
+pages/enter.html, pages/member-portal.html — no <img> tags, heading structure already correct
+
+
+
 ═══════════════════════════════════════════════════════════════
 PHASE 6–9 COMPLETION NOTES — SEO & SITE ARCHITECTURE
 Last updated: April 2026
