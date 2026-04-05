@@ -19,32 +19,12 @@
 
   <main class="enter-main">
 
-    <p class="section-label">ENTER SOUL SCHOOL</p>
-
-    <p class="body-text">
-      Access to deeper materials and practices is shared with participants who attend gatherings.
-    </p>
-    <p class="body-text enter-hint">
-      If you have received the access code, you may enter below.
-    </p>
-
-    <!-- HOW ACCESS WORKS -->
-    <div class="access-block">
-      <h2 class="stencil">THE BEST WAY TO UNDERSTAND SOUL SCHOOL IS TO SHOW UP.</h2>
-      <p class="body-text">
-        In a world engineered for distraction, showing up is <span class="radical">RADICAL</span>. Above all, we show up — for ourselves, each other, and our planet.
-      </p>
-      <div class="access-divider"></div>
-    </div>
-
     <div class="access-form">
       <input
         type="password"
         id="access-code"
         class="access-input"
         placeholder="Enter access code"
-        onfocus="this.style.borderColor='var(--gold)';this.style.boxShadow='0 0 12px rgba(201,151,42,0.2)';"
-        onblur="this.style.borderColor='rgba(201,151,42,0.3)';this.style.boxShadow='none';"
       >
       <button class="btn-pill" onclick="checkPassword()">Enter</button>
     </div>
@@ -55,6 +35,8 @@
 
   </main>
 
+  <!-- TODO: Future video + animation with soundtrack goes here -->
+
   <!-- TODO: Move password validation to server-side before launch for real security -->
   <script>
     function checkPassword() {
@@ -63,7 +45,7 @@
       if (input === 'WEAREFREE') {
         sessionStorage.setItem('soulschool_auth', 'true');
         sessionStorage.setItem('soulschool_entry_date', new Date().toISOString());
-        window.location.href = 'soul-school-portal.html';
+        window.location.href = 'what-is-soul-school.html';
       } else {
         error.style.display = 'block';
       }

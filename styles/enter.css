@@ -15,51 +15,9 @@
   padding: 80px 64px 64px;
 }
 
-.enter-main .section-label {
-  margin-bottom: 32px;
-}
-
-.enter-main .body-text {
-  max-width: 480px;
-  margin: auto;
-}
-
-.enter-hint {
-  margin-top: 12px;
-  color: rgba(243, 241, 235, 0.5);
-}
-
-/* ── How access works block ── */
-
-.access-block {
-  max-width: 560px;
-  margin: 40px auto 0;
-  text-align: center;
-}
-
-.access-block .stencil {
-  font-size: clamp(16px, 2.5vw, 28px);
-  color: var(--gold);
-  line-height: 1.3;
-  margin-bottom: 20px;
-}
-
-.access-block .body-text {
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.access-divider {
-  width: 48px;
-  height: 1px;
-  background: var(--gold);
-  margin: 24px auto;
-}
-
 /* ── Access code form ── */
 
 .access-form {
-  margin-top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
