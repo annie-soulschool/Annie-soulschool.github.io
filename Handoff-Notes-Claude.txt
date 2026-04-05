@@ -147,3 +147,131 @@ styles/index.css	All background: var(--void) on sections → transparent.
 styles/enter.css	Same.
 styles/member-portal.css	Same.
 styles/what-is-soul-school.css	Same.
+
+═══════════════════════════════════════════════════════════════
+PHASE 6–9 COMPLETION NOTES — SEO & SITE ARCHITECTURE
+Last updated: April 2026
+═══════════════════════════════════════════════════════════════
+
+── SITE OVERVIEW ───────────────────────────────────────────────
+
+soulschool.live is a static GitHub Pages site.
+No backend. No server. HTML, CSS, and JavaScript only.
+Deployed automatically on every push to main branch.
+
+── FILE STRUCTURE ──────────────────────────────────────────────
+
+Root
+├── index.html              → Public home page (only page Google indexes)
+├── robots.txt              → Crawler permissions (added Phase 6)
+├── sitemap.xml             → Sitemap submitted to Google Search Console (Phase 6)
+├── CNAME                   → Points GitHub Pages to soulschool.live
+├── Handoff-Notes-Claude.txt
+│
+├── pages/
+│   ├── enter.html          → Access code gate. Simplified in Phase 3.
+│   │                         WEAREFREE passcode. On success → what-is-soul-school.html
+│   ├── what-is-soul-school.html  → POST-LOGIN page (new, created Phase 3)
+│   │                               "You don't need more information."
+│   │                               6 hardcoded event placeholders.
+│   │                               noindex meta tag — Google never sees this.
+│   ├── member-portal.html  → "Under construction." noindex. Do not link publicly.
+│   └── archive.html        → Renamed from old what-is-soul-school.html. noindex.
+│
+├── assets/
+│   ├── SOUL-SCHOOL-HEADER-GOLD.png   → Main logo. Used as OG/Twitter preview image.
+│   └── Caroyusel-img/                → Carousel images. Add new photos here.
+│                                       Note: folder name has a typo — keep as-is
+│                                       to avoid breaking the carousel JS reference.
+│
+└── styles/
+    ├── main.css            → Fonts, CSS variables, shared styles. Edit here first.
+    ├── index.css           → Home page specific styles
+    ├── enter.css           → Enter page styles
+    ├── what-is-soul-school.css
+    ├── member-portal.css
+    └── archive.css
+
+── TYPOGRAPHY RULES ────────────────────────────────────────────
+
+Playfair Display italic → .site-nav-logo ONLY
+Josefin Sans            → all other text, sitewide
+Both fonts imported via Google Fonts in main.css.
+Reduced letter-spacing applied to event cards and calendar elements.
+No inline styles anywhere — all styles live in CSS files.
+
+── SEO SETUP ───────────────────────────────────────────────────
+
+robots.txt: Disallows member-portal, what-is-soul-school, archive, zines, movement.
+sitemap.xml: Lists index.html and enter.html only.
+All gated/internal pages carry <meta name="robots" content="noindex, nofollow">.
+Open Graph + Twitter Card meta tags on index.html and enter.html.
+OG image: assets/SOUL-SCHOOL-HEADER-GOLD.png (replace with a square image when available).
+Google Search Console: Verify ownership via HTML meta tag in <head> of index.html.
+  → After verifying, submit sitemap.xml via Search Console dashboard.
+  → Request indexing for https://soulschool.live manually after each major update.
+
+── GOOGLE CALENDAR INTEGRATION (PENDING) ───────────────────────
+
+Not yet implemented. Planned for a future phase.
+The site owner will need to provide:
+  1. Calendar ID (from Google Calendar settings → Integrate calendar)
+  2. API key (from Google Cloud Console → Credentials)
+
+API key security: Use HTTP referrer restrictions in Google Cloud Console.
+Allowed referrers:
+  https://soulschool.live/*
+  https://annie-soulschool.github.io/*
+API restricted to: Google Calendar API only.
+
+When implementing: store the API key in config.js (gitignored).
+Add config.example.js to the repo showing the expected shape:
+  window.CALENDAR_API_KEY = 'YOUR_KEY_HERE';
+  window.CALENDAR_ID = 'YOUR_CALENDAR_ID_HERE';
+
+Event cards on index.html (3 cards) and what-is-soul-school.html (6 cards)
+are currently hardcoded placeholders. Replace with dynamic Calendar API
+fetch when integration is built. See TODO comments in both HTML files.
+
+── SOUNDCLOUD EMBED (PENDING) ──────────────────────────────────
+
+Placeholder comment exists in index.html.
+When ready: paste SoundCloud iframe embed code where the comment is.
+No other changes needed.
+
+── ENTER PAGE — FUTURE VIDEO/ANIMATION (PENDING) ───────────────
+
+Placeholder comment exists in pages/enter.html.
+Intended to hold a full-screen video or animation with soundtrack
+as an immersive entry experience before the access code input.
+No specs defined yet.
+
+── DESIGN TOKENS (CSS VARIABLES IN main.css) ───────────────────
+
+If the color palette, fonts, or spacing need to change sitewide,
+edit the CSS custom properties (variables) in styles/main.css first.
+Do not hardcode color values or font names in page-level CSS files.
+
+── RAINBOW GRADIENT TEXT ───────────────────────────────────────
+
+Used on two elements:
+  1. Transmission tagline on index.html
+  2. "It's RADICAL" on index.html
+Implementation: CSS background-clip: text with a linear-gradient.
+To adjust the gradient colors, find the .rainbow-text class in index.css.
+
+── NOTES FOR FUTURE DEVELOPERS ─────────────────────────────────
+
+- The carousel folder is named Caroyusel-img (not Carousel-img).
+  Do not rename it without also updating the JS reference.
+- Playfair Display italic is intentional and scoped only to .site-nav-logo.
+  Do not apply it elsewhere — this was a deliberate design decision.
+- The what-is-soul-school.html page is the POST-LOGIN destination.
+  It is NOT the archived original page. archive.html is the archive.
+- All SEO-indexed content must live on index.html. Everything behind
+  the passcode gate is intentionally invisible to search engines.
+- Gold bar separators have been removed. Do not re-add them.
+- Background texture/gradient is set in main.css. Do not override it
+  in page-level CSS files.
+
+═══════════════════════════════════════════════════════════════
