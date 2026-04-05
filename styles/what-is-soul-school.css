@@ -1,83 +1,291 @@
 /* ── Soul School · what-is-soul-school.css ── */
 
-/* Overflow lock: body scroll locked while carousel is active.
-   JS unlocks it when user navigates past the last slide. */
-#carousel {
-  height: 100vh;
+@import url('main.css');
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+
+.wiss-hero {
+  background: transparent;
+  padding: 120px 64px 72px;
+  text-align: center;
+}
+
+.wiss-heading {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 64px);
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  margin: 0 auto 24px;
+  max-width: 860px;
+  line-height: 1.15;
+}
+
+.wiss-subheading {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 200;
+  font-size: clamp(13px, 1.8vw, 20px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(243, 241, 235, 0.6);
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* ══════════════════════════════════════════
+   EVENT CARDS  (mirrors index.css cards)
+══════════════════════════════════════════ */
+
+.wiss-events {
+  background: transparent;
+  padding: 48px 64px 72px;
+}
+
+.event-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.event-card {
+  background: var(--deep);
+  border: 1px solid rgba(201, 151, 42, 0.2);
+  border-radius: 16px;
+  padding: 28px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.event-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(14px, 1.4vw, 18px);
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  margin: 0;
+}
+
+.event-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: clamp(10px, 1vw, 12px);
+  letter-spacing: 0.06em;
+  color: rgba(243, 241, 235, 0.5);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.event-location {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-size: clamp(11px, 1.1vw, 13px);
+  letter-spacing: 0.02em;
+  color: rgba(243, 241, 235, 0.55);
+  margin: 0;
+}
+
+.event-desc {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: clamp(11px, 1.1vw, 13px);
+  letter-spacing: 0;
+  color: rgba(243, 241, 235, 0.6);
+  line-height: 1.7;
+  margin: 4px 0 0;
+}
+
+/* ══════════════════════════════════════════
+   CAROUSEL  (placeholder)
+   Images will load from assets/carousel-images/
+══════════════════════════════════════════ */
+
+.wiss-carousel-section {
+  background: transparent;
+  padding: 64px 0;
   overflow: hidden;
 }
 
-/* ── Slides ── */
+.wiss-carousel {
+  display: flex;
+  gap: 16px;
+  padding: 0 64px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
 
-.slide {
-  display: none;
-  flex-direction: column;
+.wiss-carousel::-webkit-scrollbar {
+  height: 4px;
+}
+
+.wiss-carousel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wiss-carousel::-webkit-scrollbar-thumb {
+  background: rgba(201, 151, 42, 0.3);
+  border-radius: 2px;
+}
+
+/* Placeholder boxes — replace with <img> tags when images are available */
+.carousel-placeholder-box {
+  flex-shrink: 0;
+  width: 360px;
+  height: 240px;
+  background: var(--deep);
+  border: 1px solid rgba(201, 151, 42, 0.15);
+  border-radius: 8px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  min-height: 100vh;
-  background: var(--void);
-  padding: 80px 64px 72px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(243, 241, 235, 0.25);
+  text-transform: uppercase;
+  scroll-snap-align: start;
 }
 
-.slide.active {
-  display: flex;
-}
+/* ══════════════════════════════════════════
+   YOUTUBE VIDEO
+══════════════════════════════════════════ */
 
-/* ── Dot navigation — right side, vertically centered ── */
-
-.dot-nav {
-  position: fixed;
-  right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
+.wiss-video-section {
+  background: transparent;
+  padding: 72px 64px 32px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  z-index: 200;
+  align-items: center;
+  gap: 2vh;
 }
 
-.dot {
-  /* Reset button {} overrides — keep dots tiny and circular */
-  width: 6px;
-  height: 6px;
+.wiss-video-wrap {
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 151, 42, 0.15);
+}
+
+.wiss-video-iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wiss-video-credit {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(243, 241, 235, 0.4);
   margin: 0;
-  border-radius: 50%;
-  border: none;
-  padding: 0;
-  background: rgba(201, 151, 42, 0.3);
-  color: transparent;
-  font-size: 0;
-  letter-spacing: 0;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  cursor: pointer;
-  transition: background 0.25s, box-shadow 0.25s;
 }
 
-.dot.active {
-  background: var(--gold);
-  box-shadow: 0 0 6px var(--gold);
-  -webkit-box-shadow: 0 0 6px var(--gold);
+/* ══════════════════════════════════════════
+   WE ARE FREE IMAGE
+══════════════════════════════════════════ */
+
+.wiss-wearefree-section {
+  background: transparent;
+  padding: 72px 64px;
+  display: flex;
+  justify-content: center;
 }
 
-/* ── Fixed arrow buttons ── */
-
-.nav-prev {
-  position: fixed;
-  bottom: 32px;
-  left: 32px;
-  z-index: 200;
+.wiss-wearefree-img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  display: block;
 }
 
-.nav-next {
-  position: fixed;
-  bottom: 32px;
-  right: 56px; /* offset from dot nav */
-  z-index: 200;
+/* ══════════════════════════════════════════
+   BOOK A CALL
+══════════════════════════════════════════ */
+
+.wiss-booking-section {
+  background: transparent;
+  padding: 72px 64px 96px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
 }
 
-.nav-prev[hidden],
-.nav-next[hidden] {
-  display: none;
+.wiss-booking-prompt {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 200;
+  font-size: clamp(18px, 3vw, 36px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(243, 241, 235, 0.8);
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .wiss-hero {
+    padding: 100px 32px 56px;
+  }
+
+  .wiss-events {
+    padding: 40px 24px 56px;
+  }
+
+  .event-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .wiss-carousel {
+    padding: 0 24px;
+  }
+
+  .wiss-video-section {
+    padding: 56px 24px 24px;
+  }
+
+  .wiss-wearefree-section {
+    padding: 56px 24px;
+  }
+
+  .wiss-booking-section {
+    padding: 56px 24px 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wiss-heading {
+    font-size: clamp(22px, 7vw, 36px);
+  }
+
+  /* Carousel boxes shrink to near full-width on phone */
+  .carousel-placeholder-box {
+    width: 80vw;
+    height: 52vw;
+  }
+
+  /* Video embed keeps aspect-ratio but gets full bleed */
+  .wiss-video-wrap {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .wiss-video-section {
+    padding: 40px 0 16px;
+  }
+
+  .wiss-wearefree-img {
+    max-width: 100%;
+  }
 }

@@ -8,17 +8,14 @@
   <title>Soul School Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap">
-  <link rel="stylesheet" href="../styles/main.css">
-  <link rel="stylesheet" href="../styles/soul-school-portal.css">
+  <link rel="stylesheet" href="../styles/what-is-soul-school.css">
 </head>
+<script>
+  if (!sessionStorage.getItem('soulschool_auth')) {
+    window.location.replace('enter.html');
+  }
+</script>
 <body>
-
-  <script>
-    if (sessionStorage.getItem('soulschool_auth') !== 'true') {
-      window.location.href = 'enter.html';
-    }
-  </script>
 
   <!-- ── Top navigation ── -->
   <nav class="site-nav">
@@ -26,331 +23,114 @@
     <span class="wearefree-tag">WEAREFREE</span>
   </nav>
 
-  <!-- ── Welcome section ── -->
-  <!-- <section style="background: var(--void); padding: 100px 64px; padding-top: 160px;">
-    <div style="max-width: 800px; margin: 0 auto;">
-      <p class="section-label">WELCOME</p>
-      <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(36px, 5vw, 56px); color: var(--soft); margin-bottom: 32px; margin-top: 0;">Welcome to Soul School.</h2>
-      <p class="body-text">This is where we share the information, practices, and experiments that shape this educational project.</p>
-      <p class="body-text">Soul School is an educational experiment rooted in a simple recognition: consciousness is foundational to reality, and human development must begin there.</p>
-      <p class="body-text">Love and joy are the ground of this work.</p>
-      <p class="body-text">Nervous system stability is the baseline that allows clarity, intuition, creativity, and courage to emerge.</p>
-      <p class="body-text">From that foundation we explore expanded perception, discernment, authentic expression, and the creation of coherent communities capable of meeting the future with wisdom and care.</p>
-    </div>
-  </section> -->
-
-  <!-- ── Gold rule ── -->
-  <hr class="gold-rule-full">
-
-  <!-- ════════════════════════════════════════════════
-       SECTION 1: CALENDAR BLOCK
-  ════════════════════════════════════════════════ -->
-
-  <!-- CALENDAR: 7-day view starting from entry date -->
-  <section class="portal-section" id="section-calendar">
-    <p class="section-label">THIS WEEK</p>
-    <h2 class="portal-section-heading">Your Week at Soul School</h2>
-
-    <div class="portal-week-wrapper">
-      <div class="portal-week-header" id="portal-week-header"></div>
-      <div class="portal-week-grid"   id="portal-week-grid"></div>
-    </div>
-
-    <!-- Upcoming gatherings: next 2 weeks -->
-    <div style="margin-top: 48px;">
-      <p class="section-label" style="margin-bottom: 20px;">UPCOMING GATHERINGS — NEXT 2 WEEKS</p>
-      <div class="portal-events-list">
-        <div class="pill-event-card">
-          <span class="pill-event-title">Soul School Bus Popups</span>
-          <span class="pill-event-date">Boulder — Coming Soon</span>
-        </div>
-        <div class="pill-event-card">
-          <span class="pill-event-title">Soul School Office Hours</span>
-          <span class="pill-event-date">Zoom — Coming Soon</span>
-        </div>
-        <div class="pill-event-card">
-          <span class="pill-event-title">Retreat Orientation</span>
-          <span class="pill-event-date">Coming Soon</span>
-        </div>
-      </div>
-      <!-- CALENDAR: Connect Google Calendar API to replace placeholders above with live 2-week event feed -->
-    </div>
+  <!-- ── Hero heading ── -->
+  <section class="wiss-hero">
+    <h1 class="wiss-heading">You don't need more information.</h1>
+    <p class="wiss-subheading">The best way to understand Soul School is STILL to show up.</p>
   </section>
 
-  <!-- ── Gold rule ── -->
-  <hr class="gold-rule-full">
+  <!-- ── Upcoming events ── -->
+  <section class="wiss-events">
+    <div class="event-cards">
 
-  <!-- ════════════════════════════════════════════════
-       SECTION 2: IS SOUL SCHOOL FOR ME?
-  ════════════════════════════════════════════════ -->
-  <section class="portal-section" id="section-for-me">
-    <div style="max-width: 800px; margin: 0 auto;">
-      <p class="stencil" style="font-size: clamp(28px, 4vw, 48px);">Is Soul School</p>
-      <p class="italic-gold" style="font-size: clamp(26px, 3.5vw, 44px); margin-bottom: 28px;">for me?</p>
-      <p class="body-text" style="margin-bottom: 16px;">Soul School is for people who:</p>
-      <ul style="list-style: none; margin: 0; padding: 0;">
-        <li style="display: grid; grid-template-columns: 5px 1fr; gap: 16px; align-items: start; padding: 12px 0; border-bottom: 1px solid rgba(90,86,80,0.1);">
-          <span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span>
-          <span class="body-text" style="margin:0;">have a sense that something about the current world (and the current educational system) isn't quite right</span>
-        </li>
-        <li style="display: grid; grid-template-columns: 5px 1fr; gap: 16px; align-items: start; padding: 12px 0; border-bottom: 1px solid rgba(90,86,80,0.1);">
-          <span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span>
-          <span class="body-text" style="margin:0;">want something deeper than conventional higher education tends to offer</span>
-        </li>
-        <li style="display: grid; grid-template-columns: 5px 1fr; gap: 16px; align-items: start; padding: 12px 0; border-bottom: 1px solid rgba(90,86,80,0.1);">
-          <span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span>
-          <span class="body-text" style="margin:0;">are curious about consciousness and open to the possibility that it is foundational to reality</span>
-        </li>
-        <li style="display: grid; grid-template-columns: 5px 1fr; gap: 16px; align-items: start; padding: 12px 0; border-bottom: 1px solid rgba(90,86,80,0.1);">
-          <span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span>
-          <span class="body-text" style="margin:0;">would rather help build the future than spend their lives critiquing the present</span>
-        </li>
-        <li style="display: grid; grid-template-columns: 5px 1fr; gap: 16px; align-items: start; padding: 12px 0; border-bottom: 1px solid rgba(90,86,80,0.1);">
-          <span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span>
-          <span class="body-text" style="margin:0;">understand that real Jedi-style mastery requires practice, discipline, and humility</span>
-        </li>
-      </ul>
-      <div style="background: var(--deep); border: 1px solid rgba(201,151,42,0.1); padding: 22px 20px; margin-top: 24px;">
-        <p class="italic-gold" style="font-size: 18px; margin: 0;">Soul School is designed for people who are ready to step into the future from the inner authority of the soul.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Gold rule ── -->
-  <hr class="gold-rule-full">
-
-  <!-- ════════════════════════════════════════════════
-       SECTION 3: SOUL PRACTICES
-  ════════════════════════════════════════════════ -->
-  <section class="portal-section" id="section-practices">
-
-    <p class="portal-practice-cta">Try a Soul Practice!</p>
-
-    <div class="portal-practices-grid">
-
-      <!-- Practice 1: Ungunking the Filter -->
-      <div class="portal-practice-card">
-        <span class="portal-practice-name">Ungunking the Filter</span>
-        <p class="portal-practice-desc">Practices that clear conditioned perception so reality can be encountered more directly.</p>
-        <!-- SOUNDCLOUD: embed for Ungunking the Filter -->
-        <div class="portal-soundcloud-placeholder">
-          <span>&#9654;&ensp;SoundCloud embed coming soon</span>
-        </div>
+      <div class="event-card">
+        <h3 class="event-title">Soul School Bus Popup — Boulder</h3>
+        <p class="event-meta">Saturday, May 10, 2025 · 2:00 PM – 5:00 PM</p>
+        <p class="event-location">Boulder, CO — Pearl Street Mall</p>
+        <p class="event-desc">Drop by the Soul School Bus for an afternoon of connection, conversation, and community. Open to all — no registration required. Bring a friend, bring your curiosity, and see what Soul School is all about.</p>
       </div>
 
-      <!-- Practice 2: The Gremlin -->
-      <div class="portal-practice-card">
-        <span class="portal-practice-name">The Gremlin</span>
-        <p class="portal-practice-desc">Learning to recognize and move beyond internal voices that limit expression and growth.</p>
-        <!-- SOUNDCLOUD: embed for The Gremlin -->
-        <div class="portal-soundcloud-placeholder">
-          <span>&#9654;&ensp;SoundCloud embed coming soon</span>
-        </div>
+      <div class="event-card">
+        <h3 class="event-title">Office Hours with Annie — Zoom</h3>
+        <p class="event-meta">Wednesday, May 14, 2025 · 12:00 PM – 1:00 PM MT</p>
+        <p class="event-location">Online — Zoom (link sent on RSVP)</p>
+        <p class="event-desc">Join Annie for an open-door Zoom session to ask questions, share what's alive for you, and connect with the wider Soul School community. These sessions are casual, warm, and welcoming to newcomers.</p>
       </div>
 
-      <!-- Practice 3: Energetic Hygiene -->
-      <div class="portal-practice-card">
-        <span class="portal-practice-name">Energetic Hygiene</span>
-        <p class="portal-practice-desc">Practices that maintain clear emotional and perceptual boundaries.</p>
-        <!-- SOUNDCLOUD: embed for Energetic Hygiene -->
-        <div class="portal-soundcloud-placeholder">
-          <span>&#9654;&ensp;SoundCloud embed coming soon</span>
-        </div>
+      <div class="event-card">
+        <h3 class="event-title">Full Moon Gathering</h3>
+        <p class="event-meta">Thursday, May 22, 2025 · 7:00 PM – 9:00 PM</p>
+        <p class="event-location">TBD — Denver Metro Area</p>
+        <p class="event-desc">Gather under the full moon for a shared practice of stillness, song, and celebration. This is a space to slow down, feel the season, and be held by community. Location details shared with registered attendees.</p>
       </div>
 
-    </div>
-
-    <!-- COMING SOON: will become hyperlink teasers -->
-    <!--
-    <div class="portal-practice-card">
-      <span class="portal-practice-name">Attention Sovereignty</span>
-      <p class="portal-practice-desc">Training the ability to direct awareness intentionally rather than reactively.</p>
-    </div>
-    <div class="portal-practice-card">
-      <span class="portal-practice-name">Creative Transmission</span>
-      <p class="portal-practice-desc">Practices that translate expanded states of awareness into creative expression and contribution.</p>
-    </div>
-    -->
-
-  </section>
-
-  <!-- ── Gold rule ── -->
-  <hr class="gold-rule-full">
-
-  <!-- ════════════════════════════════════════════════
-       SECTION 4: INITIATION CALL BOOKING
-  ════════════════════════════════════════════════ -->
-  <section class="portal-section" id="section-booking" style="text-align: center;">
-    <p class="section-label">READY TO GO DEEPER?</p>
-    <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(28px, 4vw, 48px); color: var(--soft); margin: 0 0 24px;">Book an Initiation Call</h2>
-    <p class="body-text" style="max-width: 560px; margin: 0 auto 40px;">
-      Schedule a 30-minute conversation to explore whether Soul School is the right fit for you.
-    </p>
-    <!-- BOOKING: embed link here -->
-    <div class="portal-booking-placeholder">
-      <span class="body-text" style="opacity: 0.5; margin: 0;">Booking calendar coming soon</span>
-    </div>
-  </section>
-
-  <!-- ── Gold rule ── -->
-  <hr class="gold-rule-full">
-
-  <!-- ════════════════════════════════════════════════
-       SECTION 5: STORY OF WHY / PHILOSOPHY
-  ════════════════════════════════════════════════ -->
-  <section class="portal-section" id="section-why">
-    <p class="section-label">PHILOSOPHY</p>
-    <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: clamp(32px, 5vw, 56px); color: var(--soft); margin: 0 0 64px;">The Story of Why</h2>
-
-    <!-- ── ERA WE'RE ENTERING ── -->
-    <div class="portal-why-block">
-      <p class="section-label" style="margin-bottom: 16px;">THE ERA WE'RE ENTERING</p>
-      <p class="stencil" style="color: var(--gold); font-size: clamp(16px, 2.5vw, 26px); margin-bottom: 24px;">Traditional Higher Education Was Designed For An Industrial World.</p>
-      <p class="body-text">Most systems of traditional higher education were designed for an industrial world. They train the analytic intellect while neglecting the inner world — the place where perception, intuition, discernment, and emotional coherence actually live.</p>
-      <p class="body-text">As a result, many people enter adulthood without the ability to:</p>
-      <ul style="list-style: none; margin: 0; padding: 0; max-width: 640px;">
-        <li style="display:grid;grid-template-columns:5px 1fr;gap:16px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(90,86,80,0.1);"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span><span class="body-text" style="margin:0;">steward their attention</span></li>
-        <li style="display:grid;grid-template-columns:5px 1fr;gap:16px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(90,86,80,0.1);"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span><span class="body-text" style="margin:0;">regulate their nervous systems</span></li>
-        <li style="display:grid;grid-template-columns:5px 1fr;gap:16px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(90,86,80,0.1);"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span><span class="body-text" style="margin:0;">interpret reality with discernment</span></li>
-        <li style="display:grid;grid-template-columns:5px 1fr;gap:16px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(90,86,80,0.1);"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span><span class="body-text" style="margin:0;">trust their intuition</span></li>
-        <li style="display:grid;grid-template-columns:5px 1fr;gap:16px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(90,86,80,0.1);"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span><span class="body-text" style="margin:0;">build lives aligned with their values</span></li>
-      </ul>
-    </div>
-
-    <!-- ── WHAT'S BROKEN + SOUL SCHOOL RESPONSE ── -->
-    <div class="portal-why-split">
-
-      <div class="portal-why-split-left">
-        <p class="stencil" style="font-size: clamp(36px, 5vw, 56px);">WHAT'S BROKEN</p>
-        <p class="body-text">Most systems of traditional higher education were designed for an industrial world. They train the analytic intellect while neglecting the inner world — the place where perception, intuition, discernment, and emotional coherence actually live.</p>
-        <p class="body-text">As a result, many people enter adulthood without the ability to:</p>
-        <ul style="list-style:none;margin:0;padding:0;">
-          <li style="display:grid;grid-template-columns:5px 1fr;gap:16px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(90,86,80,0.1);"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span><span class="body-text" style="margin:0;">steward their attention</span></li>
-          <li style="display:grid;grid-template-columns:5px 1fr;gap:16px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(90,86,80,0.1);"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span><span class="body-text" style="margin:0;">regulate their nervous systems</span></li>
-          <li style="display:grid;grid-template-columns:5px 1fr;gap:16px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(90,86,80,0.1);"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span><span class="body-text" style="margin:0;">interpret reality with discernment</span></li>
-          <li style="display:grid;grid-template-columns:5px 1fr;gap:16px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(90,86,80,0.1);"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span><span class="body-text" style="margin:0;">trust their intuition</span></li>
-          <li style="display:grid;grid-template-columns:5px 1fr;gap:16px;align-items:start;padding:12px 0;border-bottom:1px solid rgba(90,86,80,0.1);"><span style="width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:6px;flex-shrink:0;display:block;"></span><span class="body-text" style="margin:0;">build lives aligned with their values</span></li>
-        </ul>
+      <div class="event-card">
+        <h3 class="event-title">Nervous System Lab — Denver</h3>
+        <p class="event-meta">Saturday, June 7, 2025 · 10:00 AM – 1:00 PM</p>
+        <p class="event-location">Denver, CO — Location TBD</p>
+        <p class="event-desc">A hands-on morning exploring tools for nervous system regulation. Breathwork, somatic movement, and group practice. Open to participants who have attended at least one gathering. Space is limited.</p>
       </div>
 
-      <div class="portal-why-split-right">
-        <p class="stencil" style="font-size: clamp(36px,5vw,56px); margin-bottom: 4px;">SOUL SCHOOL</p>
-        <p class="italic-gold" style="font-size: clamp(32px,4.5vw,52px); margin-bottom: 28px;">Response.</p>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--ember); border: 1px solid rgba(201,151,42,0.1);">
-          <div style="background: var(--deep); padding: 26px 24px;">
-            <p class="body-text" style="margin:0;">Soul School is a new model of higher education designed for the era we are entering.</p>
-          </div>
-          <div style="background: var(--deep); padding: 26px 24px;">
-            <p class="body-text" style="margin:0;">We cultivate the capacities machines cannot replicate and institutions rarely teach: discernment, intuition, embodied intelligence, inscendence, creative courage, and the ability to generate coherence within oneself and in community.</p>
-          </div>
-          <div style="background: var(--deep); padding: 26px 24px;">
-            <p class="italic-gold" style="font-size: 18px; margin: 0;">Our dream is simple: to support the emergence of grounded, coherent, joyful adults.</p>
-          </div>
-          <div style="background: var(--deep); padding: 26px 24px;">
-            <p class="body-text" style="margin:0;">Love and joy are the ground of this work.</p>
-            <p class="body-text" style="margin:0;">Nervous system stability is the baseline that allows clarity, intuition, creativity, and courage to emerge.</p>
-          </div>
-        </div>
+      <div class="event-card">
+        <h3 class="event-title">Solstice Ceremony</h3>
+        <p class="event-meta">Saturday, June 21, 2025 · 6:00 PM – 9:00 PM</p>
+        <p class="event-location">Boulder, CO — Outdoor venue TBD</p>
+        <p class="event-desc">Mark the summer solstice with the Soul School community. Ritual, reflection, music, and fire. This is one of our most beloved annual gatherings — all are welcome. Bring something to share if the spirit moves you.</p>
       </div>
 
-    </div>
-
-    <!-- ── PARADIGM SHIFT ── -->
-    <div class="portal-why-split">
-
-      <div class="portal-why-split-left">
-        <p class="stencil" style="font-size: clamp(32px,4.5vw,52px);">THE PARADIGM</p>
-        <p class="italic-gold" style="font-size: clamp(30px,4vw,48px);">Shift.</p>
-        <p class="body-text">A growing body of research across neuroscience, physics, and consciousness studies points toward a profound shift in how we understand reality: consciousness is foundational.</p>
-        <p class="body-text">At a time when artificial intelligence is advancing rapidly, the leading edge of human evolution is the expansion of consciousness itself — yet most old-world institutions behave as if consciousness is not even a legitimate subject of study.</p>
-      </div>
-
-      <div class="portal-why-split-right">
-        <div style="display: grid; grid-template-columns: 3px 1fr; gap: 20px; align-items: start;">
-          <div style="background: var(--gold); border-radius: 2px; align-self: stretch;"></div>
-          <p class="italic-gold" style="font-size: clamp(20px,2.5vw,28px); line-height: 1.5; margin: 0;">"Soul School exists to train the capacities of expanded consciousness so that the future human can begin to take shape."</p>
-        </div>
-        <div style="background: var(--deep); border: 1px solid rgba(201,151,42,0.1); padding: 22px 20px; margin-top: 28px;">
-          <p class="body-text" style="margin: 0;">Soul School is an educational experiment rooted in a simple recognition: consciousness is foundational to reality, and human development must begin there.</p>
-          <p class="body-text" style="margin-top: 14px; margin-bottom: 0;">From that foundation we explore expanded perception, discernment, authentic expression, and the creation of coherent communities capable of meeting the future with wisdom and care.</p>
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ── Gold rule ── -->
-  <hr class="gold-rule-full">
-
-  <!-- ════════════════════════════════════════════════
-       SECTION 6: ADVISORY COUNCIL
-  ════════════════════════════════════════════════ -->
-  <div style="text-align: center; padding: 64px 64px 0;">
-    <img src="../assets/We-are-free-GOLD.png" alt="Advisory Council" style="width: 40%; height: auto; display: block; margin: 0 auto;">
-  </div>
-  <section style="width: 100%; background: var(--void); padding: 60px 64px 100px;">
-    <p class="section-label">ADVISORY COUNCIL</p>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--ember);">
-
-      <!-- Card 1: Marjorie Woollacott -->
-      <div style="background: var(--deep); padding: 36px 32px;">
-        <img src="../assets/MarjorieHeadshot.png" alt="Marjorie Woollacott" style="width:80px;height:80px;border-radius:50%;background:var(--ember);display:block;margin-bottom:20px;">
-        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--soft);display:block;margin-bottom:4px;">Marjorie Woollacott</span>
-        <p class="section-label" style="margin-bottom:16px;">Science Advisor</p>
-        <p class="body-text" style="font-size:13px;">Marjorie Woollacott, PhD, is a neuroscientist and Professor Emerita at the University of Oregon. Her research explores the relationship between neuroscience, consciousness, and human potential. She is the author of Infinite Awareness and a leading voice in the scientific exploration of consciousness. For decades, she has helped pioneer the integration of consciousness studies into education and science, long before the field began receiving broader recognition.</p>
-      </div>
-
-      <!-- Card 2: Niffe Hermansson -->
-      <div style="background: var(--deep); padding: 36px 32px;">
-        <img src="../assets/NiffeHeadshot.jpeg" alt="Niffe Hermansson" style="width:80px;height:80px;border-radius:50%;background:var(--ember);display:block;margin-bottom:20px;">
-        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--soft);display:block;margin-bottom:4px;">Niffe Hermansson</span>
-        <p class="section-label" style="margin-bottom:16px;">Initiatory Training Advisor</p>
-        <p class="body-text" style="font-size:13px;">Niffe Hermansson, PhD, is an applied probabilist, a passionate educator, a dedicated meditator, and a researcher committed to exploring questions related to advanced meditation and models of consciousness with mathematical rigour. Originally from Sweden, Niffe received leadership training in the Swedish navy before embarking on an academic journey pursuing the big questions about reality from a variety of perspectives. He eventually made his home in New Zealand to be able to better balance his work with his deep love for nature, especially the ocean. Niffe has a deep and wide-ranging engagement with esoteric practice, and has experience with a variety of systems, including close to a decade of leading the local branch of an international initiatory society.</p>
-      </div>
-
-      <!-- Card 3: Annie Margaret -->
-      <div style="background: var(--deep); padding: 36px 32px;">
-        <img src="../assets/AnnieHeadshot.jpg" alt="Annie Margaret" style="width:80px;height:80px;border-radius:50%;background:var(--ember);display:block;margin-bottom:20px;">
-        <span style="font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--soft);display:block;margin-bottom:4px;">Annie Margaret</span>
-        <p class="section-label" style="margin-bottom:16px;">Founder &amp; Visionary</p>
-        <p class="body-text" style="font-size:13px;">Annie Margaret, PhD, is an educator and architect of new models of human development. After nine years of exceeds expectations reviews as a professor at the University of Colorado Boulder's ATLAS Institute, she stepped away from traditional academia to build Soul School — an experiment in what education can become when consciousness is taken seriously. Annie teaches from both research and direct experience, working at the edge of expanded perception, discernment, intuition, and human potential. She is known for creating immersive, experiential learning environments that support the emergence of sovereign, self-trusting, and fully alive human beings.</p>
+      <div class="event-card">
+        <h3 class="event-title">Soul School Intensive — Week 1</h3>
+        <p class="event-meta">Monday – Friday, July 7–11, 2025 · 9:00 AM – 5:00 PM</p>
+        <p class="event-location">Boulder, CO — Soul School Campus (TBD)</p>
+        <p class="event-desc">Five days of immersive practice across all five core pillars. This is the flagship Soul School experience — a full week of nervous system work, discernment training, creative expression, and community. Application required.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- ── Calendar JS: renders 7-day week grid from entry date ── -->
-  <script>
-    (function () {
-      var raw   = sessionStorage.getItem('soulschool_entry_date');
-      var start = raw ? new Date(raw) : new Date();
-      start.setHours(0, 0, 0, 0);
+  <!-- ── Carousel ── -->
+  <!-- Carousel: images will load from assets/carousel-images/ -->
+  <section class="wiss-carousel-section">
+    <div class="wiss-carousel" id="wiss-carousel">
+      <!-- Placeholder boxes — replace with <img src="../assets/carousel-images/filename.jpg"> -->
+      <div class="carousel-placeholder-box">Image 1</div>
+      <div class="carousel-placeholder-box">Image 2</div>
+      <div class="carousel-placeholder-box">Image 3</div>
+      <div class="carousel-placeholder-box">Image 4</div>
+      <div class="carousel-placeholder-box">Image 5</div>
+    </div>
+  </section>
 
-      var DAYS   = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-      var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      var today  = new Date(); today.setHours(0, 0, 0, 0);
+  <!-- ── YouTube embed ── -->
+  <section class="wiss-video-section">
+    <div class="wiss-video-wrap">
+      <iframe
+        class="wiss-video-iframe"
+        src="https://www.youtube.com/embed/OdUoW1oihdQ"
+        title="Soul School video"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <p class="wiss-video-credit">By AJ Terio</p>
+  </section>
 
-      var headerEl = document.getElementById('portal-week-header');
-      var gridEl   = document.getElementById('portal-week-grid');
+  <!-- ── We Are Free image ── -->
+  <section class="wiss-wearefree-section">
+    <!-- TODO: Set src to the correct filename in assets/ e.g. assets/We-are-free-GOLD.png -->
+    <img
+      src="../assets/We-are-free-GOLD.png"
+      alt="We Are Free We Are Free We Are Free"
+      class="wiss-wearefree-img"
+    >
+  </section>
 
-      for (var i = 0; i < 7; i++) {
-        var d = new Date(start);
-        d.setDate(start.getDate() + i);
+  <!-- ── SoundCloud ── -->
+  <!-- TODO: SoundCloud embed — paste iframe here -->
 
-        var hCell = document.createElement('div');
-        hCell.className = 'portal-week-day-label';
-        hCell.textContent = DAYS[d.getDay()];
-        headerEl.appendChild(hCell);
+  <!-- ── Book a Call ── -->
+  <section class="wiss-booking-section">
+    <p class="wiss-booking-prompt">If you are ready, let us talk.</p>
+    <!-- TODO: Replace href with actual booking link -->
+    <a href="#" class="btn-pill wiss-booking-btn">Book a Call</a>
+  </section>
 
-        var cell = document.createElement('div');
-        var isToday = d.getTime() === today.getTime();
-        cell.className = 'portal-week-day' + (isToday ? ' portal-week-today' : '');
-        cell.innerHTML = '<span class="portal-day-num">' + MONTHS[d.getMonth()] + ' ' + d.getDate() + '</span>';
-        gridEl.appendChild(cell);
-      }
-    })();
-  </script>
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <span class="site-footer-logo">Soul School</span>
+    <span class="site-footer-copy">© 2025 Soul School</span>
+  </footer>
 
 </body>
 </html>

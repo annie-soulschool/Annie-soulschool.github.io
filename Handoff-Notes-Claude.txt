@@ -46,3 +46,104 @@ what-is-soul-school.html.
 Next: Phase 3 — Protected page (inside Soul School) content structure.
 
 Edit: reverted changes on button logic due to redundancy of code and incorrect application. Will revisit in a later phase. 
+
+Phase 3 complete. Files edited:
+Files edited:
+
+File	What changed
+pages/soul-school-portal.html	Full restructure — replaced old 3-section page with 6 ordered sections: Calendar Block, Is Soul School For Me, Soul Practices, Initiation Call Booking, Story of Why, Advisory Council
+styles/soul-school-portal.css	Populated the previously empty file with all portal-specific styles: week grid, pill event cards, practice cards, SoundCloud placeholders, booking placeholder, Story of Why layout, mobile breakpoints
+pages/enter.html	Added one line to store soulschool_entry_date as an ISO string in sessionStorage at the moment of successful login
+Key notes per section:
+
+Calendar — JS renders a 7-day grid starting from soulschool_entry_date (set at login), falling back to today if not present. Pill-style upcoming gatherings use placeholders with a Google Calendar TODO comment.
+
+Is Soul School For Me — pulled verbatim from the c6 slide's left column in what-is-soul-school.html.
+
+Soul Practices — "Try a Soul Practice!" heading, 3 active cards with <!-- SOUNDCLOUD: embed for [Name] --> placeholders, Attention Sovereignty and Creative Transmission commented out with <!-- COMING SOON: will become hyperlink teasers -->.
+
+Booking — <!-- BOOKING: embed link here --> placeholder inside a styled dashed-border container.
+
+Story of Why — 4 static sections (Era We're Entering, What's Broken, Soul School Response, Paradigm Shift) from the carousel, rendered as normal scrollable content, no JS needed.
+
+Advisory Council — moved intact from what-is-soul-school.html with all headshots, names, titles, and bios preserved.
+
+
+Protected page fully structured with all 6 sections.
+Next: Phase 4 — Google Calendar setup instructions + Member Login placeholder.
+
+
+
+4-2NotesUpdates Branch:
+Phase 1:
+Files Edited:
+
+styles/main.css — updated Google Fonts import (Josefin Sans + Playfair Display only), set body font to Josefin Sans, updated all component font references from DM Sans/Cinzel to Josefin Sans, kept Playfair Display exclusively on .site-nav-logo, .italic-gold, .site-footer-logo
+styles/what-is-soul-school.css — added @import url('main.css'), extracted all inline styles into named classes
+index.html — removed all inline styles and <style> blocks, removed both gold-rule divider elements, switched font preload to styles/index.css
+pages/enter.html — removed all inline styles, replaced with classes, linked enter.css
+pages/what-is-soul-school.html — stripped all inline styles, replaced with semantic class names, linked what-is-soul-school.css
+pages/member-portal.html — was empty; created clean shell linking member-portal.css
+Created:
+
+styles/index.css — hero, tagline, gather section, event pill styles; imports main.css
+styles/enter.css — enter page layout, access form, input, error message styles; imports main.css
+styles/member-portal.css — shell with @import url('main.css')
+styles/archive.css — shell with @import url('main.css')
+
+Phase 2:
+index.html — rebuilt body content (hero, CTAs, tagline block, events section; removed GATHER TOGETHER heading)
+styles/index.css — replaced all styles with new layout classes; added .rainbow-text gradient utility, .hero centering, .tagline-block, .event-cards grid, .event-card and its children, responsive breakpoint
+Key details:
+.rainbow-text uses a static left-to-right rainbow via background-clip: text / -webkit-text-fill-color: transparent — applied to "love, joy, and liberation" in the tagline and "RADICAL" in the tagline block
+CTA buttons are now in a row (flex-direction: column) and centered
+Events use a 3-column CSS grid that collapses to 1-column below 900px
+The <!-- TODO: Replace with Google Calendar integration --> comment is inside .events-section
+
+Phase 3:
+Files edited:
+pages/enter.html	Stripped all body copy and the "HOW ACCESS WORKS" block. Left only: site nav, centered access code input + submit button, WEAREFREE validation logic. Redirect on success now points to what-is-soul-school.html. Added <!-- TODO: Future video + animation with soundtrack goes here --> placeholder.
+styles/enter.css	Removed .enter-main .body-text, .enter-hint, .access-block, .access-block .stencil, .access-block .body-text, .access-divider — all styles for stripped elements.
+pages/what-is-soul-school.html	Full rewrite. Auth gate preserved. Content top-to-bottom: site nav → hero heading/subheading → 6 event cards → scrollable image carousel (placeholder boxes wired to assets/carousel-images/) → YouTube embed (OdUoW1oihdQ) with "Video by AJ" credit → We Are Free image (assets/We-are-free-GOLD.png) with filename comment → <!-- TODO: SoundCloud embed --> comment → Book a Call section → footer.
+styles/what-is-soul-school.css	Full rewrite. Old carousel/slide/advisory styles removed. New styles for: .wiss-hero, .wiss-heading, .wiss-subheading, event card grid (matching home page), .wiss-carousel-section + placeholder boxes, .wiss-video-section + 16:9 iframe wrap + credit, .wiss-wearefree-section, .wiss-booking-section. Responsive breakpoint at 900px.
+
+Phase 4:
+Files edited / created:
+pages/archive.html	New — copy of the old soul-school-portal.html (calendar, practices, advisory council content). Content unchanged.
+pages/soul-school-portal.html	Renamed from what-is-soul-school.html. Title tag updated to "Soul School Portal". CSS link and auth gate unchanged.
+pages/enter.html	Redirect on success updated: what-is-soul-school.html → soul-school-portal.html.
+movement/main.js	Both soul-school-portal.html redirect targets updated → archive.html (the old portal is now archived).
+pages/member-portal.html	Replaced empty shell with a styled "under construction" page: site nav, heading, subtext, back link. No inline styles.
+styles/member-portal.css	Added .under-construction-main, .under-construction-heading, .under-construction-sub styles.
+CSS verification:
+
+enter.html → enter.css → @import main.css ✓
+soul-school-portal.html → what-is-soul-school.css → @import main.css ✓
+member-portal.html → member-portal.css → @import main.css ✓
+index.html → index.css → @import main.css ✓
+archive.html → links main.css + soul-school-portal.css directly ✓
+
+Phase 5:
+Files edited:
+
+File	What changed
+styles/main.css	Background: replaced flat background on body with background-color: var(--void) + a body::before fixed pseudo-element combining the diagonal gradient with a tiling SVG noise grain at 4% opacity. Playfair audit: .italic-gold → Josefin Sans italic 300. .site-footer-logo → Josefin Sans italic 300. .site-nav-logo left untouched (the one permitted use).
+styles/index.css	Kerning: .event-title 0.06em → 0.02em. .event-meta 0.1em → 0.06em. .event-location 0.06em → 0.02em. .event-desc 0.04em → 0.
+styles/what-is-soul-school.css	Kerning: same reductions mirrored from index.css. Mobile: added @media (max-width: 600px) breakpoint — carousel boxes shrink to 80vw, video section gets full-bleed (border-radius/padding removed), We Are Free image max-width 100%.
+styles/calendar.css	Playfair audit: .pill-event-title → Josefin Sans italic 300.
+styles/soul-school-portal.css	Playfair audit: .portal-section-heading, .pill-event-title, .portal-practice-cta, .portal-practice-name → all switched to Josefin Sans italic 300.
+Playfair Display remaining uses (intentional):
+
+main.css → .site-nav-logo only ✓
+
+Background Gradient follow up:
+Root cause: The gradient was on a position: fixed; z-index: -1 pseudo-element, but every page section had its own background: var(--void) painted on top of it, completely blocking it.
+
+Fix applied across these files:
+
+File	Change
+styles/main.css	body gets the gradient directly via background + background-attachment: fixed. Removed the ::before pseudo-element entirely. Nav gets rgba(10,10,8,0.72) + backdrop-filter: blur(12px) so it's readable without killing the gradient behind it. Footer set to transparent.
+styles/index.css	All background: var(--void) on sections → transparent.
+styles/enter.css	Same.
+styles/member-portal.css	Same.
+styles/what-is-soul-school.css	Same.
