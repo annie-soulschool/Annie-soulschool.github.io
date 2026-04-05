@@ -1,0 +1,65 @@
+/* ── Soul School · index.css ── */
+
+@import url('main.css');
+
+/* ── Hero section ── */
+
+.hero {
+  position: relative;
+  background: var(--void);
+  padding: 60px 64px 44px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-logo-img {
+  width: 75%;
+  height: auto;
+}
+
+.hero-tagline {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 200;
+  letter-spacing: 0.28em;
+  font-size: clamp(10px, 1.4vw, 14px);
+  color: rgba(243, 241, 235, 0.6);
+  text-transform: uppercase;
+  margin-top: 32px;
+  margin-bottom: 40px;
+}
+
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* ── Gather Together / Calendar section ── */
+
+.gather-section {
+  padding: 40px 64px;
+  background: var(--void);
+}
+
+.gather-section .body-text {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  color: rgba(243, 241, 235, 0.6);
+}
+
+.event-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.event-pill {
+  background: var(--deep);
+  border: 1px solid rgba(201, 151, 42, 0.2);
+  border-radius: 999px;
+  padding: 14px 28px;
+  display: inline-block;
+  box-shadow: 0 0 12px rgba(201, 151, 42, 0.15);
+}

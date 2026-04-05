@@ -1,8 +1,6 @@
 /* ── Soul School · main.css ── */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Gilda+Display&family=Oswald:wght@200;300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@300;400;500&display=swap');
 
-/* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap'); */
-/* Original Font */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
   color-scheme: dark;
@@ -28,7 +26,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   color: var(--soft);
   background: linear-gradient(
     160deg,
@@ -63,7 +61,7 @@ body {
 
 h1 {
   margin: 0 0 1rem;
-  font-family: 'Cinzel', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: clamp(2.2rem, 7vw, 4rem);
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -74,7 +72,7 @@ h1 {
 h2 {
   margin-top: 0.6rem;
   margin-bottom: 1.6rem;
-  font-family: 'Cinzel', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: clamp(1.1rem, 2.5vw, 1.55rem);
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -82,7 +80,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'Cinzel', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -92,7 +90,7 @@ h3 {
 }
 
 p {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: clamp(1rem, 1.8vw, 1.2rem);
   font-weight: 300;
   line-height: 1.75;
@@ -102,7 +100,7 @@ p {
 }
 
 label {
-  font-family: 'Cinzel', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 0.72rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -114,7 +112,7 @@ label {
 
 .eyebrow {
   display: block;
-  font-family: 'Cinzel', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 0.65rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -123,7 +121,7 @@ label {
   opacity: 0.85;
 }
 
-/* ── Gold divider rule ── */
+/* ── Gold divider rule (small, centered) ── */
 
 .gold-rule {
   display: flex;
@@ -164,7 +162,7 @@ label {
   cursor: pointer;
   padding: 0.85rem 1.6rem;
   min-width: 240px;
-  font-family: 'Cinzel', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -234,7 +232,7 @@ input {
   background: rgba(17, 17, 16, 0.85);
   color: var(--soft);
   padding: 0.75rem 0.8rem;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 1rem;
   transition: border-color 0.2s;
 }
@@ -253,7 +251,7 @@ input::placeholder {
   min-height: 1.15rem;
   margin: 0.1rem 0 0.4rem;
   color: #c4607a;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
 }
@@ -350,11 +348,11 @@ input::placeholder {
   border: 0;
 }
 
-/* ── Bullet point color pops (palette accent colors, Rules section) ── */
-ul li::marker              { color: #C9972A; } /* Signal Gold */
-ul li:nth-child(4n+2)::marker { color: #9333EA; } /* Deep Electric Purple */
-ul li:nth-child(4n+3)::marker { color: #3D8C6A; } /* Field Green */
-ul li:nth-child(4n+4)::marker { color: #FF2D9B; } /* Hot Magenta */
+/* ── Bullet point color pops ── */
+ul li::marker              { color: #C9972A; }
+ul li:nth-child(4n+2)::marker { color: #9333EA; }
+ul li:nth-child(4n+3)::marker { color: #3D8C6A; }
+ul li:nth-child(4n+4)::marker { color: #FF2D9B; }
 
 /* ── RADICAL rainbow text ── */
 .radical {
@@ -416,7 +414,7 @@ ul li:nth-child(4n+4)::marker { color: #FF2D9B; } /* Hot Magenta */
 /* ── Page-wide utility classes ── */
 
 .wearefree-tag {
-  font-family: 'DM Mono', monospace;
+  font-family: 'Josefin Sans', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.28em;
   color: rgba(201, 151, 42, 0.6);
@@ -424,7 +422,7 @@ ul li:nth-child(4n+4)::marker { color: #FF2D9B; } /* Hot Magenta */
 }
 
 .section-label {
-  font-family: 'DM Mono', monospace;
+  font-family: 'Josefin Sans', monospace;
   font-size: 0.7rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -433,7 +431,7 @@ ul li:nth-child(4n+4)::marker { color: #FF2D9B; } /* Hot Magenta */
 }
 
 .body-text {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 1.1rem;
   line-height: 1.75;
   color: var(--soft);
@@ -451,7 +449,7 @@ ul li:nth-child(4n+4)::marker { color: #FF2D9B; } /* Hot Magenta */
 }
 
 .italic-gold {
-  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-family: 'Playfair Display', serif;
   font-style: italic;
   color: var(--gold);
   margin: 0 0 16px;
@@ -469,7 +467,7 @@ ul li:nth-child(4n+4)::marker { color: #FF2D9B; } /* Hot Magenta */
   text-decoration: none;
   cursor: pointer;
   padding: 8px 20px;
-  font-family: 'Cinzel', serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -511,7 +509,7 @@ ul li:nth-child(4n+4)::marker { color: #FF2D9B; } /* Hot Magenta */
 }
 
 .site-footer-copy {
-  font-family: 'DM Mono', monospace;
+  font-family: 'Josefin Sans', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;

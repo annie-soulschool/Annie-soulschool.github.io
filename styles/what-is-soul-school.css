@@ -1,5 +1,7 @@
 /* ── Soul School · what-is-soul-school.css ── */
 
+@import url('main.css');
+
 /* Overflow lock: body scroll locked while carousel is active.
    JS unlocks it when user navigates past the last slide. */
 #carousel {
@@ -24,6 +26,462 @@
   display: flex;
 }
 
+.slide--fill {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide--fill img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.slide--scroll {
+  text-align: left;
+  height: 100vh;
+  overflow-y: auto;
+  justify-content: flex-start;
+  padding-top: 96px;
+}
+
+/* ── Two-column layouts ── */
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.two-col--1100 {
+  max-width: 1100px;
+}
+
+.col-left {
+  border-right: 1px solid rgba(201, 151, 42, 0.14);
+  padding-right: 36px;
+}
+
+.col-left--52 {
+  border-right: 1px solid rgba(201, 151, 42, 0.14);
+  padding-right: 52px;
+}
+
+.col-right {
+  padding-left: 36px;
+}
+
+.col-right--52 {
+  padding-left: 52px;
+}
+
+/* ── Slide c1: broken education list ── */
+
+.slide-intro .stencil {
+  color: var(--gold);
+  font-size: clamp(16px, 2.5vw, 26px);
+  margin-bottom: 24px;
+}
+
+/* ── Custom bullet list ── */
+
+.bullet-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bullet-list li {
+  display: grid;
+  grid-template-columns: 5px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(90, 86, 80, 0.1);
+}
+
+.bullet-list li:last-child {
+  border-bottom: none;
+}
+
+.bullet-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  margin-top: 6px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.bullet-list .body-text {
+  margin: 0;
+}
+
+/* ── Slide c2: what's broken / soul school response ── */
+
+.stencil--large {
+  font-size: clamp(36px, 5vw, 56px);
+}
+
+.italic-gold--large {
+  font-size: clamp(32px, 4.5vw, 52px);
+  margin-bottom: 28px;
+}
+
+.response-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--ember);
+  border: 1px solid rgba(201, 151, 42, 0.1);
+}
+
+.response-grid-cell {
+  background: var(--deep);
+  padding: 26px 24px;
+}
+
+.response-grid-cell .body-text {
+  margin: 0;
+}
+
+.response-grid-cell .italic-gold {
+  font-size: 18px;
+  margin: 0;
+}
+
+/* ── Slide c4: paradigm shift ── */
+
+.stencil--xlarge {
+  font-size: clamp(32px, 4.5vw, 52px);
+}
+
+.italic-gold--xlarge {
+  font-size: clamp(30px, 4vw, 48px);
+}
+
+.blockquote-bar {
+  display: grid;
+  grid-template-columns: 3px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.blockquote-bar-line {
+  background: var(--gold);
+  border-radius: 2px;
+  align-self: stretch;
+}
+
+.blockquote-bar .italic-gold {
+  font-size: clamp(20px, 2.5vw, 28px);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.info-box {
+  background: var(--deep);
+  border: 1px solid rgba(201, 151, 42, 0.1);
+  padding: 22px 20px;
+  margin-top: 28px;
+}
+
+.info-box .body-text {
+  margin: 0;
+}
+
+.info-box .body-text + .body-text {
+  margin-top: 14px;
+}
+
+/* ── Slide c5: core pillars ── */
+
+.pillars-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  margin-bottom: 40px;
+}
+
+.stencil--huge {
+  font-size: clamp(48px, 8vw, 96px);
+  margin-bottom: 0;
+}
+
+.italic-gold--huge {
+  font-size: clamp(44px, 7vw, 88px);
+  margin-bottom: 0;
+}
+
+.pillars-ghost-number {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 120px;
+  color: var(--luminous);
+  opacity: 0.07;
+  line-height: 1;
+  align-self: end;
+}
+
+.pillar-row {
+  display: grid;
+  grid-template-columns: 2px 1fr;
+  gap: 22px;
+  align-items: stretch;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(201, 151, 42, 0.08);
+}
+
+.pillar-row:last-child {
+  border-bottom: none;
+}
+
+.pillar-color-bar {
+  border-radius: 1px;
+  align-self: stretch;
+  min-height: 14px;
+}
+
+.pillar-color-bar--green  { background: #3D8C6A; }
+.pillar-color-bar--purple { background: #9333EA; }
+.pillar-color-bar--gold   { background: var(--gold); }
+.pillar-color-bar--orange { background: #FF6B1A; }
+.pillar-color-bar--cyan   { background: #00E5FF; }
+
+.pillar-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--soft);
+  margin: 0 0 8px;
+}
+
+.pillar-row .body-text {
+  margin: 0;
+}
+
+/* ── Slide c6: is Soul School for me / practices ── */
+
+.stencil--medium {
+  font-size: clamp(28px, 4vw, 48px);
+}
+
+.italic-gold--medium {
+  font-size: clamp(26px, 3.5vw, 44px);
+}
+
+.highlight-box {
+  background: var(--deep);
+  border: 1px solid rgba(201, 151, 42, 0.1);
+  padding: 22px 20px;
+  margin-top: 24px;
+}
+
+.highlight-box .italic-gold {
+  font-size: 18px;
+  margin: 0;
+}
+
+.practices-table {
+  border: 1px solid rgba(201, 151, 42, 0.1);
+  overflow: hidden;
+}
+
+.practice-row {
+  padding: 14px 18px;
+  background: var(--deep);
+  border-bottom: 1px solid rgba(201, 151, 42, 0.08);
+}
+
+.practice-row:last-child {
+  border-bottom: none;
+}
+
+.practice-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--soft);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.practice-desc {
+  font-size: 13px;
+  margin: 0;
+  display: block;
+}
+
+.quote-bar {
+  margin-top: 28px;
+  padding: 22px;
+  border-left: 2px solid var(--gold);
+  background: rgba(201, 151, 42, 0.04);
+}
+
+.quote-bar .body-text {
+  margin: 0;
+}
+
+/* ── Advisory council section ── */
+
+.wearefree-banner {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.wearefree-banner img {
+  width: 40%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.advisory-section {
+  width: 100%;
+  background: var(--void);
+  padding: 100px 64px;
+}
+
+.advisor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--ember);
+}
+
+.advisor-card {
+  background: var(--deep);
+  padding: 36px 32px;
+}
+
+.advisor-headshot {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--ember);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.advisor-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--soft);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.advisor-card .section-label {
+  margin-bottom: 16px;
+}
+
+.advisor-card .body-text {
+  font-size: 13px;
+}
+
+/* ── Gold rule divider (full-width inline) ── */
+
+.gold-rule-inline {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ── Closing beat section ── */
+
+.closing-section {
+  position: relative;
+  width: 100%;
+  background: var(--void);
+  padding: 100px 64px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.closing-ghost {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(80px, 18vw, 200px);
+  color: var(--soft);
+  opacity: 0.018;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.closing-content {
+  position: relative;
+  z-index: 1;
+}
+
+.closing-label {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ash-light);
+  margin: 0 0 40px;
+}
+
+.stencil--display {
+  font-size: clamp(64px, 12vw, 140px);
+  margin: 0;
+}
+
+.italic-gold--display {
+  font-size: clamp(60px, 11vw, 130px);
+  margin: 0;
+}
+
+.closing-tagline {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 200;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(243, 241, 235, 0.6);
+  font-size: clamp(13px, 1.8vw, 20px);
+  max-width: 560px;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.closing-actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.closing-footer-bar {
+  border-top: 1px solid var(--ember);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.closing-footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gold);
+}
+
 /* ── Dot navigation — right side, vertically centered ── */
 
 .dot-nav {
@@ -38,7 +496,6 @@
 }
 
 .dot {
-  /* Reset button {} overrides — keep dots tiny and circular */
   width: 6px;
   height: 6px;
   margin: 0;
@@ -73,7 +530,7 @@
 .nav-next {
   position: fixed;
   bottom: 32px;
-  right: 56px; /* offset from dot nav */
+  right: 56px;
   z-index: 200;
 }
 
