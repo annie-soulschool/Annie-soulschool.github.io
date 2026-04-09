@@ -98,6 +98,45 @@
 }
 
 /* ══════════════════════════════════════════
+   CALENDAR LOADING SKELETONS
+══════════════════════════════════════════ */
+
+.event-card--loading {
+  pointer-events: none;
+}
+
+.event-skel {
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 151, 42, 0.06) 25%,
+    rgba(201, 151, 42, 0.12) 50%,
+    rgba(201, 151, 42, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: skel-shimmer 1.4s ease infinite;
+}
+
+.event-skel--title { height: 18px; width: 75%; }
+.event-skel--meta  { height: 11px; width: 55%; margin-top: 4px; }
+.event-skel--desc  { height: 11px; width: 90%; margin-top: 8px; }
+
+@keyframes skel-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.event-no-results {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: clamp(11px, 1.1vw, 13px);
+  color: rgba(243, 241, 235, 0.45);
+  letter-spacing: 0.06em;
+  margin: 0;
+  grid-column: 1 / -1;
+}
+
+/* ══════════════════════════════════════════
    CAROUSEL  (placeholder)
    Images will load from assets/carousel-images/
 ══════════════════════════════════════════ */
