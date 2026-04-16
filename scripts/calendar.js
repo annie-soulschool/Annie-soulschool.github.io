@@ -12,11 +12,21 @@
    5. Paste both values below and remove DEMO_MODE = true.
 ───────────────────────────────────────────────────────────── */
 
-const GOOGLE_API_KEY   = 'ALzaSyC6rpSesCYzceFAdTA6eEZK_1rNBuRholl';        // ← replace
-const GOOGLE_CALENDAR_ID = '5a1abf9806d5c29bb0ffcb97d8fca402f313804aea80bbc2640aa6ad190abb63@group.calendar.google.com';  // ← replace (e.g. abc123@group.calendar.google.com)
+const GOOGLE_API_KEY   = 'ALzaSyC6rpSesCYzceFAdTA6eEZK_1rNBuRholl';
+const GOOGLE_CALENDAR_ID = '5a1abf9806d5c29bb0ffcb97d8fca402f313804aea80bbc2640aa6ad190abb63@group.calendar.google.com';
 
 /* Set to false once you have real credentials */
 const DEMO_MODE = false;
+
+/* ─── Debug flag ─────────────────────────────────────────────
+   Set to true to log calendar data to the browser console, or
+   activate at runtime with:  localStorage.setItem('CAL_DEBUG', '1')
+   ─────────────────────────────────────────────────────────── */
+const CAL_DEBUG = localStorage.getItem('CAL_DEBUG') === '1';
+
+function calLog(...args) {
+  if (CAL_DEBUG) console.log('[Calendar]', ...args);
+}
 
 /* ─── Demo events shown before real credentials are added ─── */
 const DEMO_EVENTS = [
@@ -98,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load events
   if (DEMO_MODE || GOOGLE_API_KEY === 'YOUR_API_KEY_HERE') {
+    calLog('Running in DEMO_MODE — using hardcoded demo events');
     showSetupBanner();
     allEvents = DEMO_EVENTS;
     renderAll();
@@ -138,9 +149,11 @@ async function fetchGoogleEvents() {
     }
     const data = await res.json();
     allEvents = data.items || [];
+    calLog(`Fetched ${allEvents.length} events from Google Calendar`);
+    calLog('Raw events:', allEvents);
     renderAll();
   } catch (err) {
-    console.error('Google Calendar fetch failed:', err);
+    console.error('[Calendar] Fetch failed:', err);
     showGridError(err.message);
   }
 }
@@ -231,7 +244,7 @@ function makeCell(dayNum, otherMonth, events, isToday) {
   return cell;
 }
 
-/* ── Upcoming events list (next 30 days from today) ── */
+/* ── Upcoming events list (next 60 days from today) ── */
 
 function renderUpcomingList() {
   const list = document.getElementById('events-list');
@@ -248,6 +261,7 @@ function renderUpcomingList() {
     })
     .sort((a, b) => eventStart(a) - eventStart(b));
 
+  calLog(`Upcoming events (next 60 days): ${upcoming.length}`, upcoming);
   if (upcoming.length === 0) {
     list.innerHTML = '<p class="no-events">No upcoming gatherings — check back soon.</p>';
     return;
@@ -287,6 +301,7 @@ function renderUpcomingList() {
 ═══════════════════════════════════════════════════════════ */
 
 function openModal(ev) {
+  calLog('Opening modal for event:', ev);
   const start = eventStart(ev);
   document.getElementById('modal-eyebrow').textContent =
     start.toLocaleString('default', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });

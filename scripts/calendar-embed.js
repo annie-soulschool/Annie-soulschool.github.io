@@ -4,7 +4,16 @@
    and renders them into a target container as styled cards.
    ───────────────────────────────────────────────────────────── */
 
-const EMBED_API_KEY = 'ALzaSyC6rpSesCYzceFAdTA6eEZK_1rNBuRholl';
+const EMBED_API_KEY = 'AIzaSyC6rpSesCYzceFAdTA6eEZK_1rNBuRhoII';
+
+/* ─── Debug flag ─────────────────────────────────────────────
+   Activate at runtime with:  localStorage.setItem('CAL_DEBUG', '1')
+   ─────────────────────────────────────────────────────────── */
+const CAL_DEBUG = localStorage.getItem('CAL_DEBUG') === '1';
+
+function calLog(...args) {
+  if (CAL_DEBUG) console.log('[CalEmbed]', ...args);
+}
 
 /* ─── Calendar sources ───────────────────────────────────────
    Each entry has an id and an optional label.
@@ -50,13 +59,15 @@ async function fetchCalendarEvents(calendarId, maxResults = 50) {
     const res = await fetch(url);
     if (!res.ok) {
       const err = await res.json();
-      console.error(`Calendar fetch failed for ${calendarId}:`, err?.error?.message);
+      console.error(`[CalEmbed] Fetch failed for ${calendarId}:`, err?.error?.message);
       return [];
     }
     const data = await res.json();
+    calLog(`Fetched ${(data.items || []).length} events from ${calendarId}`);
+    calLog('Raw events:', data.items);
     return data.items || [];
   } catch (err) {
-    console.error(`Calendar fetch error for ${calendarId}:`, err);
+    console.error(`[CalEmbed] Fetch error for ${calendarId}:`, err);
     return [];
   }
 }
@@ -84,6 +95,7 @@ async function fetchMergedEvents(calendarIds, limit) {
   }
 
   merged.sort((a, b) => eventStart(a) - eventStart(b));
+  calLog(`Merged ${merged.length} unique events, slicing to ${limit}`);
   return merged.slice(0, limit);
 }
 
@@ -107,9 +119,9 @@ function renderEventCards(container, events) {
     const dateStr  = start.toLocaleString('default', {
       weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
     });
-    const timeStr  = formatEmbedTime(ev);
+    const timeStr  = formatTime(ev);
     const location = ev.location || 'Location TBA';
-    const desc     = ev.description ? stripEmbedHtml(ev.description) : '';
+    const desc     = ev.description ? stripHtml(ev.description) : '';
 
     const card = document.createElement('div');
     card.className = 'event-card';
@@ -149,6 +161,7 @@ async function initIndexCalendar(containerId, limit = 3) {
 
   renderLoadingCards(container, limit);
   const events = await fetchMergedEvents([PRIMARY_CALENDAR_ID], limit);
+  calLog(`initIndexCalendar → rendering ${events.length} events into #${containerId}`);
   renderEventCards(container, events);
 }
 
@@ -163,6 +176,7 @@ async function initPortalCalendar(containerId, limit = 6) {
   renderLoadingCards(container, limit);
   const ids    = PORTAL_CALENDARS.map(c => c.id).filter(Boolean);
   const events = await fetchMergedEvents(ids, limit);
+  calLog(`initPortalCalendar → rendering ${events.length} events into #${containerId}`);
   renderEventCards(container, events);
 }
 
@@ -172,7 +186,7 @@ function eventStart(ev) {
   return new Date(ev.start?.dateTime || ev.start?.date || Date.now());
 }
 
-function formatEmbedTime(ev) {
+function formatTime(ev) {
   if (ev.start?.date && !ev.start?.dateTime) return 'All day';
   const s = new Date(ev.start.dateTime);
   const e = new Date(ev.end?.dateTime || ev.start.dateTime);
@@ -180,7 +194,7 @@ function formatEmbedTime(ev) {
   return `${fmt(s)} – ${fmt(e)}`;
 }
 
-function stripEmbedHtml(str) {
+function stripHtml(str) {
   return str
     .replace(/<[^>]*>/g, '')
     .replace(/&amp;/g, '&')
