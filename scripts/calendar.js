@@ -12,7 +12,7 @@
    5. Paste both values below and remove DEMO_MODE = true.
 ───────────────────────────────────────────────────────────── */
 
-const GOOGLE_API_KEY   = 'ALzaSyC6rpSesCYzceFAdTA6eEZK_1rNBuRholl';
+const GOOGLE_API_KEY   = 'AIzaSyC6rpSesCYzceFAdTA6eEZK_1rNBuRhoII';
 const GOOGLE_CALENDAR_ID = '5a1abf9806d5c29bb0ffcb97d8fca402f313804aea80bbc2640aa6ad190abb63@group.calendar.google.com';
 
 /* Set to false once you have real credentials */
