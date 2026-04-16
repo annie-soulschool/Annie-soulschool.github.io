@@ -4,7 +4,7 @@
    and renders them into a target container as styled cards.
    ───────────────────────────────────────────────────────────── */
 
-const EMBED_API_KEY = '__GOOGLE_CALENDAR_API_KEY__';
+const EMBED_API_KEY = 'AIzaSyC6rpSesCYzceFAdTA6eEZK_1rNBuRhoII';
 
 /* ─── Debug flag ─────────────────────────────────────────────
    Activate at runtime with:  localStorage.setItem('CAL_DEBUG', '1')
