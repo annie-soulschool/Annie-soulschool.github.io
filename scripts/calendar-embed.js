@@ -50,6 +50,7 @@ async function fetchCalendarEvents(calendarId, maxResults = 50) {
     singleEvents: 'true',
     orderBy:      'startTime',
     maxResults:   String(maxResults),
+    fields:       'items(id,summary,description,location,start,end)',
   });
 
   const url =
@@ -63,6 +64,7 @@ async function fetchCalendarEvents(calendarId, maxResults = 50) {
       return [];
     }
     const data = await res.json();
+    console.log('[CalEmbed] Raw API response:', JSON.stringify(data.items?.[0], null, 2));
     calLog(`Fetched ${(data.items || []).length} events from ${calendarId}`);
     calLog('Raw events:', data.items);
     return data.items || [];
