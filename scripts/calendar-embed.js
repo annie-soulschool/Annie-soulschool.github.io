@@ -131,7 +131,7 @@ function renderEventCards(container, events) {
       <h2 class="event-title">${escHtml(ev.summary || 'Gathering')}</h2>
       <p class="event-meta">${escHtml(dateStr)} · ${escHtml(timeStr)}</p>
       <p class="event-location">${escHtml(location)}</p>
-      ${desc ? `<p class="event-desc">${escHtml(desc)}</p>` : ''}
+      ${desc ? `<p class="event-desc" style="white-space:pre-line">${escHtml(desc)}</p>` : ''}
     `;
     container.appendChild(card);
   });
@@ -198,11 +198,14 @@ function formatTime(ev) {
 
 function stripHtml(str) {
   return str
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n')
     .replace(/<[^>]*>/g, '')
     .replace(/&amp;/g, '&')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&#39;/g, "'")
+    .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
 

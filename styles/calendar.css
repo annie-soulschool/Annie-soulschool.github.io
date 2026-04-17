@@ -45,13 +45,6 @@ body {
   margin-bottom: 2.5rem;
 }
 
-.cal-intro {
-  max-width: 480px;
-  margin: 0 auto;
-  font-style: italic;
-  opacity: 0.75;
-}
-
 /* ── Month navigation ── */
 
 .month-nav {

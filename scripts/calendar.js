@@ -19,8 +19,7 @@ const GOOGLE_CALENDAR_ID = '5a1abf9806d5c29bb0ffcb97d8fca402f313804aea80bbc2640a
 const DEMO_MODE = false;
 
 /* ─── Debug flag ─────────────────────────────────────────────
-   Set to true to log calendar data to the browser console, or
-   activate at runtime with:  localStorage.setItem('CAL_DEBUG', '1')
+   Activate at runtime with:  localStorage.setItem('CAL_DEBUG', '1')
    ─────────────────────────────────────────────────────────── */
 const CAL_DEBUG = localStorage.getItem('CAL_DEBUG') === '1';
 
@@ -308,7 +307,9 @@ function openModal(ev) {
   document.getElementById('modal-title').textContent    = ev.summary || 'Gathering';
   document.getElementById('modal-time').textContent     = formatTime(ev);
   document.getElementById('modal-location').textContent = ev.location || '';
-  document.getElementById('modal-desc').textContent     = ev.description ? stripHtml(ev.description) : '';
+  const modalDesc = document.getElementById('modal-desc');
+  modalDesc.style.whiteSpace = 'pre-line';
+  modalDesc.textContent = ev.description ? stripHtml(ev.description) : '';
 
   // Google Calendar "Add to Calendar" link
   const gcalBase = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
@@ -393,7 +394,6 @@ function buildEventDayMap(year, month) {
   return map;
 }
 
-/** Get JS Date from event start (handles dateTime and all-day date) */
 function eventStart(ev) {
   return new Date(ev.start?.dateTime || ev.start?.date || Date.now());
 }
@@ -403,13 +403,25 @@ function formatDate(date) {
   return date.toLocaleString('default', { weekday: 'short', month: 'long', day: 'numeric' });
 }
 
-/** Format time range string */
 function formatTime(ev) {
   if (ev.start?.date && !ev.start?.dateTime) return 'All day';
   const s = new Date(ev.start.dateTime);
   const e = new Date(ev.end?.dateTime || ev.start.dateTime);
   const fmt = d => d.toLocaleTimeString('default', { hour: 'numeric', minute: '2-digit' });
   return `${fmt(s)} – ${fmt(e)}`;
+}
+
+function stripHtml(str) {
+  return str
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n')
+    .replace(/<[^>]*>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#39;/g, "'")
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
 }
 
 /** Convert event start/end to Google Calendar date format YYYYMMDDTHHMMSSZ */
@@ -419,7 +431,3 @@ function toGcalDate(obj) {
   return new Date(obj.dateTime).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 }
 
-/** Strip basic HTML tags from descriptions */
-function stripHtml(str) {
-  return str.replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'").trim();
-}

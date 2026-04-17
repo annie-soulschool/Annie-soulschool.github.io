@@ -179,25 +179,6 @@
   scroll-snap-align: start;
 }
 
-/* Placeholder boxes — replace with <img> tags when images are available */
-.carousel-placeholder-box {
-  flex-shrink: 0;
-  width: 360px;
-  height: 240px;
-  background: var(--deep);
-  border: 1px solid rgba(201, 151, 42, 0.15);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: rgba(243, 241, 235, 0.25);
-  text-transform: uppercase;
-  scroll-snap-align: start;
-}
-
 /* ══════════════════════════════════════════
    YOUTUBE VIDEO
 ══════════════════════════════════════════ */
@@ -317,8 +298,7 @@
     font-size: clamp(22px, 7vw, 36px);
   }
 
-  /* Carousel boxes shrink to near full-width on phone */
-  .carousel-placeholder-box,
+  /* Carousel images shrink to near full-width on phone */
   .carousel-image {
     width: 80vw;
     height: 52vw;
