@@ -123,7 +123,7 @@ function renderEventCards(container, events) {
     });
     const timeStr  = formatTime(ev);
     const location = ev.location || 'Location TBA';
-    const desc     = ev.description ? stripHtml(ev.description) : '';
+    const desc     = ev.description ? linkifyHtml(ev.description) : '';
 
     const card = document.createElement('div');
     card.className = 'event-card';
@@ -131,7 +131,7 @@ function renderEventCards(container, events) {
       <h2 class="event-title">${escHtml(ev.summary || 'Gathering')}</h2>
       <p class="event-meta">${escHtml(dateStr)} · ${escHtml(timeStr)}</p>
       <p class="event-location">${escHtml(location)}</p>
-      ${desc ? `<p class="event-desc" style="white-space:pre-line">${escHtml(desc)}</p>` : ''}
+      ${desc ? `<p class="event-desc" style="white-space:pre-line">${desc}</p>` : ''}
     `;
     container.appendChild(card);
   });
@@ -207,6 +207,15 @@ function stripHtml(str) {
     .replace(/&#39;/g, "'")
     .replace(/\n{3,}/g, '\n\n')
     .trim();
+}
+
+function linkifyHtml(str) {
+  const plain = stripHtml(str);
+  const escaped = escHtml(plain);
+  return escaped.replace(
+    /https?:\/\/[^\s<>"]+/g,
+    url => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+  );
 }
 
 function escHtml(str) {
