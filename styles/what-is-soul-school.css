@@ -108,10 +108,7 @@
 }
 
 .event-desc-preview {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  line-clamp: 3;
+  max-height: calc(1.7em * 3);
   overflow: hidden;
 }
 
