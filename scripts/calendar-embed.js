@@ -124,17 +124,16 @@ function renderEventCards(container, events) {
     const timeStr  = formatTime(ev);
     const location = ev.location || 'Location TBA';
 
+    const desc = ev.description ? sanitizeDescHtml(ev.description) : '';
+
     const card = document.createElement('div');
     card.className = 'event-card';
     card.innerHTML = `
       <h2 class="event-title">${escHtml(ev.summary || 'Gathering')}</h2>
       <p class="event-meta">${escHtml(dateStr)} · ${escHtml(timeStr)}</p>
       <p class="event-location">${escHtml(location)}</p>
+      ${desc ? `<p class="event-desc" style="white-space:pre-line">${desc}</p>` : ''}
     `;
-
-    if (ev.description) {
-      card.appendChild(buildDescElement(ev.description));
-    }
 
     container.appendChild(card);
   });
@@ -197,52 +196,6 @@ function formatTime(ev) {
   const e = new Date(ev.end?.dateTime || ev.start.dateTime);
   const fmt = d => d.toLocaleTimeString('default', { hour: 'numeric', minute: '2-digit' });
   return `${fmt(s)} – ${fmt(e)}`;
-}
-
-/**
- * Parse Google Calendar HTML description into a safe DOM fragment.
- * Preserves <a> links (href only, opens in new tab).
- * Adds "View more / View less" toggle if content exceeds one paragraph.
- */
-function buildDescElement(rawHtml) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'event-desc';
-
-  const safe = sanitizeDescHtml(rawHtml);
-  const tmp = document.createElement('div');
-  tmp.innerHTML = safe;
-
-  // Split into paragraphs on <br> / block elements to detect length
-  const text = tmp.textContent.trim();
-  const isLong = text.length > 200 || (text.match(/\n/) && text.length > 80);
-
-  if (!isLong) {
-    wrapper.innerHTML = safe;
-    return wrapper;
-  }
-
-  const preview = document.createElement('div');
-  preview.className = 'event-desc-preview';
-  preview.innerHTML = safe;
-
-  const full = document.createElement('div');
-  full.className = 'event-desc-full';
-  full.hidden = true;
-  full.innerHTML = safe;
-
-  const toggle = document.createElement('button');
-  toggle.className = 'event-desc-toggle';
-  toggle.textContent = 'View more';
-  toggle.addEventListener('click', () => {
-    preview.hidden = !preview.hidden;
-    full.hidden = !full.hidden;
-    toggle.textContent = full.hidden ? 'View more' : 'View less';
-  });
-
-  wrapper.appendChild(preview);
-  wrapper.appendChild(full);
-  wrapper.appendChild(toggle);
-  return wrapper;
 }
 
 /**
