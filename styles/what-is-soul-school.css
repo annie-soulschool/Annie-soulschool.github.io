@@ -97,6 +97,42 @@
   margin: 4px 0 0;
 }
 
+.event-desc a {
+  color: rgba(201, 151, 42, 0.9);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.event-desc a:hover {
+  color: rgba(201, 151, 42, 1);
+}
+
+.event-desc-preview {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.event-desc-toggle {
+  background: none;
+  border: none;
+  padding: 4px 0 0;
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+  font-size: clamp(10px, 1vw, 12px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(201, 151, 42, 0.8);
+  display: block;
+}
+
+.event-desc-toggle:hover {
+  color: rgba(201, 151, 42, 1);
+}
+
 /* ══════════════════════════════════════════
    CALENDAR LOADING SKELETONS
 ══════════════════════════════════════════ */

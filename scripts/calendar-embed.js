@@ -123,7 +123,6 @@ function renderEventCards(container, events) {
     });
     const timeStr  = formatTime(ev);
     const location = ev.location || 'Location TBA';
-    const desc     = ev.description ? linkifyHtml(ev.description) : '';
 
     const card = document.createElement('div');
     card.className = 'event-card';
@@ -131,8 +130,12 @@ function renderEventCards(container, events) {
       <h2 class="event-title">${escHtml(ev.summary || 'Gathering')}</h2>
       <p class="event-meta">${escHtml(dateStr)} · ${escHtml(timeStr)}</p>
       <p class="event-location">${escHtml(location)}</p>
-      ${desc ? `<p class="event-desc" style="white-space:pre-line">${desc}</p>` : ''}
     `;
+
+    if (ev.description) {
+      card.appendChild(buildDescElement(ev.description));
+    }
+
     container.appendChild(card);
   });
 }
@@ -196,24 +199,82 @@ function formatTime(ev) {
   return `${fmt(s)} – ${fmt(e)}`;
 }
 
-function stripHtml(str) {
-  return str
-    .replace(/<br\s*\/?>/gi, '\n')
-    .replace(/<\/p>/gi, '\n')
-    .replace(/<[^>]*>/g, '')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&#39;/g, "'")
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
+/**
+ * Parse Google Calendar HTML description into a safe DOM fragment.
+ * Preserves <a> links (href only, opens in new tab).
+ * Adds "View more / View less" toggle if content exceeds one paragraph.
+ */
+function buildDescElement(rawHtml) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'event-desc';
+
+  const safe = sanitizeDescHtml(rawHtml);
+  const tmp = document.createElement('div');
+  tmp.innerHTML = safe;
+
+  // Split into paragraphs on <br> / block elements to detect length
+  const text = tmp.textContent.trim();
+  const isLong = text.length > 200 || (text.match(/\n/) && text.length > 80);
+
+  if (!isLong) {
+    wrapper.innerHTML = safe;
+    return wrapper;
+  }
+
+  const preview = document.createElement('div');
+  preview.className = 'event-desc-preview';
+  preview.innerHTML = safe;
+
+  const full = document.createElement('div');
+  full.className = 'event-desc-full';
+  full.hidden = true;
+  full.innerHTML = safe;
+
+  const toggle = document.createElement('button');
+  toggle.className = 'event-desc-toggle';
+  toggle.textContent = 'View more';
+  toggle.addEventListener('click', () => {
+    preview.hidden = !preview.hidden;
+    full.hidden = !full.hidden;
+    toggle.textContent = full.hidden ? 'View more' : 'View less';
+  });
+
+  wrapper.appendChild(preview);
+  wrapper.appendChild(full);
+  wrapper.appendChild(toggle);
+  return wrapper;
 }
 
-function linkifyHtml(str) {
-  const plain = stripHtml(str);
-  const escaped = escHtml(plain);
-  return escaped.replace(
-    /https?:\/\/[^\s<>"]+/g,
+/**
+ * Sanitize Google Calendar HTML: keep only <a>, <br>, <b>, <i>, <em>, <strong>.
+ * Forces all links to open in a new tab. Strips everything else.
+ */
+function sanitizeDescHtml(str) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = str;
+
+  // Remove any disallowed tags but keep their text content
+  const allowed = new Set(['A', 'BR', 'B', 'I', 'EM', 'STRONG']);
+  tmp.querySelectorAll('*').forEach(el => {
+    if (!allowed.has(el.tagName)) {
+      el.replaceWith(...el.childNodes);
+    } else if (el.tagName === 'A') {
+      const href = el.getAttribute('href') || '';
+      // Only allow http/https links
+      if (!/^https?:\/\//i.test(href)) {
+        el.replaceWith(el.textContent);
+      } else {
+        // Strip all attributes except href, add safe target
+        [...el.attributes].forEach(a => { if (a.name !== 'href') el.removeAttribute(a.name); });
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener noreferrer');
+      }
+    }
+  });
+
+  // Also linkify any bare URLs not already wrapped in <a>
+  return tmp.innerHTML.replace(
+    /(?<!href=")https?:\/\/[^\s<>"]+/g,
     url => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
   );
 }
