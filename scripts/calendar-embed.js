@@ -24,11 +24,12 @@ function calLog(...args) {
 const PRIMARY_CALENDAR_ID =
   '5a1abf9806d5c29bb0ffcb97d8fca402f313804aea80bbc2640aa6ad190abb63@group.calendar.google.com';
 
+const INTERNAL_CALENDAR_ID =
+  '4cff68a40f78a5719d116ac58a12fff4b16e232069dbaaaa24ac06c6f6f174fe@group.calendar.google.com';
+
 const PORTAL_CALENDARS = [
   { id: PRIMARY_CALENDAR_ID,  label: 'Main' },
-  // { id: 'CALENDAR_ID_2@group.calendar.google.com', label: 'Placeholder 2' },
-  // { id: 'CALENDAR_ID_3@group.calendar.google.com', label: 'Placeholder 3' },
-  // { id: 'CALENDAR_ID_4@group.calendar.google.com', label: 'Placeholder 4' },
+  { id: INTERNAL_CALENDAR_ID, label: 'Internal' },
 ];
 
 /* ─────────────────────────────────────────────────────────── */
