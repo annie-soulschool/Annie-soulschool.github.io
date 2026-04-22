@@ -222,13 +222,21 @@ function sanitizeDescHtml(str) {
     if (!allowed.has(el.tagName)) {
       el.replaceWith(...el.childNodes);
     } else if (el.tagName === 'A') {
-      const href = el.getAttribute('href') || '';
+      let href = el.getAttribute('href') || '';
+      // Unwrap Google redirect URLs (google.com/url?q=<real-url>&...)
+      if (/^https?:\/\/(www\.)?google\.com\/url\?/i.test(href)) {
+        try {
+          const qParam = new URL(href).searchParams.get('q');
+          if (qParam) href = qParam;
+        } catch (_) {}
+      }
       // Only allow http/https links
       if (!/^https?:\/\//i.test(href)) {
         el.replaceWith(el.textContent);
       } else {
         // Strip all attributes except href, add safe target
-        [...el.attributes].forEach(a => { if (a.name !== 'href') el.removeAttribute(a.name); });
+        [...el.attributes].forEach(a => el.removeAttribute(a.name));
+        el.setAttribute('href', href);
         el.setAttribute('target', '_blank');
         el.setAttribute('rel', 'noopener noreferrer');
       }
