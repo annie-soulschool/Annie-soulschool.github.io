@@ -201,10 +201,19 @@ function formatTime(ev) {
 /**
  * Sanitize Google Calendar HTML: keep only <a>, <br>, <b>, <i>, <em>, <strong>.
  * Forces all links to open in a new tab. Strips everything else.
+ *
+ * Google Calendar sometimes returns descriptions where the HTML is
+ * entity-encoded (e.g. &lt;a href="..."&gt;), so we decode one layer
+ * first — turning those back into real tags — before parsing.
  */
 function sanitizeDescHtml(str) {
+  // Decode one layer of HTML entities in case the API returned escaped markup.
+  const decoder = document.createElement('textarea');
+  decoder.innerHTML = str;
+  const decoded = decoder.value;
+
   const tmp = document.createElement('div');
-  tmp.innerHTML = str;
+  tmp.innerHTML = decoded;
 
   // Remove any disallowed tags but keep their text content
   const allowed = new Set(['A', 'BR', 'B', 'I', 'EM', 'STRONG']);
