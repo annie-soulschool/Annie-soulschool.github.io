@@ -167,6 +167,62 @@
 }
 
 /* ══════════════════════════════════════════
+   SOUNDCLOUD
+══════════════════════════════════════════ */
+
+.wiss-soundcloud-section {
+  background: transparent;
+  padding: 64px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.wiss-soundcloud-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(14px, 2vw, 20px);
+  letter-spacing: 0.12em;
+  color: rgba(243, 241, 235, 0.7);
+  margin: 0;
+  text-align: center;
+}
+
+.wiss-soundcloud-wrap {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 151, 42, 0.15);
+}
+
+.wiss-soundcloud-iframe {
+  display: block;
+  width: 100%;
+}
+
+.wiss-soundcloud-credit {
+  font-size: 10px;
+  color: #cccccc;
+  line-break: anywhere;
+  word-break: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+  font-weight: 100;
+  padding: 4px 8px 6px;
+  background: #000;
+}
+
+.wiss-soundcloud-credit a {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+/* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
 
