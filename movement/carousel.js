@@ -103,13 +103,6 @@
     }
   });
 
-  // Wrap user-triggered navigation so it resets the timer
-  const _origGoTo = goTo;
-  function goToManual(idx) {
-    _origGoTo(idx);
-    resetAuto();
-  }
-
   if (btnNext) btnNext.addEventListener('click', () => { next(); resetAuto(); });
   if (btnPrev) btnPrev.addEventListener('click', () => { prev(); resetAuto(); });
   dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetAuto(); }));

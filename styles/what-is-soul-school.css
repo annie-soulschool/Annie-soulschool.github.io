@@ -43,99 +43,6 @@
   padding: 48px 64px 72px;
 }
 
-.event-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.event-card {
-  background: var(--deep);
-  border: 1px solid rgba(201, 151, 42, 0.2);
-  border-radius: 16px;
-  padding: 28px 28px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.event-title {
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: 600;
-  font-size: clamp(14px, 1.4vw, 18px);
-  letter-spacing: 0.02em;
-  color: var(--cream);
-  margin: 0;
-}
-
-.event-meta {
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: 300;
-  font-size: clamp(10px, 1vw, 12px);
-  letter-spacing: 0.06em;
-  color: rgba(243, 241, 235, 0.5);
-  text-transform: uppercase;
-  margin: 0;
-}
-
-.event-location {
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: 400;
-  font-size: clamp(11px, 1.1vw, 13px);
-  letter-spacing: 0.02em;
-  color: rgba(243, 241, 235, 0.55);
-  margin: 0;
-}
-
-.event-desc {
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: 300;
-  font-size: clamp(11px, 1.1vw, 13px);
-  letter-spacing: 0;
-  color: rgba(243, 241, 235, 0.6);
-  line-height: 1.7;
-  margin: 4px 0 0;
-}
-
-/* ══════════════════════════════════════════
-   CALENDAR LOADING SKELETONS
-══════════════════════════════════════════ */
-
-.event-card--loading {
-  pointer-events: none;
-}
-
-.event-skel {
-  border-radius: 6px;
-  background: linear-gradient(
-    90deg,
-    rgba(201, 151, 42, 0.06) 25%,
-    rgba(201, 151, 42, 0.12) 50%,
-    rgba(201, 151, 42, 0.06) 75%
-  );
-  background-size: 200% 100%;
-  animation: skel-shimmer 1.4s ease infinite;
-}
-
-.event-skel--title { height: 18px; width: 75%; }
-.event-skel--meta  { height: 11px; width: 55%; margin-top: 4px; }
-.event-skel--desc  { height: 11px; width: 90%; margin-top: 8px; }
-
-@keyframes skel-shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-.event-no-results {
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: 300;
-  font-size: clamp(11px, 1.1vw, 13px);
-  color: rgba(243, 241, 235, 0.45);
-  letter-spacing: 0.06em;
-  margin: 0;
-  grid-column: 1 / -1;
-}
-
 /* ══════════════════════════════════════════
    CAROUSEL  (placeholder)
    Images will load from assets/carousel-images/
@@ -176,25 +83,6 @@
   height: 240px;
   object-fit: cover;
   border-radius: 8px;
-  scroll-snap-align: start;
-}
-
-/* Placeholder boxes — replace with <img> tags when images are available */
-.carousel-placeholder-box {
-  flex-shrink: 0;
-  width: 360px;
-  height: 240px;
-  background: var(--deep);
-  border: 1px solid rgba(201, 151, 42, 0.15);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: rgba(243, 241, 235, 0.25);
-  text-transform: uppercase;
   scroll-snap-align: start;
 }
 
@@ -279,6 +167,62 @@
 }
 
 /* ══════════════════════════════════════════
+   SOUNDCLOUD
+══════════════════════════════════════════ */
+
+.wiss-soundcloud-section {
+  background: transparent;
+  padding: 64px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.wiss-soundcloud-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(14px, 2vw, 20px);
+  letter-spacing: 0.12em;
+  color: rgba(243, 241, 235, 0.7);
+  margin: 0;
+  text-align: center;
+}
+
+.wiss-soundcloud-wrap {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 151, 42, 0.15);
+}
+
+.wiss-soundcloud-iframe {
+  display: block;
+  width: 100%;
+}
+
+.wiss-soundcloud-credit {
+  font-size: 10px;
+  color: #cccccc;
+  line-break: anywhere;
+  word-break: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+  font-weight: 100;
+  padding: 4px 8px 6px;
+  background: #000;
+}
+
+.wiss-soundcloud-credit a {
+  color: #cccccc;
+  text-decoration: none;
+}
+
+/* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
 
@@ -289,10 +233,6 @@
 
   .wiss-events {
     padding: 40px 24px 56px;
-  }
-
-  .event-cards {
-    grid-template-columns: 1fr;
   }
 
   .wiss-carousel {
@@ -317,8 +257,7 @@
     font-size: clamp(22px, 7vw, 36px);
   }
 
-  /* Carousel boxes shrink to near full-width on phone */
-  .carousel-placeholder-box,
+  /* Carousel images shrink to near full-width on phone */
   .carousel-image {
     width: 80vw;
     height: 52vw;

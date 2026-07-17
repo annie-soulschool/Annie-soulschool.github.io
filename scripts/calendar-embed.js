@@ -24,11 +24,12 @@ function calLog(...args) {
 const PRIMARY_CALENDAR_ID =
   '5a1abf9806d5c29bb0ffcb97d8fca402f313804aea80bbc2640aa6ad190abb63@group.calendar.google.com';
 
+const INTERNAL_CALENDAR_ID =
+  '4cff68a40f78a5719d116ac58a12fff4b16e232069dbaaaa24ac06c6f6f174fe@group.calendar.google.com';
+
 const PORTAL_CALENDARS = [
   { id: PRIMARY_CALENDAR_ID,  label: 'Main' },
-  // { id: 'CALENDAR_ID_2@group.calendar.google.com', label: 'Placeholder 2' },
-  // { id: 'CALENDAR_ID_3@group.calendar.google.com', label: 'Placeholder 3' },
-  // { id: 'CALENDAR_ID_4@group.calendar.google.com', label: 'Placeholder 4' },
+  { id: INTERNAL_CALENDAR_ID, label: 'Internal' },
 ];
 
 /* ─────────────────────────────────────────────────────────── */
@@ -123,7 +124,8 @@ function renderEventCards(container, events) {
     });
     const timeStr  = formatTime(ev);
     const location = ev.location || 'Location TBA';
-    const desc     = ev.description ? stripHtml(ev.description) : '';
+
+    const desc = ev.description ? sanitizeDescHtml(ev.description) : '';
 
     const card = document.createElement('div');
     card.className = 'event-card';
@@ -131,8 +133,9 @@ function renderEventCards(container, events) {
       <h2 class="event-title">${escHtml(ev.summary || 'Gathering')}</h2>
       <p class="event-meta">${escHtml(dateStr)} · ${escHtml(timeStr)}</p>
       <p class="event-location">${escHtml(location)}</p>
-      ${desc ? `<p class="event-desc">${escHtml(desc)}</p>` : ''}
+      ${desc ? `<p class="event-desc" style="white-space:pre-line">${desc}</p>` : ''}
     `;
+
     container.appendChild(card);
   });
 }
@@ -196,14 +199,55 @@ function formatTime(ev) {
   return `${fmt(s)} – ${fmt(e)}`;
 }
 
-function stripHtml(str) {
-  return str
-    .replace(/<[^>]*>/g, '')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&#39;/g, "'")
-    .trim();
+/**
+ * Sanitize Google Calendar HTML: keep only <a>, <br>, <b>, <i>, <em>, <strong>.
+ * Forces all links to open in a new tab. Strips everything else.
+ *
+ * Google Calendar sometimes returns descriptions where the HTML is
+ * entity-encoded (e.g. &lt;a href="..."&gt;), so we decode one layer
+ * first — turning those back into real tags — before parsing.
+ */
+function sanitizeDescHtml(str) {
+  // Decode one layer of HTML entities in case the API returned escaped markup.
+  const decoder = document.createElement('textarea');
+  decoder.innerHTML = str;
+  const decoded = decoder.value;
+
+  const tmp = document.createElement('div');
+  tmp.innerHTML = decoded;
+
+  // Remove any disallowed tags but keep their text content
+  const allowed = new Set(['A', 'BR', 'B', 'I', 'EM', 'STRONG']);
+  tmp.querySelectorAll('*').forEach(el => {
+    if (!allowed.has(el.tagName)) {
+      el.replaceWith(...el.childNodes);
+    } else if (el.tagName === 'A') {
+      let href = el.getAttribute('href') || '';
+      // Unwrap Google redirect URLs (google.com/url?q=<real-url>&...)
+      if (/^https?:\/\/(www\.)?google\.com\/url\?/i.test(href)) {
+        try {
+          const qParam = new URL(href).searchParams.get('q');
+          if (qParam) href = qParam;
+        } catch (_) {}
+      }
+      // Only allow http/https links
+      if (!/^https?:\/\//i.test(href)) {
+        el.replaceWith(el.textContent);
+      } else {
+        // Strip all attributes except href, add safe target
+        [...el.attributes].forEach(a => el.removeAttribute(a.name));
+        el.setAttribute('href', href);
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener noreferrer');
+      }
+    }
+  });
+
+  // Also linkify any bare URLs not already wrapped in <a>
+  return tmp.innerHTML.replace(
+    /(?<!href=")https?:\/\/[^\s<>"]+/g,
+    url => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+  );
 }
 
 function escHtml(str) {

@@ -155,24 +155,6 @@ body {
   margin: 1.4rem auto;
 }
 
-/* ── How access works — action items ── */
-.access-steps {
-  list-style: none;
-  margin: 1.2rem auto 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  max-width: 360px;
-}
-
-.access-steps li {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-  font-style: italic;
-  color: var(--peak);
-  letter-spacing: 0.02em;
-}
-
 /* ── Pillars grid ── */
 .pillars-grid {
   display: flex;
@@ -199,35 +181,6 @@ body {
 .pillar-chip:hover {
   background: rgba(201, 151, 42, 0.16);
   border-color: var(--luminous);
-}
-
-/* ── Is Soul School for me — checklist ── */
-.for-me-list {
-  list-style: none;
-  text-align: left;
-  max-width: 520px;
-  margin: 1rem auto 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.for-me-list li {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(0.95rem, 1.7vw, 1.15rem);
-  line-height: 1.6;
-  color: var(--soft);
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.for-me-list li::before {
-  content: '✦';
-  position: absolute;
-  left: 0;
-  color: var(--gold);
-  font-size: 0.65rem;
-  top: 0.32rem;
 }
 
 /* ── Advisory Council cards ── */
@@ -308,35 +261,6 @@ body {
   font-weight: 700;
 }
 
-/* ── Back link ── */
-.back-link {
-  display: inline-block;
-  font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ash);
-  text-decoration: none;
-  margin-top: 2rem;
-  transition: color 0.2s;
-}
-
-.back-link:hover { color: var(--luminous); }
-
-@media (min-width: 561px) {
-  .slide-card {
-    position: relative;
-    padding-bottom: 3rem;
-  }
-
-  .slide-card .back-link[href="../index.html"] {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin-top: 0;
-  }
-}
-
 /* ── Navigation dots ── */
 .nav-dots {
   position: fixed;
@@ -406,38 +330,9 @@ body {
   pointer-events: none;
 }
 
-/* ── Paradigm shift — special layout ── */
-.paradigm-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
-  font-style: italic;
-  color: var(--luminous);
-  line-height: 1.6;
-  max-width: 540px;
-  margin: 0 auto;
-  border-left: 2px solid var(--gold);
-  padding-left: 1.3rem;
-  text-align: left;
-}
-
-/* ── Keyboard hint ── */
-.key-hint {
-  position: fixed;
-  bottom: 2.1rem;
-  right: 2rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ash);
-  opacity: 0.6;
-  z-index: 10;
-}
-
 /* ── Mobile ── */
 @media (max-width: 560px) {
   .nav-dots { display: none; }
-  .key-hint { display: none; }
   .slide { padding: 4rem 1.2rem 5.5rem; }
   .council-grid { gap: 0.8rem; }
   .council-card { width: min(150px, 44vw); padding: 0.9rem 0.7rem; }
